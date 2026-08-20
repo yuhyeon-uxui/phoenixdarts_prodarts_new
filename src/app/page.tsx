@@ -49,6 +49,16 @@ const newsData = Array.from({ length: 16 }, (_, i) => ({
 }));
 
 export default function Home() {
+    const [now, setNow] = useState<Date | null>(null);
+
+    useEffect(() => {
+        setNow(new Date());
+        const timer = setInterval(() => {
+            setNow(new Date());
+        }, 1000);
+        return () => clearInterval(timer);
+    }, []);
+
     // 2. Main Hero State
     const [activeHero, setActiveHero] = useState(0);
     const [heroHover, setHeroHover] = useState(false);
@@ -231,10 +241,20 @@ export default function Home() {
                             onScroll={onNextMatchScroll}
                         >
                             {[
-                                { tour: "2026 PERFECT TOUR", title: "제12전 하마마츠", date: "2026. 08. 29 (SUN) 10:00 / 액트시티 하마마츠", img: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=400", d: "08", h: "19", m: "48", s: "54" },
-                                { tour: "2026 PERFECT TOUR", title: "제13전 도쿄", date: "2026. 09. 15 (SUN) 10:00 / 도쿄 빅사이트", img: "https://images.unsplash.com/photo-1543852786-1cf6624b9987?q=80&w=400", d: "25", h: "09", m: "12", s: "30" },
-                                { tour: "2026 PERFECT TOUR", title: "제14전 오사카", date: "2026. 10. 10 (SAT) 10:00 / 인텍스 오사카", img: "https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?q=80&w=400", d: "50", h: "14", m: "05", s: "11" },
-                            ].map((match, idx) => (
+                                { tour: "2026 PERFECT TOUR", title: "제12전 하마마츠", date: "2026. 08. 29 (SUN) 10:00 / 액트시티 하마마츠", targetDate: "2026-08-29T10:00:00", img: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=400", d: "08", h: "19", m: "48", s: "54" },
+                                { tour: "2026 PERFECT TOUR", title: "제13전 도쿄", date: "2026. 09. 15 (SUN) 10:00 / 도쿄 빅사이트", targetDate: "2026-09-15T10:00:00", img: "https://images.unsplash.com/photo-1543852786-1cf6624b9987?q=80&w=400", d: "25", h: "09", m: "12", s: "30" },
+                                { tour: "2026 PERFECT TOUR", title: "제14전 오사카", date: "2026. 10. 10 (SAT) 10:00 / 인텍스 오사카", targetDate: "2026-10-10T10:00:00", img: "https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?q=80&w=400", d: "50", h: "14", m: "05", s: "11" },
+                            ].map((match, idx) => {
+                                let d = match.d, h = match.h, m = match.m, s = match.s;
+                                if (now) {
+                                    const diff = Math.max(0, new Date(match.targetDate).getTime() - now.getTime());
+                                    d = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+                                    h = Math.floor((diff / (1000 * 60 * 60)) % 24).toString().padStart(2, '0');
+                                    m = Math.floor((diff / 1000 / 60) % 60).toString().padStart(2, '0');
+                                    s = Math.floor((diff / 1000) % 60).toString().padStart(2, '0');
+                                }
+
+                                return (
                                 <div key={idx} className="w-full shrink-0 snap-start flex flex-col pointer-events-none">
                                     <div className="w-full h-[180px] rounded-[8px] mb-6 bg-cover bg-center shadow-inner shrink-0" style={{backgroundImage: `url('${match.img}')`}}></div>
                                     
@@ -248,26 +268,26 @@ export default function Home() {
                                     <div className="flex justify-center gap-2 shrink-0">
                                         <div className="text-center w-[52px]">
                                             <div className="text-[9px] text-gray-500 mb-1 font-bold">DAY</div>
-                                            <div className="bg-white rounded-[8px] py-2 text-xl font-mono font-black text-gray-900 border border-gray-200 shadow-sm">{match.d}</div>
+                                            <div className="bg-white rounded-[8px] py-2 text-xl font-mono font-black text-gray-900 border border-gray-200 shadow-sm">{d}</div>
                                         </div>
                                         <div className="text-xl font-bold text-gray-300 mt-4">:</div>
                                         <div className="text-center w-[52px]">
                                             <div className="text-[9px] text-gray-500 mb-1 font-bold">HOUR</div>
-                                            <div className="bg-white rounded-[8px] py-2 text-xl font-mono font-black text-gray-900 border border-gray-200 shadow-sm">{match.h}</div>
+                                            <div className="bg-white rounded-[8px] py-2 text-xl font-mono font-black text-gray-900 border border-gray-200 shadow-sm">{h}</div>
                                         </div>
                                         <div className="text-xl font-bold text-gray-300 mt-4">:</div>
                                         <div className="text-center w-[52px]">
                                             <div className="text-[9px] text-gray-500 mb-1 font-bold">MIN</div>
-                                            <div className="bg-white rounded-[8px] py-2 text-xl font-mono font-black text-gray-900 border border-gray-200 shadow-sm">{match.m}</div>
+                                            <div className="bg-white rounded-[8px] py-2 text-xl font-mono font-black text-gray-900 border border-gray-200 shadow-sm">{m}</div>
                                         </div>
                                         <div className="text-xl font-bold text-gray-300 mt-4">:</div>
                                         <div className="text-center w-[52px]">
                                             <div className="text-[9px] text-gray-500 mb-1 font-bold">SEC</div>
-                                            <div className="bg-white rounded-[8px] py-2 text-xl font-mono font-black text-gray-900 border border-gray-200 shadow-sm">{match.s}</div>
+                                            <div className="bg-white rounded-[8px] py-2 text-xl font-mono font-black text-gray-900 border border-gray-200 shadow-sm">{s}</div>
                                         </div>
                                     </div>
                                 </div>
-                            ))}
+                            )})}
                         </div>
                         
                         {/* Pagination indicator (dots) */}
