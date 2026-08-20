@@ -51,21 +51,22 @@ export default function Home() {
     const [scrollLeftNews, setScrollLeftNews] = useState(0);
     const [isNewsHovered, setIsNewsHovered] = useState(false);
 
-    const onPointerDownNews = (e: React.PointerEvent<HTMLDivElement>) => {
+    const onMouseDownNews = (e: React.MouseEvent) => {
         setIsDraggingNews(true);
-        setStartXNews(e.pageX - (newsScrollRef.current?.offsetLeft || 0));
+        setStartXNews(e.clientX);
         setScrollLeftNews(newsScrollRef.current?.scrollLeft || 0);
-        e.currentTarget.setPointerCapture(e.pointerId);
     };
-    const onPointerUpNews = (e: React.PointerEvent<HTMLDivElement>) => {
+    const onMouseLeaveNews = () => {
         setIsDraggingNews(false);
-        e.currentTarget.releasePointerCapture(e.pointerId);
     };
-    const onPointerMoveNews = (e: React.PointerEvent<HTMLDivElement>) => {
+    const onMouseUpNews = () => {
+        setIsDraggingNews(false);
+    };
+    const onMouseMoveNews = (e: React.MouseEvent) => {
         if (!isDraggingNews || !newsScrollRef.current) return;
-        const x = e.pageX - newsScrollRef.current.offsetLeft;
-        const walk = (x - startXNews) * 2;
-        newsScrollRef.current.scrollLeft = scrollLeftNews - walk;
+        e.preventDefault();
+        const dx = e.clientX - startXNews;
+        newsScrollRef.current.scrollLeft = scrollLeftNews - dx * 1.5;
     };
     const scrollNewsRight = () => {
         if (newsScrollRef.current) newsScrollRef.current.scrollBy({ left: 320, behavior: 'smooth' });
@@ -202,12 +203,12 @@ export default function Home() {
                         onMouseLeave={() => setIsNewsHovered(false)}
                     >
                         <div 
-                            className="overflow-x-auto scrollbar-hide pb-4 cursor-grab active:cursor-grabbing flex gap-4 w-full"
+                            className="overflow-x-auto scrollbar-hide pb-4 cursor-grab active:cursor-grabbing flex gap-4 w-full select-none"
                             ref={newsScrollRef}
-                            onPointerDown={onPointerDownNews}
-                            onPointerUp={onPointerUpNews}
-                            onPointerCancel={onPointerUpNews}
-                            onPointerMove={onPointerMoveNews}
+                            onMouseDown={onMouseDownNews}
+                            onMouseLeave={onMouseLeaveNews}
+                            onMouseUp={onMouseUpNews}
+                            onMouseMove={onMouseMoveNews}
                         >
                             {/* Inner wide container for cards */}
                             <div className="flex gap-4 w-max shrink-0">
