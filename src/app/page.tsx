@@ -312,9 +312,9 @@ export default function Home() {
                         </div>
                         
                         {/* 2-column list layout */}
-                        <div className="grid grid-cols-1 xl:grid-cols-2 xl:grid-rows-5 xl:grid-flow-col gap-x-6 gap-y-3">
+                        <div className="grid grid-cols-1 xl:grid-cols-2 xl:grid-rows-5 xl:grid-flow-col gap-x-12 gap-y-0">
                             {rankingData.map((player) => (
-                                <div key={player.rank} className="flex items-center justify-between p-[14px] rounded-[8px] bg-white border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-md transition-shadow cursor-pointer group">
+                                <div key={player.rank} className="flex items-center justify-between py-4 px-2 border-b border-gray-100 hover:bg-gray-50 transition-colors cursor-pointer group">
                                     <div className="flex items-center gap-3 md:gap-4">
                                         {/* Rank Number */}
                                         <div className={`w-6 text-center font-black text-xl ${player.rank === 1 ? 'text-[#EAA51D]' : player.rank === 2 ? 'text-[#7C8B9D]' : player.rank === 3 ? 'text-[#A06B60]' : player.rank >= 6 ? 'text-[#6B6B6B]' : 'text-gray-900'}`}>{player.rank}</div>
