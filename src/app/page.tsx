@@ -499,10 +499,10 @@ export default function Home() {
                                     { id: "N9pVyM6WLeg", title: "투어 비하인드 씬 대공개", date: "2026.08.05", link: "https://youtu.be/N9pVyM6WLeg?si=xRcvuwGKuXN8NYSn" },
                                     { id: "S8XDJRxAZnY", title: "다트 프로들의 연습 루틴 엿보기", date: "2026.08.01", link: "https://youtu.be/S8XDJRxAZnY?si=p4Zfz_3Eh8OKhF9_" },
                                 ].map((item, idx) => (
-                                    <a key={idx} href={item.link} target="_blank" rel="noopener noreferrer" className="flex-1 min-h-[70px] flex bg-white rounded-[8px] overflow-hidden border border-gray-200 shadow-sm cursor-pointer group">
+                                    <a key={idx} href={item.link} target="_blank" rel="noopener noreferrer" className="flex-1 min-h-[70px] flex bg-white rounded-[8px] overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer group">
                                         <div className="w-1/3 shrink-0 bg-cover bg-center" style={{backgroundImage: `url('https://img.youtube.com/vi/${item.id}/hqdefault.jpg')`}}></div>
                                         <div className="w-2/3 p-3 flex flex-col justify-center gap-1">
-                                            <h4 className="text-sm font-bold text-gray-900 line-clamp-2 group-hover:underline leading-snug">{item.title}</h4>
+                                            <h4 className="text-sm font-bold text-gray-900 line-clamp-2 group-hover:underline decoration-2 underline-offset-2 leading-snug">{item.title}</h4>
                                             <span className="text-[10px] text-gray-400">{item.date}</span>
                                         </div>
                                     </a>
