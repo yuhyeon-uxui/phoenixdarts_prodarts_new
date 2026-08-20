@@ -39,45 +39,92 @@ export default function Home() {
 
     return (
         <main className="flex flex-col w-full font-sans bg-gray-100 min-h-screen text-gray-900">
-            {/* 1. Main Key Visual (Dissolve Carousel) */}
-            <section className="relative w-full h-[500px] overflow-hidden bg-black">
-                {heroSlides.map((slide, idx) => (
-                    <div 
-                        key={idx}
-                        className={`absolute inset-0 transition-opacity duration-1000 ${activeHero === idx ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-                    >
-                        <div className="absolute inset-0 bg-cover bg-center opacity-70" style={{ backgroundImage: `url('${slide.image}')` }}></div>
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                        <div className="absolute bottom-16 left-8 md:left-20 z-20">
-                            <h2 className="text-white text-4xl md:text-5xl font-bold whitespace-pre-line leading-tight">{slide.title}</h2>
+            <div className="max-w-[1200px] mx-auto w-full px-4 pt-10">
+                {/* HERO SECTION - SIDE-BY-SIDE */}
+                <section className="flex flex-col lg:flex-row gap-6 mb-16">
+                    {/* Left Card: Main Hero (Crossfade Slider) */}
+                    <div className="flex-1 rounded-[8px] bg-gray-900 relative overflow-hidden h-[500px] flex flex-col justify-center shadow-lg">
+                        {heroSlides.map((slide, idx) => (
+                            <div 
+                                key={idx}
+                                className={`absolute inset-0 transition-opacity duration-1000 ${activeHero === idx ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+                            >
+                                <div className="absolute inset-0 bg-cover bg-center opacity-70" style={{ backgroundImage: `url('${slide.image}')` }}></div>
+                                <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                                <div className="relative z-20 w-full h-full flex flex-col justify-center pl-10 pr-4">
+                                    <span className="text-white/80 font-bold text-xs tracking-widest mb-3 inline-block">PERFECT PRO TOURNAMENT</span>
+                                    <h2 className="text-3xl md:text-5xl font-black text-white mb-4 leading-tight tracking-tight drop-shadow-lg whitespace-pre-line">
+                                        {slide.title}
+                                    </h2>
+                                    <p className="text-gray-200 mb-8 font-medium text-sm">
+                                        2026.07.26 - 제7회 에어리어 챔피언스 컵 우승
+                                    </p>
+                                    <button className="bg-red-600 hover:bg-red-700 transition text-white font-bold px-6 py-3 rounded-[8px] flex items-center gap-2 w-fit shadow-lg shadow-red-500/30 text-sm">
+                                        더 알아보기 <span>&rarr;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+                        {/* Pagination indicator */}
+                        <div className="absolute bottom-6 left-10 flex items-center gap-2 z-20">
+                            {heroSlides.map((_, idx) => (
+                                <div key={idx} onClick={() => setActiveHero(idx)} className={`h-1.5 rounded-full cursor-pointer transition-all ${activeHero === idx ? 'w-6 bg-white' : 'w-1.5 bg-white/50 hover:bg-white/80'}`}></div>
+                            ))}
+                            <span className="text-white ml-2 text-xs font-black tracking-widest cursor-pointer">II</span>
                         </div>
                     </div>
-                ))}
-            </section>
 
-            <div className="max-w-[1200px] mx-auto w-full px-4 flex flex-col gap-16 py-12">
-                
-                {/* 2. NEXT PERFECT (Swipe) */}
-                <section>
-                    <div className="flex justify-between items-end mb-6">
-                        <h3 className="text-2xl font-bold text-gray-900">다음 대회 안내</h3>
-                        <button className="text-sm font-medium text-gray-500 hover:text-gray-900">전체보기 &gt;</button>
-                    </div>
-                    <div className="relative group">
-                        <div ref={nextMatchRef} className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-4">
-                            {[1, 2, 3, 4].map(item => (
-                                <div key={item} className="snap-start shrink-0 w-[300px] bg-white rounded-[8px] overflow-hidden shadow-sm border border-gray-200 cursor-pointer">
-                                    <div className="h-40 bg-gray-200 bg-cover bg-center" style={{backgroundImage: "url('https://images.unsplash.com/photo-1542652735873-fb2825bac6e2?q=80&w=400')"}}></div>
-                                    <div className="p-5">
-                                        <div className="text-xs font-bold text-red-600 mb-1">D-10</div>
-                                        <h4 className="text-lg font-bold text-gray-900 mb-2">제12전 하마마츠</h4>
-                                        <p className="text-sm text-gray-500">2026.08.29 액트시티</p>
-                                    </div>
-                                </div>
-                            ))}
+                    {/* Right Card: NEXT PERFECT */}
+                    <div className="w-full lg:w-[400px] shrink-0 h-[500px] rounded-[8px] relative p-8 shadow-sm flex flex-col justify-center bg-gray-50 border border-gray-200">
+                        <div className="mb-6 flex justify-between items-center">
+                            <h3 className="text-sm font-black text-red-600 tracking-widest">NEXT PERFECT</h3>
+                            <button className="bg-gray-900 text-white hover:bg-black text-[10px] font-bold px-4 py-1.5 rounded-full transition-colors">전체일정</button>
+                        </div>
+                        
+                        {/* Placeholder Image (Cat) */}
+                        <div className="w-full h-[180px] rounded-[8px] mb-6 bg-cover bg-center shadow-inner" style={{backgroundImage: "url('https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=400')"}}></div>
+                        
+                        <div className="text-left mb-6">
+                            <div className="text-red-600 font-bold text-xs italic mb-1.5">2026 PERFECT TOUR</div>
+                            <h4 className="text-2xl font-black text-gray-900 mb-2">제12전 하마마츠</h4>
+                            <p className="text-gray-500 text-xs font-medium">2026. 08. 29 (SUN) 10:00 / 액트시티 하마마츠</p>
+                        </div>
+
+                        {/* Countdown Timer */}
+                        <div className="flex justify-center gap-2">
+                            <div className="text-center w-[52px]">
+                                <div className="text-[9px] text-gray-500 mb-1 font-bold">DAY</div>
+                                <div className="bg-white rounded-[8px] py-2 text-xl font-mono font-black text-gray-900 border border-gray-200 shadow-sm">08</div>
+                            </div>
+                            <div className="text-xl font-bold text-gray-300 mt-4">:</div>
+                            <div className="text-center w-[52px]">
+                                <div className="text-[9px] text-gray-500 mb-1 font-bold">HOUR</div>
+                                <div className="bg-white rounded-[8px] py-2 text-xl font-mono font-black text-gray-900 border border-gray-200 shadow-sm">19</div>
+                            </div>
+                            <div className="text-xl font-bold text-gray-300 mt-4">:</div>
+                            <div className="text-center w-[52px]">
+                                <div className="text-[9px] text-gray-500 mb-1 font-bold">MIN</div>
+                                <div className="bg-white rounded-[8px] py-2 text-xl font-mono font-black text-gray-900 border border-gray-200 shadow-sm">48</div>
+                            </div>
+                            <div className="text-xl font-bold text-gray-300 mt-4">:</div>
+                            <div className="text-center w-[52px]">
+                                <div className="text-[9px] text-gray-500 mb-1 font-bold">SEC</div>
+                                <div className="bg-white rounded-[8px] py-2 text-xl font-mono font-black text-gray-900 border border-gray-200 shadow-sm">54</div>
+                            </div>
+                        </div>
+                        
+                        {/* Pagination indicator (dots) */}
+                        <div className="flex justify-center gap-1.5 mt-8">
+                            <span className="w-1.5 h-1.5 rounded-full bg-red-600"></span>
+                            <span className="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+                            <span className="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
                         </div>
                     </div>
                 </section>
+                
+                {/* Inner Content Wrapper */}
+                <div className="flex flex-col gap-16 pb-12">
 
                 {/* 3. Event Banner */}
                 <section>
@@ -210,6 +257,7 @@ export default function Home() {
                         ))}
                     </div>
                 </section>
+            </div>
             </div>
         </main>
     );
