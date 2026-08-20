@@ -49,6 +49,15 @@ export default function Home() {
     // 3. News Carousel Drag & Scroll
     const newsScrollRef = useRef<HTMLDivElement>(null);
     const winnersScrollRef = useRef<HTMLDivElement>(null);
+    const [activeWinnerTab, setActiveWinnerTab] = useState(0);
+
+    const onWinnersScroll = (e: React.UIEvent<HTMLDivElement>) => {
+        const el = e.currentTarget;
+        const width = el.clientWidth;
+        if (width > 0) {
+            setActiveWinnerTab(Math.round(el.scrollLeft / width));
+        }
+    };
 
     useEffect(() => {
         const setupDrag = (slider: HTMLDivElement | null) => {
@@ -368,6 +377,7 @@ export default function Home() {
                         <div 
                             className="overflow-x-auto scrollbar-hide snap-x snap-mandatory flex w-full cursor-grab active:cursor-grabbing select-none touch-pan-x"
                             ref={winnersScrollRef}
+                            onScroll={onWinnersScroll}
                         >
                             {/* MEN */}
                             <div className="w-full shrink-0 snap-start flex flex-col gap-2">
@@ -412,6 +422,12 @@ export default function Home() {
                                     </div>
                                 ))}
                             </div>
+                        </div>
+
+                        {/* Swipe Indicators */}
+                        <div className="flex justify-center gap-1.5 mt-8 pointer-events-none">
+                            <div className={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${activeWinnerTab === 0 ? 'bg-gray-800' : 'bg-gray-300'}`}></div>
+                            <div className={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${activeWinnerTab === 1 ? 'bg-gray-800' : 'bg-gray-300'}`}></div>
                         </div>
                     </div>
                 </section>
