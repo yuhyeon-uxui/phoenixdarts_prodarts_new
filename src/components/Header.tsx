@@ -29,7 +29,7 @@ export default function Header() {
 
         {/* Pill Navigation (Centered) */}
         <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2">
-          <nav className="flex items-center bg-gray-100 dark:bg-[#1A1A1A] rounded-lg p-1">
+          <nav className="flex items-center bg-gray-500/10 dark:bg-[#1A1A1A]/50 backdrop-blur-md rounded-lg p-1">
             {['PERFECT 소개', '투어 일정', 'LIVE 중계', '매치 결과', '랭킹'].map((item) => (
               <div 
                 key={item} 
