@@ -310,8 +310,8 @@ export default function Home() {
                 <section className="flex flex-col lg:flex-row gap-6">
                     {/* Left Title & Filters */}
                     <div className="w-full lg:w-[256px] shrink-0 flex flex-col">
-                        <h3 className="text-4xl font-black text-gray-900 leading-tight mb-8 tracking-tighter">
-                            LATEST<br />NEWS &amp;<br />NOTICES.
+                        <h3 className="text-2xl font-bold text-gray-900 mb-8">
+                            뉴스
                         </h3>
                         
                         <div className="flex flex-col gap-4">
