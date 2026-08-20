@@ -42,8 +42,14 @@ export default function Home() {
 
     // 2. Next Match Carousel
     const nextMatchRef = useRef<HTMLDivElement>(null);
-    const scrollNextMatch = (dir: number) => {
-        if (nextMatchRef.current) nextMatchRef.current.scrollBy({ left: dir * 320, behavior: 'smooth' });
+    const [activeNextMatchTab, setActiveNextMatchTab] = useState(0);
+
+    const onNextMatchScroll = (e: React.UIEvent<HTMLDivElement>) => {
+        const el = e.currentTarget;
+        const width = el.clientWidth;
+        if (width > 0) {
+            setActiveNextMatchTab(Math.round(el.scrollLeft / width));
+        }
     };
 
     // 3. News Carousel Drag & Scroll
@@ -107,10 +113,12 @@ export default function Home() {
 
         const cleanupNews = setupDrag(newsScrollRef.current);
         const cleanupWinners = setupDrag(winnersScrollRef.current);
+        const cleanupNextMatch = setupDrag(nextMatchRef.current);
 
         return () => {
             if (cleanupNews) cleanupNews();
             if (cleanupWinners) cleanupWinners();
+            if (cleanupNextMatch) cleanupNextMatch();
         };
     }, []);
 
@@ -183,49 +191,72 @@ export default function Home() {
                     </div>
 
                     {/* Right Card: NEXT PERFECT */}
-                    <div className="w-full lg:w-[400px] shrink-0 h-[500px] rounded-[12px] relative p-6 shadow-sm flex flex-col justify-center bg-gray-50 border border-gray-200">
-                        <div className="mb-6 flex justify-between items-center">
+                    <div className="w-full lg:w-[400px] shrink-0 h-[500px] rounded-[12px] relative p-6 shadow-sm flex flex-col bg-gray-50 border border-gray-200 overflow-hidden">
+                        <div className="mb-4 flex justify-between items-center shrink-0">
                             <h3 className="text-sm font-black text-red-600 tracking-widest">NEXT PERFECT</h3>
-                            <button className="bg-gray-900 text-white hover:bg-black text-[10px] font-bold px-4 py-1.5 rounded-full transition-colors">전체일정</button>
+                            <button className="bg-gray-900 text-white hover:bg-black text-[10px] font-bold px-4 py-1.5 rounded-full transition-colors z-10">전체일정</button>
                         </div>
                         
-                        {/* Placeholder Image (Cat) */}
-                        <div className="w-full h-[180px] rounded-[8px] mb-6 bg-cover bg-center shadow-inner" style={{backgroundImage: "url('https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=400')"}}></div>
-                        
-                        <div className="text-left mb-6">
-                            <div className="text-red-600 font-bold text-xs italic mb-1.5">2026 PERFECT TOUR</div>
-                            <h4 className="text-2xl font-black text-gray-900 mb-2">제12전 하마마츠</h4>
-                            <p className="text-gray-500 text-xs font-medium">2026. 08. 29 (SUN) 10:00 / 액트시티 하마마츠</p>
-                        </div>
+                        <div 
+                            className="flex-1 overflow-x-auto scrollbar-hide snap-x snap-mandatory flex w-full cursor-grab active:cursor-grabbing select-none touch-pan-x -mx-6 px-6"
+                            ref={nextMatchRef}
+                            onScroll={onNextMatchScroll}
+                        >
+                            {[
+                                { tour: "2026 PERFECT TOUR", title: "제12전 하마마츠", date: "2026. 08. 29 (SUN) 10:00 / 액트시티 하마마츠", img: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=400", d: "08", h: "19", m: "48", s: "54" },
+                                { tour: "2026 PERFECT TOUR", title: "제13전 도쿄", date: "2026. 09. 15 (SUN) 10:00 / 도쿄 빅사이트", img: "https://images.unsplash.com/photo-1543852786-1cf6624b9987?q=80&w=400", d: "25", h: "09", m: "12", s: "30" },
+                                { tour: "2026 PERFECT TOUR", title: "제14전 오사카", date: "2026. 10. 10 (SAT) 10:00 / 인텍스 오사카", img: "https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?q=80&w=400", d: "50", h: "14", m: "05", s: "11" },
+                            ].map((match, idx) => (
+                                <div key={idx} className="w-full shrink-0 snap-start flex flex-col pointer-events-none">
+                                    <div className="w-full h-[180px] rounded-[8px] mb-6 bg-cover bg-center shadow-inner shrink-0" style={{backgroundImage: `url('${match.img}')`}}></div>
+                                    
+                                    <div className="text-left mb-6 shrink-0">
+                                        <div className="text-red-600 font-bold text-xs italic mb-1.5">{match.tour}</div>
+                                        <h4 className="text-2xl font-black text-gray-900 mb-2">{match.title}</h4>
+                                        <p className="text-gray-500 text-xs font-medium">{match.date}</p>
+                                    </div>
 
-                        {/* Countdown Timer */}
-                        <div className="flex justify-center gap-2">
-                            <div className="text-center w-[52px]">
-                                <div className="text-[9px] text-gray-500 mb-1 font-bold">DAY</div>
-                                <div className="bg-white rounded-[8px] py-2 text-xl font-mono font-black text-gray-900 border border-gray-200 shadow-sm">08</div>
-                            </div>
-                            <div className="text-xl font-bold text-gray-300 mt-4">:</div>
-                            <div className="text-center w-[52px]">
-                                <div className="text-[9px] text-gray-500 mb-1 font-bold">HOUR</div>
-                                <div className="bg-white rounded-[8px] py-2 text-xl font-mono font-black text-gray-900 border border-gray-200 shadow-sm">19</div>
-                            </div>
-                            <div className="text-xl font-bold text-gray-300 mt-4">:</div>
-                            <div className="text-center w-[52px]">
-                                <div className="text-[9px] text-gray-500 mb-1 font-bold">MIN</div>
-                                <div className="bg-white rounded-[8px] py-2 text-xl font-mono font-black text-gray-900 border border-gray-200 shadow-sm">48</div>
-                            </div>
-                            <div className="text-xl font-bold text-gray-300 mt-4">:</div>
-                            <div className="text-center w-[52px]">
-                                <div className="text-[9px] text-gray-500 mb-1 font-bold">SEC</div>
-                                <div className="bg-white rounded-[8px] py-2 text-xl font-mono font-black text-gray-900 border border-gray-200 shadow-sm">54</div>
-                            </div>
+                                    {/* Countdown Timer */}
+                                    <div className="flex justify-center gap-2 shrink-0">
+                                        <div className="text-center w-[52px]">
+                                            <div className="text-[9px] text-gray-500 mb-1 font-bold">DAY</div>
+                                            <div className="bg-white rounded-[8px] py-2 text-xl font-mono font-black text-gray-900 border border-gray-200 shadow-sm">{match.d}</div>
+                                        </div>
+                                        <div className="text-xl font-bold text-gray-300 mt-4">:</div>
+                                        <div className="text-center w-[52px]">
+                                            <div className="text-[9px] text-gray-500 mb-1 font-bold">HOUR</div>
+                                            <div className="bg-white rounded-[8px] py-2 text-xl font-mono font-black text-gray-900 border border-gray-200 shadow-sm">{match.h}</div>
+                                        </div>
+                                        <div className="text-xl font-bold text-gray-300 mt-4">:</div>
+                                        <div className="text-center w-[52px]">
+                                            <div className="text-[9px] text-gray-500 mb-1 font-bold">MIN</div>
+                                            <div className="bg-white rounded-[8px] py-2 text-xl font-mono font-black text-gray-900 border border-gray-200 shadow-sm">{match.m}</div>
+                                        </div>
+                                        <div className="text-xl font-bold text-gray-300 mt-4">:</div>
+                                        <div className="text-center w-[52px]">
+                                            <div className="text-[9px] text-gray-500 mb-1 font-bold">SEC</div>
+                                            <div className="bg-white rounded-[8px] py-2 text-xl font-mono font-black text-gray-900 border border-gray-200 shadow-sm">{match.s}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                         
                         {/* Pagination indicator (dots) */}
-                        <div className="flex justify-center gap-1.5 mt-8">
-                            <span className="w-1.5 h-1.5 rounded-full bg-red-600"></span>
-                            <span className="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
-                            <span className="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+                        <div className="flex justify-center gap-2 mt-6 shrink-0 relative z-10">
+                            {[0, 1, 2].map((idx) => (
+                                <button 
+                                    key={idx}
+                                    onClick={() => {
+                                        const el = nextMatchRef.current;
+                                        if (el && el.children[idx]) {
+                                            (el.children[idx] as HTMLElement).scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+                                        }
+                                    }}
+                                    className={`w-2 h-2 rounded-full transition-all duration-300 hover:bg-gray-500 ${activeNextMatchTab === idx ? 'bg-red-600 scale-125' : 'bg-gray-300'}`}
+                                    aria-label={`Slide ${idx + 1}`}
+                                />
+                            ))}
                         </div>
                     </div>
                 </section>
