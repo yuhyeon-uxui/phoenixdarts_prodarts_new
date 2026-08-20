@@ -341,7 +341,7 @@ export default function Home() {
                             {/* Inner wide container for cards */}
                             <div className="flex gap-4 w-max shrink-0">
                                 {filteredNews.map((news) => (
-                                    <div key={news.id} className="w-[260px] h-[420px] bg-white border border-gray-200 rounded-[8px] flex flex-col hover:shadow-md transition-shadow group overflow-hidden">
+                                    <div key={news.id} className="w-[260px] h-[400px] bg-white border border-gray-200 rounded-[8px] flex flex-col hover:shadow-md transition-shadow group overflow-hidden">
                                         <div className="p-6 flex flex-col flex-1 pointer-events-none select-none">
                                             <div>
                                                 <span className={`text-[10px] font-bold px-2 py-1 rounded-[4px] inline-block mb-4 text-white ${news.category === 'Notice' ? 'bg-blue-600' : news.category === 'Tournament' ? 'bg-red-600' : 'bg-green-600'}`}>
