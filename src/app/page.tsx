@@ -256,7 +256,7 @@ export default function Home() {
                 {/* 5. Ranking (New Layout from Image) */}
                 <section className="flex flex-col lg:flex-row gap-6">
                     {/* Left: 선수 랭킹 */}
-                    <div className="flex-1 bg-white rounded-[16px] p-6 border border-gray-100 shadow-sm">
+                    <div className="flex-1 bg-white rounded-[8px] p-6 border border-gray-100 shadow-sm">
                         <div className="flex items-center gap-4 md:gap-6 mb-8 overflow-x-auto scrollbar-hide pb-2">
                             <h3 className="text-2xl font-black text-gray-900 shrink-0">선수 랭킹</h3>
                             <div className="flex gap-2 shrink-0">
@@ -274,12 +274,12 @@ export default function Home() {
                         {/* 2-column list layout */}
                         <div className="grid grid-cols-1 xl:grid-cols-2 xl:grid-rows-5 xl:grid-flow-col gap-x-6 gap-y-3">
                             {rankingData.map((player) => (
-                                <div key={player.rank} className="flex items-center justify-between p-[14px] rounded-[12px] bg-white border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-md transition-shadow cursor-pointer group">
+                                <div key={player.rank} className="flex items-center justify-between p-[14px] rounded-[8px] bg-white border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-md transition-shadow cursor-pointer group">
                                     <div className="flex items-center gap-3 md:gap-4">
                                         {/* Rank Number */}
                                         <div className={`w-6 text-center font-black text-xl ${player.rank === 1 ? 'text-[#EAA51D]' : player.rank === 2 ? 'text-[#7C8B9D]' : player.rank === 3 ? 'text-[#A06B60]' : player.rank >= 6 ? 'text-[#6B6B6B]' : 'text-gray-900'}`}>{player.rank}</div>
                                         {/* Profile Image */}
-                                        <div className="w-12 h-12 rounded-lg bg-cover bg-center shrink-0 border border-gray-100" style={{backgroundImage: `url('${player.img}')`}}></div>
+                                        <div className="w-12 h-12 rounded-[8px] bg-cover bg-center shrink-0 border border-gray-100" style={{backgroundImage: `url('${player.img}')`}}></div>
                                         {/* Name & Sponsors */}
                                         <div className="flex flex-col justify-center overflow-hidden">
                                             <div className="flex items-baseline gap-1.5 mb-1 truncate">
@@ -312,7 +312,7 @@ export default function Home() {
                     </div>
 
                     {/* Right: 대회 리더보드 */}
-                    <div className="w-full lg:w-[320px] shrink-0 bg-white rounded-[16px] p-6 border border-gray-100 shadow-sm flex flex-col">
+                    <div className="w-full lg:w-[320px] shrink-0 bg-white rounded-[8px] p-6 border border-gray-100 shadow-sm flex flex-col">
                         <h3 className="text-xl font-black text-gray-900 mb-1">대회 리더보드</h3>
                         <p className="text-sm font-bold text-gray-500 mb-8">제11전 이시카와 챔피언십</p>
                         
@@ -332,7 +332,7 @@ export default function Home() {
                             </div>
                             
                             {/* 2nd Place */}
-                            <div className="flex gap-4 items-center cursor-pointer hover:bg-gray-50 p-2 -mx-2 rounded-lg transition-colors">
+                            <div className="flex gap-4 items-center cursor-pointer hover:bg-gray-50 p-2 -mx-2 rounded-[8px] transition-colors">
                                 <div className="text-3xl font-black text-gray-400 w-8 text-center">2</div>
                                 <div className="flex flex-col">
                                     <span className="font-bold text-gray-900">시마노우치 유키</span>
@@ -341,7 +341,7 @@ export default function Home() {
                             </div>
                             
                             {/* 3rd Place */}
-                            <div className="flex gap-4 items-center cursor-pointer hover:bg-gray-50 p-2 -mx-2 rounded-lg transition-colors">
+                            <div className="flex gap-4 items-center cursor-pointer hover:bg-gray-50 p-2 -mx-2 rounded-[8px] transition-colors">
                                 <div className="text-3xl font-black text-[#CD7F32] w-8 text-center">3</div>
                                 <div className="flex flex-col">
                                     <span className="font-bold text-gray-900">하마다 아키노리</span>
@@ -350,7 +350,7 @@ export default function Home() {
                             </div>
 
                             {/* 3rd Place (Tied) */}
-                            <div className="flex gap-4 items-center cursor-pointer hover:bg-gray-50 p-2 -mx-2 rounded-lg transition-colors">
+                            <div className="flex gap-4 items-center cursor-pointer hover:bg-gray-50 p-2 -mx-2 rounded-[8px] transition-colors">
                                 <div className="text-3xl font-black text-[#CD7F32] w-8 text-center">3</div>
                                 <div className="flex flex-col">
                                     <span className="font-bold text-gray-900">무라마츠 하루키</span>
