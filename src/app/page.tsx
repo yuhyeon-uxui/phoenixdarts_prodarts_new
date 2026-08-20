@@ -253,7 +253,7 @@ export default function Home() {
                                             (el.children[idx] as HTMLElement).scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
                                         }
                                     }}
-                                    className={`w-2 h-2 rounded-full transition-all duration-300 hover:bg-gray-500 ${activeNextMatchTab === idx ? 'bg-red-600 scale-125' : 'bg-gray-300'}`}
+                                    className={`w-2 h-2 rounded-full transition-all duration-300 hover:bg-gray-500 ${activeNextMatchTab === idx ? 'bg-gray-800 scale-125' : 'bg-gray-300'}`}
                                     aria-label={`Slide ${idx + 1}`}
                                 />
                             ))}
