@@ -198,7 +198,7 @@ export default function Home() {
                         </div>
                         
                         <div 
-                            className="flex-1 overflow-x-auto scrollbar-hide snap-x snap-mandatory flex w-full cursor-grab active:cursor-grabbing select-none touch-pan-x -mx-6 px-6"
+                            className="flex-1 overflow-x-auto scrollbar-hide snap-x snap-mandatory flex w-full cursor-grab active:cursor-grabbing select-none touch-pan-x gap-6"
                             ref={nextMatchRef}
                             onScroll={onNextMatchScroll}
                         >
