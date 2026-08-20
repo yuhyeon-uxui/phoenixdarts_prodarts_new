@@ -112,7 +112,7 @@ export default function Home() {
                 <section className="flex flex-col lg:flex-row gap-6 mb-16">
                     {/* Left Card: Main Hero (Crossfade Slider) */}
                     <div 
-                        className="flex-1 rounded-[8px] bg-gray-900 relative overflow-hidden h-[500px] flex flex-col justify-center shadow-lg"
+                        className="flex-1 rounded-[12px] bg-gray-900 relative overflow-hidden h-[500px] flex flex-col justify-center shadow-lg"
                         onMouseEnter={() => setHeroHover(true)}
                         onMouseLeave={() => setHeroHover(false)}
                     >
@@ -147,20 +147,18 @@ export default function Home() {
                         </div>
 
                         {/* Left/Right Arrows (visible on hover) */}
-                        <div className={`absolute inset-y-0 left-0 w-24 flex items-center justify-start pl-6 transition-opacity duration-300 z-50 pointer-events-none ${heroHover ? 'opacity-100' : 'opacity-0'}`}>
+                        <div className={`absolute inset-y-0 right-0 w-24 flex flex-col items-end justify-center pr-6 gap-3 transition-opacity duration-300 z-50 pointer-events-none ${heroHover ? 'opacity-100' : 'opacity-0'}`}>
                             <button 
                                 onClick={() => setActiveHero((prev) => (prev === 0 ? heroSlides.length - 1 : prev - 1))}
-                                className="w-12 h-12 rounded-full bg-black/40 text-white flex items-center justify-center backdrop-blur-sm hover:bg-black/80 transition-colors pointer-events-auto"
+                                className="w-12 h-12 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center backdrop-blur-md hover:bg-white/20 transition-colors pointer-events-auto shadow-lg"
                             >
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-6 h-6"><path d="M15 18l-6-6 6-6" /></svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5"><path d="M15 18l-6-6 6-6" /></svg>
                             </button>
-                        </div>
-                        <div className={`absolute inset-y-0 right-0 w-24 flex items-center justify-end pr-6 transition-opacity duration-300 z-50 pointer-events-none ${heroHover ? 'opacity-100' : 'opacity-0'}`}>
                             <button 
                                 onClick={() => setActiveHero((prev) => (prev === heroSlides.length - 1 ? 0 : prev + 1))}
-                                className="w-12 h-12 rounded-full bg-black/40 text-white flex items-center justify-center backdrop-blur-sm hover:bg-black/80 transition-colors pointer-events-auto"
+                                className="w-12 h-12 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center backdrop-blur-md hover:bg-white/20 transition-colors pointer-events-auto shadow-lg"
                             >
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-6 h-6"><path d="M9 18l6-6-6-6" /></svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5"><path d="M9 18l6-6-6-6" /></svg>
                             </button>
                         </div>
                     </div>
