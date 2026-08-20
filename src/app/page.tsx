@@ -20,7 +20,8 @@ const newsData = Array.from({ length: 16 }, (_, i) => ({
     category: i % 3 === 0 ? 'Notice' : i % 3 === 1 ? 'Tournament' : 'Event',
     title: `PERFECT 2026 제${11 + i}전 이시카와 대회 결과 안내`,
     desc: '열띤 경쟁 속에서 펼쳐진 이번 이시카와 대회에서 새로운 챔피언이 탄생했습니다. 경기 내용 및 자세한 결과...',
-    date: `2026.08.${30 - i}`
+    date: `2026.08.${30 - i}`,
+    image: i % 2 === 0 ? 'https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=400' : undefined
 }));
 
 export default function Home() {
@@ -255,15 +256,20 @@ export default function Home() {
                             {/* Inner wide container for cards */}
                             <div className="flex gap-4 w-max shrink-0">
                                 {newsData.map((news) => (
-                                    <div key={news.id} className="w-[300px] h-[300px] bg-white border border-gray-200 rounded-[8px] p-6 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow group">
-                                        <div className="pointer-events-none select-none">
-                                            <span className={`text-[10px] font-bold px-2 py-1 rounded-[4px] inline-block mb-4 ${news.category === 'Notice' ? 'bg-blue-50 text-blue-600' : news.category === 'Tournament' ? 'bg-red-50 text-red-600' : 'bg-green-50 text-green-600'}`}>
-                                                {news.category}
-                                            </span>
-                                            <h4 className="text-lg font-bold text-gray-900 mb-3 group-hover:underline line-clamp-2 leading-snug">{news.title}</h4>
-                                            <p className="text-sm text-gray-500 line-clamp-3 leading-relaxed">{news.desc}</p>
+                                    <div key={news.id} className="w-[300px] h-[340px] bg-white border border-gray-200 rounded-[8px] flex flex-col hover:shadow-md transition-shadow group overflow-hidden">
+                                        <div className="p-6 flex flex-col flex-1 pointer-events-none select-none">
+                                            <div>
+                                                <span className={`text-[10px] font-bold px-2 py-1 rounded-[4px] inline-block mb-4 ${news.category === 'Notice' ? 'bg-blue-50 text-blue-600' : news.category === 'Tournament' ? 'bg-red-50 text-red-600' : 'bg-green-50 text-green-600'}`}>
+                                                    {news.category}
+                                                </span>
+                                                <h4 className="text-lg font-bold text-gray-900 mb-3 group-hover:underline line-clamp-2 leading-snug">{news.title}</h4>
+                                                {!news.image && <p className="text-sm text-gray-500 line-clamp-3 leading-relaxed">{news.desc}</p>}
+                                            </div>
+                                            <span className="text-sm text-gray-400 font-medium mt-auto">{news.date}</span>
                                         </div>
-                                        <span className="text-sm text-gray-400 font-medium pointer-events-none select-none">{news.date}</span>
+                                        {news.image && (
+                                            <div className="h-[140px] w-full shrink-0 bg-cover bg-center pointer-events-none" style={{backgroundImage: `url('${news.image}')`}}></div>
+                                        )}
                                     </div>
                                 ))}
                             </div>
