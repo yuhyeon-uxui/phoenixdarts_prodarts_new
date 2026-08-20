@@ -164,7 +164,7 @@ export default function Home() {
                     </div>
 
                     {/* Right Card: NEXT PERFECT */}
-                    <div className="w-full lg:w-[400px] shrink-0 h-[500px] rounded-[8px] relative p-4 shadow-sm flex flex-col justify-center bg-gray-50 border border-gray-200">
+                    <div className="w-full lg:w-[400px] shrink-0 h-[500px] rounded-[12px] relative p-6 shadow-sm flex flex-col justify-center bg-gray-50 border border-gray-200">
                         <div className="mb-6 flex justify-between items-center">
                             <h3 className="text-sm font-black text-red-600 tracking-widest">NEXT PERFECT</h3>
                             <button className="bg-gray-900 text-white hover:bg-black text-[10px] font-bold px-4 py-1.5 rounded-full transition-colors">전체일정</button>
