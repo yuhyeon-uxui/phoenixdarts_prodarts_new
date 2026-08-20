@@ -155,6 +155,7 @@ export default function Home() {
 
     const [newsTab, setNewsTab] = useState("전체 보기 (ALL)");
     const [rankTab, setRankTab] = useState("남자");
+    const [brandTab, setBrandTab] = useState("BARREL");
 
     const activeRankingData = rankTab === '남자' ? rankingData : rankTab === '여자' ? rankingDataWomen : rankingDataBrand;
     const filteredNews = newsTab === "전체 보기 (ALL)" ? newsData : newsData.filter(n => `#${n.category}` === newsTab);
@@ -393,39 +394,58 @@ export default function Home() {
                             </div>
                         </div>
                         
+                        {/* Brand Sub Tabs */}
+                        {rankTab === '브랜드' && (
+                            <div className="flex flex-wrap gap-2 mb-6 pb-2 border-b border-gray-100">
+                                {['BARREL', 'FLIGHT', 'APPAREL', 'CO-CREATORS'].map(sub => (
+                                    <button 
+                                        key={sub}
+                                        onClick={() => setBrandTab(sub)}
+                                        className={`px-3 py-1 text-xs font-bold rounded-md transition-colors ${brandTab === sub ? 'bg-red-600 text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}
+                                    >
+                                        {sub}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+                        
                         {/* 2-column list layout */}
                         <div className="grid grid-cols-1 xl:grid-cols-2 xl:grid-rows-5 xl:grid-flow-col gap-x-12 gap-y-0">
-                            {activeRankingData.map((player) => (
-                                <div key={player.rank} className="flex items-center justify-between py-4 px-2 border-b border-gray-100 hover:bg-gray-50 transition-colors cursor-pointer group">
+                            {activeRankingData.map((item) => (
+                                <div key={item.rank} className="flex items-center justify-between py-4 px-2 border-b border-gray-100 hover:bg-gray-50 transition-colors cursor-pointer group">
                                     <div className="flex items-center gap-3 md:gap-4">
                                         {/* Rank Number */}
-                                        <div className={`w-6 text-center font-black text-xl ${player.rank === 1 ? 'text-[#EAA51D]' : player.rank === 2 ? 'text-[#7C8B9D]' : player.rank === 3 ? 'text-[#A06B60]' : player.rank >= 6 ? 'text-[#6B6B6B]' : 'text-gray-900'}`}>{player.rank}</div>
-                                        {/* Profile Image */}
-                                        <div className="w-12 h-12 rounded-[8px] bg-cover bg-center shrink-0 border border-gray-100" style={{backgroundImage: `url('${player.img}')`}}></div>
+                                        <div className={`w-6 text-center font-black text-xl ${item.rank === 1 ? 'text-[#EAA51D]' : item.rank === 2 ? 'text-[#7C8B9D]' : item.rank === 3 ? 'text-[#A06B60]' : item.rank >= 6 ? 'text-[#6B6B6B]' : 'text-gray-900'}`}>{item.rank}</div>
+                                        {/* Profile or Brand Logo */}
+                                        <div className={`h-12 rounded-[8px] bg-cover bg-center shrink-0 border border-gray-100 ${rankTab === '브랜드' ? 'w-24 bg-contain bg-no-repeat bg-white' : 'w-12'}`} style={{backgroundImage: `url('${item.img}')`}}></div>
                                         {/* Name & Sponsors */}
                                         <div className="flex flex-col justify-center overflow-hidden">
                                             <div className="flex items-baseline gap-1.5 mb-1 truncate">
-                                                <span className="font-bold text-gray-900 leading-none truncate group-hover:underline">{player.name}</span>
-                                                <span className="text-[10px] text-gray-400 font-medium leading-none hidden sm:inline-block">{player.enName}</span>
+                                                <span className="font-bold text-gray-900 leading-none truncate group-hover:underline">{item.name}</span>
+                                                <span className="text-[10px] text-gray-400 font-medium leading-none hidden sm:inline-block">{item.enName}</span>
                                             </div>
-                                            <div className="flex gap-1.5 flex-wrap">
-                                                {player.sponsors.map(sp => (
-                                                    <span key={sp} className="text-[9px] bg-gray-100 text-gray-500 px-1.5 py-0.5 rounded-[4px] font-bold uppercase tracking-wider">{sp}</span>
-                                                ))}
-                                            </div>
+                                            {rankTab !== '브랜드' && (
+                                                <div className="flex gap-1.5 flex-wrap">
+                                                    {item.sponsors.map((sp: string) => (
+                                                        <span key={sp} className="text-[9px] bg-gray-100 text-gray-500 px-1.5 py-0.5 rounded-[4px] font-bold uppercase tracking-wider">{sp}</span>
+                                                    ))}
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
                                     {/* Score */}
                                     <div className="flex flex-col items-end shrink-0 pl-2">
                                         <span className="text-[9px] font-bold text-gray-400 tracking-wider">POINTS</span>
                                         <div className="flex items-center gap-1.5">
-                                            <span className={`text-xl md:text-2xl font-black tracking-tighter ${player.rank === 1 ? 'text-[#EAA51D]' : player.rank === 2 ? 'text-[#7C8B9D]' : player.rank === 3 ? 'text-[#A06B60]' : player.rank >= 6 ? 'text-[#6B6B6B]' : 'text-gray-900'}`}>{player.pts}</span>
+                                            <span className={`text-xl md:text-2xl font-black tracking-tighter ${item.rank === 1 ? 'text-[#EAA51D]' : item.rank === 2 ? 'text-[#7C8B9D]' : item.rank === 3 ? 'text-[#A06B60]' : item.rank >= 6 ? 'text-[#6B6B6B]' : 'text-gray-900'}`}>{item.pts}</span>
                                             {/* Trend Icon */}
-                                            <div className="w-4 flex justify-center">
-                                                {player.trend === 'up' && <span className="text-red-500 font-bold text-sm">↑</span>}
-                                                {player.trend === 'down' && <span className="text-blue-500 font-bold text-sm">↓</span>}
-                                                {player.trend === 'same' && <span className="text-green-500 font-bold text-sm">→</span>}
-                                            </div>
+                                            {item.trend === 'up' ? (
+                                                <svg className="w-3 h-3 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" /></svg>
+                                            ) : item.trend === 'down' ? (
+                                                <svg className="w-3 h-3 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+                                            ) : (
+                                                <svg className="w-3 h-3 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7-7m7-7H3" /></svg>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
