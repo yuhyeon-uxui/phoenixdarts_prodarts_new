@@ -162,7 +162,7 @@ export default function Home() {
 
     return (
         <main className="flex flex-col w-full font-sans bg-gray-100 min-h-screen text-gray-900">
-            <div className="max-w-[1200px] mx-auto w-full px-4 pt-10">
+            <div className="max-w-[1280px] mx-auto w-full px-4 lg:px-[60px] pt-10">
                 {/* HERO SECTION - SIDE-BY-SIDE */}
                 <section className="flex flex-col lg:flex-row gap-6 mb-16">
                     {/* Left Card: Main Hero (Crossfade Slider) */}
@@ -219,7 +219,7 @@ export default function Home() {
                     </div>
 
                     {/* Right Card: NEXT PERFECT */}
-                    <div className="w-full lg:w-[400px] shrink-0 h-[500px] rounded-[12px] relative p-6 shadow-sm flex flex-col bg-gray-50 border border-gray-200 overflow-hidden">
+                    <div className="w-full lg:w-[320px] shrink-0 h-[500px] rounded-[12px] relative p-6 shadow-sm flex flex-col bg-gray-50 border border-gray-200 overflow-hidden">
                         <div className="mb-4 flex justify-between items-center shrink-0">
                             <h3 className="text-sm font-black text-red-600 tracking-widest">NEXT PERFECT</h3>
                             <button className="bg-gray-900 text-white hover:bg-black text-[10px] font-bold px-4 py-1.5 rounded-full transition-colors z-10">전체일정</button>
@@ -307,9 +307,9 @@ export default function Home() {
                 </section>
 
                 {/* 4. News (New Layout: Side Title & Horizontal Cards) */}
-                <section className="flex flex-col md:flex-row gap-8">
+                <section className="flex flex-col lg:flex-row gap-6">
                     {/* Left Title & Filters */}
-                    <div className="w-full md:w-[280px] shrink-0">
+                    <div className="w-full lg:w-[256px] shrink-0">
                         <h3 className="text-4xl font-black text-gray-900 leading-tight mb-8 tracking-tighter">
                             LATEST<br />NEWS &amp;<br />NOTICES.
                         </h3>
@@ -336,9 +336,9 @@ export default function Home() {
                             ref={newsScrollRef}
                         >
                             {/* Inner wide container for cards */}
-                            <div className="flex gap-4 w-max shrink-0">
+                            <div className="flex gap-6 w-max shrink-0">
                                 {filteredNews.map((news) => (
-                                    <div key={news.id} className="w-[300px] h-[340px] bg-white border border-gray-200 rounded-[8px] flex flex-col hover:shadow-md transition-shadow group overflow-hidden">
+                                    <div key={news.id} className="w-[256px] h-[340px] bg-white border border-gray-200 rounded-[8px] flex flex-col hover:shadow-md transition-shadow group overflow-hidden">
                                         <div className="p-6 flex flex-col flex-1 pointer-events-none select-none">
                                             <div>
                                                 <span className={`text-[10px] font-bold px-2 py-1 rounded-[4px] inline-block mb-4 text-white ${news.category === 'Notice' ? 'bg-blue-600' : news.category === 'Tournament' ? 'bg-red-600' : 'bg-green-600'}`}>
@@ -532,8 +532,8 @@ export default function Home() {
                         <h3 className="text-2xl font-bold text-gray-900">미디어</h3>
                         <button className="text-sm font-medium text-gray-500 hover:text-gray-900">전체보기 &gt;</button>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <a href="https://youtu.be/VOA4GNHOsdE?si=SxSuMJW1FwiTHJtZ" target="_blank" rel="noopener noreferrer" className="md:col-span-2 relative aspect-video rounded-[8px] overflow-hidden group cursor-pointer shadow-sm block">
+                    <div className="flex flex-col lg:flex-row gap-6">
+                        <a href="https://youtu.be/VOA4GNHOsdE?si=SxSuMJW1FwiTHJtZ" target="_blank" rel="noopener noreferrer" className="flex-1 relative aspect-video rounded-[8px] overflow-hidden group cursor-pointer shadow-sm block">
                             <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style={{backgroundImage: "url('https://img.youtube.com/vi/VOA4GNHOsdE/maxresdefault.jpg')"}}></div>
                             <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors flex items-center justify-center">
                                 <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center text-white pl-1 shadow-lg transition-transform duration-300 group-hover:scale-110">
@@ -545,8 +545,8 @@ export default function Home() {
                                 <h4 className="text-white font-bold text-lg">제11전 이시카와 결승전 하이라이트</h4>
                             </div>
                         </a>
-                        <div className="relative min-h-[400px] md:min-h-0">
-                            <div className="md:absolute md:inset-0 flex flex-col gap-3">
+                        <div className="w-full lg:w-[320px] shrink-0 relative min-h-[400px] lg:min-h-0">
+                            <div className="lg:absolute lg:inset-0 flex flex-col gap-3">
                                 {[
                                     { id: "mLjESz59Dts", title: "퍼펙트 투어 주요 장면 하이라이트", date: "2026.08.15", link: "https://youtu.be/mLjESz59Dts?si=yoF7wNjVJ7ENrC8y" },
                                     { id: "ERhNtYm6tjw", title: "최고의 명승부, 결승전 다시보기", date: "2026.08.12", link: "https://youtu.be/ERhNtYm6tjw?si=sMEN8-bBM1laVHsJ" },
