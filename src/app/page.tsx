@@ -379,8 +379,17 @@ export default function Home() {
                 <section className="flex flex-col lg:flex-row gap-6">
                     {/* Left: 선수 랭킹 */}
                     <div className="flex-1 bg-white rounded-[8px] p-6 border border-gray-100 shadow-sm">
-                        <div className="flex items-center gap-4 md:gap-6 mb-6 overflow-x-auto scrollbar-hide">
-                            <h3 className="text-2xl font-black text-gray-900 shrink-0">선수 랭킹</h3>
+                        {/* Title Row */}
+                        <div className="flex items-center justify-between mb-4">
+                            <h3 className="text-2xl font-black text-gray-900">랭킹</h3>
+                            <button className="text-sm font-bold text-gray-400 hover:text-gray-900 flex items-center gap-1 transition-colors">
+                                MORE
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4"><path d="M9 18l6-6-6-6" /></svg>
+                            </button>
+                        </div>
+                        
+                        {/* Tabs Row */}
+                        <div className="flex items-center mb-6 overflow-x-auto scrollbar-hide pb-1">
                             <div className="flex gap-2 shrink-0">
                                 {['남자', '여자', '브랜드'].map((tab) => (
                                     <button 
@@ -392,22 +401,22 @@ export default function Home() {
                                     </button>
                                 ))}
                             </div>
+                            
+                            {/* Brand Sub Tabs */}
+                            {rankTab === '브랜드' && (
+                                <div className="flex items-center gap-2 shrink-0 border-l border-gray-300 pl-4 ml-4">
+                                    {['BARREL', 'FLIGHT', 'APPAREL', 'CO-CREATORS'].map(sub => (
+                                        <button 
+                                            key={sub}
+                                            onClick={() => setBrandTab(sub)}
+                                            className={`px-3 py-1.5 text-xs font-bold rounded-[6px] transition-colors ${brandTab === sub ? 'bg-red-600 text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}
+                                        >
+                                            {sub}
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
                         </div>
-                        
-                        {/* Brand Sub Tabs */}
-                        {rankTab === '브랜드' && (
-                            <div className="flex flex-wrap gap-2 mb-6 pb-2 border-b border-gray-100">
-                                {['BARREL', 'FLIGHT', 'APPAREL', 'CO-CREATORS'].map(sub => (
-                                    <button 
-                                        key={sub}
-                                        onClick={() => setBrandTab(sub)}
-                                        className={`px-3 py-1 text-xs font-bold rounded-md transition-colors ${brandTab === sub ? 'bg-red-600 text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}
-                                    >
-                                        {sub}
-                                    </button>
-                                ))}
-                            </div>
-                        )}
                         
                         {/* 2-column list layout */}
                         <div className="grid grid-cols-1 xl:grid-cols-2 xl:grid-rows-5 xl:grid-flow-col gap-x-12 gap-y-0">
