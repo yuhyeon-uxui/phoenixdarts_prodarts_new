@@ -46,28 +46,50 @@ export default function Home() {
 
     // 3. News Carousel Drag & Scroll
     const newsScrollRef = useRef<HTMLDivElement>(null);
-    const [isDraggingNews, setIsDraggingNews] = useState(false);
-    const [startXNews, setStartXNews] = useState(0);
-    const [scrollLeftNews, setScrollLeftNews] = useState(0);
-    const [isNewsHovered, setIsNewsHovered] = useState(false);
 
-    const onMouseDownNews = (e: React.MouseEvent) => {
-        setIsDraggingNews(true);
-        setStartXNews(e.clientX);
-        setScrollLeftNews(newsScrollRef.current?.scrollLeft || 0);
-    };
-    const onMouseLeaveNews = () => {
-        setIsDraggingNews(false);
-    };
-    const onMouseUpNews = () => {
-        setIsDraggingNews(false);
-    };
-    const onMouseMoveNews = (e: React.MouseEvent) => {
-        if (!isDraggingNews || !newsScrollRef.current) return;
-        e.preventDefault();
-        const dx = e.clientX - startXNews;
-        newsScrollRef.current.scrollLeft = scrollLeftNews - dx * 1.5;
-    };
+    useEffect(() => {
+        const slider = newsScrollRef.current;
+        if (!slider) return;
+
+        let isDown = false;
+        let startX = 0;
+        let scrollLeft = 0;
+
+        const mouseDown = (e: MouseEvent) => {
+            isDown = true;
+            slider.style.cursor = 'grabbing';
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        };
+        const mouseLeave = () => {
+            isDown = false;
+            slider.style.cursor = 'grab';
+        };
+        const mouseUp = () => {
+            isDown = false;
+            slider.style.cursor = 'grab';
+        };
+        const mouseMove = (e: MouseEvent) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2;
+            slider.scrollLeft = scrollLeft - walk;
+        };
+
+        slider.addEventListener('mousedown', mouseDown);
+        slider.addEventListener('mouseleave', mouseLeave);
+        slider.addEventListener('mouseup', mouseUp);
+        slider.addEventListener('mousemove', mouseMove);
+
+        return () => {
+            slider.removeEventListener('mousedown', mouseDown);
+            slider.removeEventListener('mouseleave', mouseLeave);
+            slider.removeEventListener('mouseup', mouseUp);
+            slider.removeEventListener('mousemove', mouseMove);
+        };
+    }, []);
+
     const scrollNewsRight = () => {
         if (newsScrollRef.current) newsScrollRef.current.scrollBy({ left: 320, behavior: 'smooth' });
     };
@@ -197,18 +219,10 @@ export default function Home() {
                     </div>
 
                     {/* Right Horizontal Scroll Cards */}
-                    <div 
-                        className="flex-1 relative"
-                        onMouseEnter={() => setIsNewsHovered(true)}
-                        onMouseLeave={() => setIsNewsHovered(false)}
-                    >
+                    <div className="flex-1 relative group">
                         <div 
-                            className="overflow-x-auto scrollbar-hide pb-4 cursor-grab active:cursor-grabbing flex gap-4 w-full select-none"
+                            className="overflow-x-auto scrollbar-hide pb-4 cursor-grab flex gap-4 w-full select-none"
                             ref={newsScrollRef}
-                            onMouseDown={onMouseDownNews}
-                            onMouseLeave={onMouseLeaveNews}
-                            onMouseUp={onMouseUpNews}
-                            onMouseMove={onMouseMoveNews}
                         >
                             {/* Inner wide container for cards */}
                             <div className="flex gap-4 w-max shrink-0">
@@ -228,7 +242,7 @@ export default function Home() {
                         </div>
 
                         {/* Right Scroll Arrow (visible on hover) */}
-                        <div className={`absolute right-0 top-0 bottom-4 w-32 bg-gradient-to-l from-gray-100 via-gray-100/70 to-transparent flex items-center justify-end pr-4 transition-opacity duration-300 pointer-events-none ${isNewsHovered ? 'opacity-100' : 'opacity-0'}`}>
+                        <div className="absolute right-0 top-0 bottom-4 w-32 bg-gradient-to-l from-gray-100 via-gray-100/70 to-transparent flex items-center justify-end pr-4 transition-opacity duration-300 opacity-0 group-hover:opacity-100 pointer-events-none z-10">
                             <button 
                                 onClick={scrollNewsRight}
                                 className="w-12 h-12 rounded-full bg-gray-900/80 text-white flex items-center justify-center backdrop-blur-sm hover:bg-black transition-colors pointer-events-auto shadow-lg"
