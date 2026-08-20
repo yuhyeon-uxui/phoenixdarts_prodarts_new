@@ -492,20 +492,15 @@ export default function Home() {
                         <h3 className="text-2xl font-bold text-gray-900 mb-2">PREVIOUS WINNER</h3>
                         <p className="text-sm font-bold text-gray-500 mb-4">제11전 이시카와 챔피언십</p>
                         
-                        <div 
-                            className="overflow-x-auto scrollbar-hide snap-x snap-mandatory flex w-full cursor-grab active:cursor-grabbing select-none touch-pan-x"
-                            ref={winnersScrollRef}
-                            onScroll={onWinnersScroll}
-                        >
+                        <div className="flex flex-col gap-6">
                             {/* MEN */}
-                            <div className="w-full shrink-0 snap-start flex flex-col gap-2">
+                            <div className="flex flex-col gap-2">
                                 <h4 className="text-[10px] font-black tracking-widest text-gray-400 mb-1 ml-2">MEN</h4>
                                 {[
                                     { rank: 1, name: "아리하라 류타", enName: "Ryuta Arihara", no: "0003", color: "text-[#B8860B]", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300" },
                                     { rank: 2, name: "시마노우치 유키", enName: "Yuki Shimanouchi", no: "0015", color: "text-gray-400", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=300" },
                                     { rank: 3, name: "하마다 아키노리", enName: "Akinori Hamada", no: "1046", color: "text-[#CD7F32]", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=300" },
                                     { rank: 3, name: "무라마츠 하루키", enName: "Haruki Muramatsu", no: "0001", color: "text-[#CD7F32]", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" },
-                                    { rank: 5, name: "아사다 세이고", enName: "Seigo Asada", no: "0005", color: "text-gray-400", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=300" },
                                 ].map((p, idx) => (
                                     <div key={idx} className="flex gap-3 items-center pointer-events-none p-2 -mx-2 rounded-[8px] relative group">
                                         {p.rank === 1 && <div className="absolute -top-1 left-2 text-xl z-10 rotate-[-15deg]">👑</div>}
@@ -520,14 +515,13 @@ export default function Home() {
                             </div>
                             
                             {/* WOMEN */}
-                            <div className="w-full shrink-0 snap-start flex flex-col gap-2">
+                            <div className="flex flex-col gap-2">
                                 <h4 className="text-[10px] font-black tracking-widest text-gray-400 mb-1 ml-2">WOMEN</h4>
                                 {[
                                     { rank: 1, name: "오오시로 아키호", enName: "Akiho Oshiro", no: "0022", color: "text-[#B8860B]", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300" },
                                     { rank: 2, name: "사토 카스미", enName: "Kasumi Sato", no: "0089", color: "text-gray-400", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=300" },
                                     { rank: 3, name: "오오우치 마유미", enName: "Mayumi Ouchi", no: "0077", color: "text-[#CD7F32]", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=300" },
                                     { rank: 3, name: "스즈키 미쿠", enName: "Miku Suzuki", no: "0004", color: "text-[#CD7F32]", img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=300" },
-                                    { rank: 5, name: "이와타 나츠미", enName: "Natsumi Iwata", no: "0102", color: "text-gray-400", img: "https://images.unsplash.com/photo-1509967419530-da38b4704bc6?q=80&w=300" },
                                 ].map((p, idx) => (
                                     <div key={idx} className="flex gap-3 items-center pointer-events-none p-2 -mx-2 rounded-[8px] relative group">
                                         {p.rank === 1 && <div className="absolute -top-1 left-2 text-xl z-10 rotate-[-15deg]">👑</div>}
@@ -540,20 +534,6 @@ export default function Home() {
                                     </div>
                                 ))}
                             </div>
-                        </div>
-
-                        {/* Swipe Indicators */}
-                        <div className="flex justify-center gap-2 mt-8">
-                            <button 
-                                onClick={() => winnersScrollRef.current?.scrollTo({ left: 0, behavior: 'smooth' })}
-                                className={`w-2 h-2 rounded-full transition-all duration-300 hover:bg-gray-500 ${activeWinnerTab === 0 ? 'bg-gray-800 scale-125' : 'bg-gray-300'}`}
-                                aria-label="Men"
-                            />
-                            <button 
-                                onClick={() => winnersScrollRef.current?.scrollTo({ left: winnersScrollRef.current.clientWidth, behavior: 'smooth' })}
-                                className={`w-2 h-2 rounded-full transition-all duration-300 hover:bg-gray-500 ${activeWinnerTab === 1 ? 'bg-gray-800 scale-125' : 'bg-gray-300'}`}
-                                aria-label="Women"
-                            />
                         </div>
                     </div>
                 </section>
