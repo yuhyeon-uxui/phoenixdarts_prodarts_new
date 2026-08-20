@@ -297,7 +297,7 @@ export default function Home() {
                 <section className="flex flex-col lg:flex-row gap-6">
                     {/* Left: 선수 랭킹 */}
                     <div className="flex-1 bg-white rounded-[8px] p-6 border border-gray-100 shadow-sm">
-                        <div className="flex items-center gap-4 md:gap-6 mb-8 overflow-x-auto scrollbar-hide pb-2">
+                        <div className="flex items-center gap-4 md:gap-6 mb-6 overflow-x-auto scrollbar-hide">
                             <h3 className="text-2xl font-black text-gray-900 shrink-0">선수 랭킹</h3>
                             <div className="flex gap-2 shrink-0">
                                 {['남자', '여자', '브랜드'].map((tab, idx) => (
