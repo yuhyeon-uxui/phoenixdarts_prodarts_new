@@ -490,22 +490,24 @@ export default function Home() {
                                 <h4 className="text-white font-bold text-lg">제11전 이시카와 결승전 하이라이트</h4>
                             </div>
                         </a>
-                        <div className="flex flex-col gap-4 max-h-[calc(100vw*9/16)] md:max-h-[auto] overflow-y-auto scrollbar-hide">
-                            {[
-                                { id: "mLjESz59Dts", title: "퍼펙트 투어 주요 장면 하이라이트", date: "2026.08.15", link: "https://youtu.be/mLjESz59Dts?si=yoF7wNjVJ7ENrC8y" },
-                                { id: "ERhNtYm6tjw", title: "최고의 명승부, 결승전 다시보기", date: "2026.08.12", link: "https://youtu.be/ERhNtYm6tjw?si=sMEN8-bBM1laVHsJ" },
-                                { id: "-DRC1OOKWAg", title: "주목할 만한 신인 선수 인터뷰", date: "2026.08.10", link: "https://youtu.be/-DRC1OOKWAg?si=jFDoWt1wQ-nD_wPq" },
-                                { id: "N9pVyM6WLeg", title: "투어 비하인드 씬 대공개", date: "2026.08.05", link: "https://youtu.be/N9pVyM6WLeg?si=xRcvuwGKuXN8NYSn" },
-                                { id: "S8XDJRxAZnY", title: "다트 프로들의 연습 루틴 엿보기", date: "2026.08.01", link: "https://youtu.be/S8XDJRxAZnY?si=p4Zfz_3Eh8OKhF9_" },
-                            ].map((item, idx) => (
-                                <a key={idx} href={item.link} target="_blank" rel="noopener noreferrer" className="flex bg-white rounded-[8px] overflow-hidden border border-gray-200 shadow-sm cursor-pointer group shrink-0 h-[88px]">
-                                    <div className="w-1/3 shrink-0 bg-cover bg-center" style={{backgroundImage: `url('https://img.youtube.com/vi/${item.id}/hqdefault.jpg')`}}></div>
-                                    <div className="w-2/3 p-3 flex flex-col justify-between">
-                                        <h4 className="text-sm font-bold text-gray-900 line-clamp-2 group-hover:underline leading-snug">{item.title}</h4>
-                                        <span className="text-xs text-gray-400">{item.date}</span>
-                                    </div>
-                                </a>
-                            ))}
+                        <div className="relative min-h-[400px] md:min-h-0">
+                            <div className="md:absolute md:inset-0 flex flex-col gap-3">
+                                {[
+                                    { id: "mLjESz59Dts", title: "퍼펙트 투어 주요 장면 하이라이트", date: "2026.08.15", link: "https://youtu.be/mLjESz59Dts?si=yoF7wNjVJ7ENrC8y" },
+                                    { id: "ERhNtYm6tjw", title: "최고의 명승부, 결승전 다시보기", date: "2026.08.12", link: "https://youtu.be/ERhNtYm6tjw?si=sMEN8-bBM1laVHsJ" },
+                                    { id: "-DRC1OOKWAg", title: "주목할 만한 신인 선수 인터뷰", date: "2026.08.10", link: "https://youtu.be/-DRC1OOKWAg?si=jFDoWt1wQ-nD_wPq" },
+                                    { id: "N9pVyM6WLeg", title: "투어 비하인드 씬 대공개", date: "2026.08.05", link: "https://youtu.be/N9pVyM6WLeg?si=xRcvuwGKuXN8NYSn" },
+                                    { id: "S8XDJRxAZnY", title: "다트 프로들의 연습 루틴 엿보기", date: "2026.08.01", link: "https://youtu.be/S8XDJRxAZnY?si=p4Zfz_3Eh8OKhF9_" },
+                                ].map((item, idx) => (
+                                    <a key={idx} href={item.link} target="_blank" rel="noopener noreferrer" className="flex-1 min-h-[70px] flex bg-white rounded-[8px] overflow-hidden border border-gray-200 shadow-sm cursor-pointer group">
+                                        <div className="w-1/3 shrink-0 bg-cover bg-center" style={{backgroundImage: `url('https://img.youtube.com/vi/${item.id}/hqdefault.jpg')`}}></div>
+                                        <div className="w-2/3 p-3 flex flex-col justify-center gap-1">
+                                            <h4 className="text-sm font-bold text-gray-900 line-clamp-2 group-hover:underline leading-snug">{item.title}</h4>
+                                            <span className="text-[10px] text-gray-400">{item.date}</span>
+                                        </div>
+                                    </a>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </section>
