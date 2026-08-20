@@ -311,7 +311,7 @@ export default function Home() {
                     {/* Left Title & Filters */}
                     <div className="w-full lg:w-[256px] shrink-0 flex flex-col">
                         <h3 className="text-2xl font-bold text-gray-900 mb-8">
-                            뉴스
+                            NEWS
                         </h3>
                         
                         <div className="flex flex-col gap-4">
@@ -384,7 +384,7 @@ export default function Home() {
                     <div className="flex-1 bg-white rounded-[8px] p-6 border border-gray-100 shadow-sm">
                         {/* Title Row */}
                         <div className="flex items-center justify-between mb-4">
-                            <h3 className="text-2xl font-bold text-gray-900">랭킹</h3>
+                            <h3 className="text-2xl font-bold text-gray-900">RANKING</h3>
                             <button className="text-sm font-bold text-gray-400 hover:text-gray-900 flex items-center gap-1 transition-colors">
                                 MORE
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4"><path d="M9 18l6-6-6-6" /></svg>
@@ -469,7 +469,7 @@ export default function Home() {
 
                     {/* Right: 대회 리더보드 */}
                     <div className="w-full lg:w-[320px] shrink-0 bg-white rounded-[8px] p-6 border border-gray-100 shadow-sm flex flex-col">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-2">이전 대회 우승자</h3>
+                        <h3 className="text-2xl font-bold text-gray-900 mb-2">PREVIOUS WINNER</h3>
                         <p className="text-sm font-bold text-gray-500 mb-4">제11전 이시카와 챔피언십</p>
                         
                         <div 
@@ -541,7 +541,7 @@ export default function Home() {
                 {/* 6. Media */}
                 <section>
                     <div className="flex justify-between items-end mb-6">
-                        <h3 className="text-2xl font-bold text-gray-900">미디어</h3>
+                        <h3 className="text-2xl font-bold text-gray-900">MEDIA</h3>
                         <button className="text-sm font-bold text-gray-400 hover:text-gray-900 flex items-center gap-1 transition-colors">
                             MORE
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4"><path d="M9 18l6-6-6-6" /></svg>
