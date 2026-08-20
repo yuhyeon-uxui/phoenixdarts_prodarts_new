@@ -18,7 +18,7 @@ export default function Header() {
   }, [isDark]);
 
   return (
-    <header className="sticky top-0 z-50 w-full backdrop-blur-xl bg-white/90 dark:bg-[#121212]/90 transition-colors duration-300 shadow-sm">
+    <header className="sticky top-0 z-[100] w-full backdrop-blur-xl bg-white/90 dark:bg-[#121212]/90 transition-colors duration-300 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 lg:pr-[60px] h-20 flex items-center justify-between">
         
         {/* Logo */}
