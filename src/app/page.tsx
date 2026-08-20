@@ -2,492 +2,215 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 
-
 const rankingData = [
-    { rank: 1, name: "휴고 리옹", enName: "Hugo Leung", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150", sponsors: ["TRiNiDAD", "CONDOR"], pts: "1359", trend: "same", trendVal: 0 },
-    { rank: 2, name: "아베 유타로", enName: "Abe Yutaro", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150", sponsors: ["TRiNiDAD", "CONDOR", "MACS Design"], pts: "992", trend: "up", trendVal: 2 },
-    { rank: 3, name: "첸 치루이", enName: "Tseng Chijui", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=150", sponsors: ["TRiNiDAD", "CONDOR"], pts: "970", trend: "down", trendVal: 1 },
-    { rank: 4, name: "푸포 텡리에", enName: "Pupo Teng Lieh", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=150", sponsors: ["COSMO DARTS", "Fit Flight"], pts: "941", trend: "up", trendVal: 1 },
-    { rank: 5, name: "죠노 히로키", enName: "Jono Hiroki", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=150", sponsors: ["TRiNiDAD", "CONDOR"], pts: "788", trend: "same", trendVal: 0 },
-    { rank: 6, name: "아사다 세이고", enName: "Asada Seigo", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=150", sponsors: ["unicorn", "L-style"], pts: "750", trend: "down", trendVal: 2 },
-    { rank: 7, name: "마츠다 준", enName: "Matsuda Jun", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=150", sponsors: ["DYNASTY", "L-style"], pts: "720", trend: "up", trendVal: 3 },
-    { rank: 8, name: "고토 토모야", enName: "Goto Tomoya", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=150", sponsors: ["TRiNiDAD", "CONDOR"], pts: "690", trend: "down", trendVal: 1 },
-    { rank: 9, name: "니시타니 죠지", enName: "Nishitani Joji", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150", sponsors: ["TARGET", "8FLIGHT"], pts: "650", trend: "up", trendVal: 1 },
-    { rank: 10, name: "야마다 유키", enName: "Yamada Yuki", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150", sponsors: ["COSMO DARTS", "Fit Flight"], pts: "610", trend: "same", trendVal: 0 },
+    { rank: 1, name: "휴고 리옹", enName: "Hugo Leung", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300", sponsors: ["TRiNiDAD", "CONDOR"], pts: "1,359", trend: "same" },
+    { rank: 2, name: "아베 유타로", enName: "Abe Yutaro", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300", sponsors: ["TRiNiDAD", "MACS"], pts: "992", trend: "up" },
+    { rank: 3, name: "첸 치루이", enName: "Tseng Chijui", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=300", sponsors: ["TRiNiDAD", "CONDOR"], pts: "970", trend: "down" },
+    { rank: 4, name: "푸포 텡리에", enName: "Pupo Teng Lieh", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=300", sponsors: ["COSMO DARTS"], pts: "941", trend: "up" },
+    { rank: 5, name: "죠노 히로키", enName: "Jono Hiroki", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=300", sponsors: ["TRiNiDAD", "CONDOR"], pts: "788", trend: "same" },
+    { rank: 6, name: "아사다 세이고", enName: "Asada Seigo", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=300", sponsors: ["unicorn", "L-style"], pts: "750", trend: "down" },
+    { rank: 7, name: "마츠다 준", enName: "Matsuda Jun", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=300", sponsors: ["DYNASTY", "L-style"], pts: "720", trend: "up" },
+    { rank: 8, name: "고토 토모야", enName: "Goto Tomoya", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=300", sponsors: ["TRiNiDAD", "CONDOR"], pts: "690", trend: "down" },
 ];
 
 export default function Home() {
-
-    const carouselRef = useRef<HTMLDivElement>(null);
-    const scrollCarousel = (dir: number) => {
-        if (carouselRef.current) {
-            carouselRef.current.scrollBy({ left: dir * 400, behavior: 'smooth' });
-        }
-    };
-    
-    const [activeHeroSlide, setActiveHeroSlide] = useState(0);
-    const [isHeroDragging, setIsHeroDragging] = useState(false);
-    const [heroStartX, setHeroStartX] = useState(0);
-
+    // 1. Hero Carousel (Dissolve)
+    const [activeHero, setActiveHero] = useState(0);
     const heroSlides = [
-        {
-            title: "AREA CHAMPIONS CUP\n오키나와 에어리어",
-            date: "2026.07.26 - 제7회 에어리어 챔피언스 컵 우승",
-            image: "https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=2000"
-        },
-        {
-            title: "2026 PERFECT\n제11전 이시카와",
-            date: "2026.08.01 - 2026.08.02 이시카와현 산업전시관",
-            image: "https://images.unsplash.com/photo-1611394145458-71e16f31620c?q=80&w=2000"
-        },
-        {
-            title: "2026 PERFECT\n제12전 하마마츠",
-            date: "2026.08.29 - 2026.08.30 액트시티 하마마츠",
-            image: "https://images.unsplash.com/photo-1542652735873-fb2825bac6e2?q=80&w=2000"
-        }
+        { title: "2026 PERFECT 챔피언십\n결승전 LIVE", image: "https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=2000" },
+        { title: "오키나와 에어리어\n차세대 선수 결정전", image: "https://images.unsplash.com/photo-1611394145458-71e16f31620c?q=80&w=2000" }
     ];
 
-    const scrollHero = (direction: "left" | "right") => {
-        if (direction === 'left') {
-            setActiveHeroSlide((prev) => (prev === 0 ? heroSlides.length - 1 : prev - 1));
-        } else {
-            setActiveHeroSlide((prev) => (prev === heroSlides.length - 1 ? 0 : prev + 1));
-        }
-    };
-
-    const onHeroDragStart = (e: React.MouseEvent) => {
-        setIsHeroDragging(true);
-        setHeroStartX(e.pageX);
-    };
-    
-    const onHeroDragEnd = (e: React.MouseEvent) => {
-        if (!isHeroDragging) return;
-        setIsHeroDragging(false);
-        const dragDistance = heroStartX - e.pageX;
-        if (dragDistance > 50) scrollHero('right');
-        else if (dragDistance < -50) scrollHero('left');
-    };
-
-    const [timeLeft, setTimeLeft] = useState({
-        days: 10,
-        hours: 14,
-        minutes: 30,
-        seconds: 0
-    });
-
     useEffect(() => {
-        // 2026년 8월 29일 오전 10시 기준
-        const targetDate = new Date("2026-08-29T10:00:00").getTime();
         const interval = setInterval(() => {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-            if (distance < 0) {
-                clearInterval(interval);
-                return;
-            }
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            setTimeLeft({
-                days,
-                hours,
-                minutes,
-                seconds
-            });
-        }, 1000);
+            setActiveHero(prev => (prev === heroSlides.length - 1 ? 0 : prev + 1));
+        }, 5000);
         return () => clearInterval(interval);
-    }, []);
+    }, [heroSlides.length]);
+
+    // 2. Next Match Carousel
+    const nextMatchRef = useRef<HTMLDivElement>(null);
+    const scrollNextMatch = (dir: number) => {
+        if (nextMatchRef.current) nextMatchRef.current.scrollBy({ left: dir * 320, behavior: 'smooth' });
+    };
+
+    const [newsTab, setNewsTab] = useState("전체");
+    const [rankTab, setRankTab] = useState("남자");
 
     return (
-        <main className="flex flex-col w-full font-sans bg-transparent dark:bg-transparent transition-colors duration-300">
-            {/* HERO SECTION - TWO CARD LAYOUT */}
-            <section className="w-full bg-transparent pt-8 pb-12">
-                <div className="max-w-[1280px] mx-auto px-4  flex flex-col lg:flex-row gap-6">
-                    
-                    {/* Left Card: Main Hero (Crossfade Slider) */}
-                    <div className="flex-1 rounded-[2rem] bg-gray-900 relative overflow-hidden h-[600px] flex flex-col justify-center shadow-lg group">
-                        
-                        {/* Crossfade Backgrounds */}
-                        {heroSlides.map((slide, index) => (
-                            <div 
-                                key={index}
-                                className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
-                                    activeHeroSlide === index ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
-                                }`}
-                            >
-                                <div 
-                                    className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60 transition-transform duration-700 group-hover:scale-105" 
-                                    style={{ backgroundImage: `url('${slide.image}')` }}
-                                ></div>
-                                <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
-                                <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-transparent"></div>
-                                
-                                {/* Content container with exactly left padding 32px */}
-                                <div className="relative z-20 w-full max-w-2xl h-full flex flex-col justify-center pl-[32px]">
-                                    <span className="text-white/80 font-bold text-xs tracking-widest mb-3 inline-block">PERFECT PRO TOURNAMENT</span>
-                                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4 leading-tight tracking-tight drop-shadow-xl whitespace-pre-line">
-                                        {slide.title}
-                                    </h2>
-                                    <p className="text-gray-200 mb-8 drop-shadow-md text-sm md:text-base font-medium">
-                                        {slide.date}
-                                    </p>
-                                    <button className="bg-[#E53935] text-white font-black hover:bg-red-700 transition px-6 py-3 rounded-[8px] flex items-center gap-2 w-fit shadow-lg shadow-red-500/30 pointer-events-auto text-sm">
-                                        더 알아보기 <span>→</span>
-                                    </button>
-                                </div>
-                            </div>
-                        ))}
-                        
-                        {/* Right-aligned Navigation Arrows inside the Card */}
-                        <div className="absolute right-[32px] top-1/2 -translate-y-1/2 flex flex-col gap-3 z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <button 
-                                onClick={() => scrollHero('left')}
-                                className="w-[48px] h-[48px] bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-all duration-300 text-white backdrop-blur-sm shadow-lg border border-white/30"
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5 -ml-0.5"><path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>
-                            </button>
-                            <button 
-                                onClick={() => scrollHero('right')}
-                                className="w-[48px] h-[48px] bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-all duration-300 text-white backdrop-blur-sm shadow-lg border border-white/30"
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5 ml-0.5"><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
-                            </button>
-                        </div>
-                        
-                        {/* Pagination */}
-                        <div className="absolute bottom-[32px] left-[32px] flex items-center gap-2 z-30 pointer-events-auto">
-                            {heroSlides.map((_, index) => (
-                                <span 
-                                    key={index}
-                                    onClick={() => setActiveHeroSlide(index)}
-                                    className={`h-1.5 rounded-[8px] transition-all duration-500 cursor-pointer ${
-                                        activeHeroSlide === index 
-                                            ? 'w-8 bg-white shadow-[0_0_10px_rgba(255,255,255,0.5)]' 
-                                            : 'w-1.5 bg-white/40 hover:bg-white'
-                                    }`}
-                                ></span>
-                            ))}
-                            <span className="text-white ml-3 text-xs font-black tracking-widest cursor-pointer">II</span>
+        <main className="flex flex-col w-full font-sans bg-gray-100 min-h-screen text-gray-900">
+            {/* 1. Main Key Visual (Dissolve Carousel) */}
+            <section className="relative w-full h-[500px] overflow-hidden bg-black">
+                {heroSlides.map((slide, idx) => (
+                    <div 
+                        key={idx}
+                        className={`absolute inset-0 transition-opacity duration-1000 ${activeHero === idx ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+                    >
+                        <div className="absolute inset-0 bg-cover bg-center opacity-70" style={{ backgroundImage: `url('${slide.image}')` }}></div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        <div className="absolute bottom-16 left-8 md:left-20 z-20">
+                            <h2 className="text-white text-4xl md:text-5xl font-bold whitespace-pre-line leading-tight">{slide.title}</h2>
                         </div>
                     </div>
-
-                    {/* Right Card: NEXT MATCH */}
-                    <div className="w-full lg:w-[400px] shrink-0 h-[600px] rounded-[1.5rem] relative overflow-hidden p-6 md:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.15)] flex flex-col justify-center bg-white dark:bg-[#121212]">
-                        {/* Blurred Poster Background for NEXT PERFECT Card */}
-                        <div 
-                            className="absolute inset-0 bg-cover bg-center bg-no-repeat blur-xl scale-110 opacity-40 z-0"
-                            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1542652735873-fb2825bac6e2?q=80&w=600')" }}
-                        ></div>
-                        {/* Gradient overlay to ensure text readability */}
-                        <div className="absolute inset-0 bg-white/80 dark:bg-[#121212]/80 z-0"></div>
-
-                        <div className="w-full relative z-10">
-                            <div className="mb-5 pb-3 flex justify-between items-center">
-                            <h3 className="text-sm font-black text-[#E53935] tracking-widest drop-shadow-sm">NEXT PERFECT</h3>
-                            <a href="#" className="bg-[#0A1118] text-white hover:scale-105 hover:shadow-lg text-[10px] font-black px-4 py-1.5 rounded-full transition-all duration-300 tracking-widest shadow-sm origin-right">전체일정</a>
-                            </div>
-                            <div className="relative group cursor-pointer">
-                            {/* The actual tournament image */}
-                            <div className="w-full h-48 rounded-xl mb-6 bg-cover bg-center relative overflow-hidden shadow-md transition-colors duration-300" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1542652735873-fb2825bac6e2?q=80&w=600')" }}>
-                            </div>
-                            <div className="mb-8 text-left px-1">
-                                <div className="text-[#E53935] font-black text-xs italic mb-1.5 tracking-tight">2026 PERFECT TOUR</div>
-                                <h4 className="text-2xl font-black text-gray-900 dark:text-white mb-2 drop-shadow-sm">제12전 하마마츠</h4>
-                                <p className="text-gray-700 dark:text-gray-300 text-[11px] font-medium">2026. 08. 29 (SUN) 10:00 / 액트시티 하마마츠</p>
-                            </div>
-                            </div>
-                            
-                            <div className="flex justify-center items-center pt-2">
-                            <div className="flex justify-center gap-2 md:gap-3">
-                                <div className="text-center w-[48px] md:w-[52px]">
-                                <div className="text-[9px] text-gray-500 dark:text-gray-400 mb-1.5 tracking-widest font-bold">DAY</div>
-                                <div className="bg-white dark:bg-[#1A1A1A] rounded-[8px] px-2 py-2 text-xl font-mono font-black text-gray-900 dark:text-white shadow-sm border border-gray-200 dark:border-[#333]">
-                                    {String(timeLeft.days).padStart(2, '0')}
-                                </div>
-                                </div>
-                                <div className="text-xl font-bold text-gray-400 mt-5">:</div>
-                                <div className="text-center w-[48px] md:w-[52px]">
-                                <div className="text-[9px] text-gray-500 dark:text-gray-400 mb-1.5 tracking-widest font-bold">HOUR</div>
-                                <div className="bg-white dark:bg-[#1A1A1A] rounded-[8px] px-2 py-2 text-xl font-mono font-black text-gray-900 dark:text-white shadow-sm border border-gray-200 dark:border-[#333]">
-                                    {String(timeLeft.hours).padStart(2, '0')}
-                                </div>
-                                </div>
-                                <div className="text-xl font-bold text-gray-400 mt-5">:</div>
-                                <div className="text-center w-[48px] md:w-[52px]">
-                                <div className="text-[9px] text-gray-500 dark:text-gray-400 mb-1.5 tracking-widest font-bold">MIN</div>
-                                <div className="bg-white dark:bg-[#1A1A1A] rounded-[8px] px-2 py-2 text-xl font-mono font-black text-gray-900 dark:text-white shadow-sm border border-gray-200 dark:border-[#333]">
-                                    {String(timeLeft.minutes).padStart(2, '0')}
-                                </div>
-                                </div>
-                                <div className="text-xl font-bold text-gray-400 mt-5">:</div>
-                                <div className="text-center w-[48px] md:w-[52px]">
-                                <div className="text-[9px] text-gray-500 dark:text-gray-400 mb-1.5 tracking-widest font-bold">SEC</div>
-                                <div className="bg-white dark:bg-[#1A1A1A] rounded-[8px] px-2 py-2 text-xl font-mono font-black text-gray-900 dark:text-white shadow-sm border border-gray-200 dark:border-[#333]">
-                                    {String(timeLeft.seconds).padStart(2, '0')}
-                                </div>
-                                </div>
-                            </div>
-                            </div>
-                            <div className="flex justify-center gap-1.5 mt-8">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#E53935]"></span>
-                            <span className="w-1.5 h-1.5 rounded-full bg-gray-300 dark:bg-[#444] cursor-pointer hover:bg-gray-800 transition-colors"></span>
-                            <span className="w-1.5 h-1.5 rounded-full bg-gray-300 dark:bg-[#444] cursor-pointer hover:bg-gray-800 transition-colors"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                ))}
             </section>
 
-                        
-            
-            {/* RECOMMENDED VIDEOS SECTION */}
-            <section className="w-full bg-transparent pt-8 pb-20 border-b border-gray-300 dark:border-[#27272A]">
-                <div className="max-w-[1280px] mx-auto px-4 ">
-                    <div className="flex items-center gap-4 mb-8">
-                        <h3 className="text-2xl md:text-3xl font-black text-gray-900 dark:text-white tracking-widest uppercase mr-2 shrink-0">NEWS</h3>
-                        <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide pb-2 md:pb-0">
-                            <button className="bg-[#121212] text-white px-5 py-2 rounded-full text-sm font-bold shadow-sm whitespace-nowrap">전체</button>
-                            <button className="bg-white dark:bg-[#1A1A1A] border border-gray-200 dark:border-[#333] text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#222] px-5 py-2 rounded-full text-sm font-bold shadow-sm transition-colors whitespace-nowrap">뉴스</button>
-                            <button className="bg-white dark:bg-[#1A1A1A] border border-gray-200 dark:border-[#333] text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#222] px-5 py-2 rounded-full text-sm font-bold shadow-sm transition-colors whitespace-nowrap">공지</button>
-                            <button className="bg-white dark:bg-[#1A1A1A] border border-gray-200 dark:border-[#333] text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#222] px-5 py-2 rounded-full text-sm font-bold shadow-sm transition-colors whitespace-nowrap">대회</button>
-                            <button className="bg-white dark:bg-[#1A1A1A] border border-gray-200 dark:border-[#333] text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#222] px-5 py-2 rounded-full text-sm font-bold shadow-sm transition-colors whitespace-nowrap">업데이트</button>
-                        </div>
+            <div className="max-w-[1200px] mx-auto w-full px-4 flex flex-col gap-16 py-12">
+                
+                {/* 2. NEXT PERFECT (Swipe) */}
+                <section>
+                    <div className="flex justify-between items-end mb-6">
+                        <h3 className="text-2xl font-bold text-gray-900">다음 대회 안내</h3>
+                        <button className="text-sm font-medium text-gray-500 hover:text-gray-900">전체보기 &gt;</button>
                     </div>
-
                     <div className="relative group">
-                        {/* LEFT ARROW */}
-                        <div onClick={() => scrollCarousel(-1)} className="absolute left-[-20px] top-[40%] -translate-y-1/2 w-12 h-12 bg-black/60 hover:bg-black/80 text-white rounded-full flex items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity z-10 shadow-lg backdrop-blur-sm">
-                            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" /></svg>
-                        </div>
-                        {/* RIGHT ARROW */}
-                        <div onClick={() => scrollCarousel(1)} className="absolute right-[-20px] top-[40%] -translate-y-1/2 w-12 h-12 bg-black/60 hover:bg-black/80 text-white rounded-full flex items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity z-10 shadow-lg backdrop-blur-sm">
-                            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" /></svg>
-                        </div>
-
-                        {/* CAROUSEL CONTAINER */}
-                        <div ref={carouselRef} className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory py-4">
-                            {[1, 2, 3].map((loopIdx) => (
-                                <React.Fragment key={loopIdx}>
-                                    {/* Card 1 (Shorts Style) */}
-                                    <div className="snap-start shrink-0 w-[240px] md:w-[280px] relative rounded-[16px] overflow-hidden aspect-[9/16] group/card cursor-pointer shadow-md bg-[#800000]">
-                                        <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover/card:scale-105 opacity-80 mix-blend-overlay" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1542652735873-fb2825bac6e2?q=80&w=400')" }}></div>
-                                        <div className="absolute inset-0 bg-gradient-to-t from-[#800000] via-[#800000]/40 to-transparent"></div>
-                                        <div className="absolute bottom-0 left-0 p-5 w-full flex flex-col items-center text-center">
-                                            <div className="text-white/80 font-bold text-[10px] mb-1">무관의 신인왕 설움 다 풀었다!</div>
-                                            <h4 className="text-white font-black text-xl leading-tight mb-4 drop-shadow-md">서교림 짜릿한 역전극</h4>
-                                            <div className="bg-[#E53935] text-white font-bold text-xs px-3 py-1.5 w-full shadow-lg">PERFECT 챔피언십</div>
-                                        </div>
+                        <div ref={nextMatchRef} className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-4">
+                            {[1, 2, 3, 4].map(item => (
+                                <div key={item} className="snap-start shrink-0 w-[300px] bg-white rounded-[8px] overflow-hidden shadow-sm border border-gray-200 cursor-pointer">
+                                    <div className="h-40 bg-gray-200 bg-cover bg-center" style={{backgroundImage: "url('https://images.unsplash.com/photo-1542652735873-fb2825bac6e2?q=80&w=400')"}}></div>
+                                    <div className="p-5">
+                                        <div className="text-xs font-bold text-red-600 mb-1">D-10</div>
+                                        <h4 className="text-lg font-bold text-gray-900 mb-2">제12전 하마마츠</h4>
+                                        <p className="text-sm text-gray-500">2026.08.29 액트시티</p>
                                     </div>
-                                    {/* Card 2 (Standard Style) */}
-                                    <div className="snap-start shrink-0 w-[300px] md:w-[320px] bg-white dark:bg-[#1A1A1A] rounded-[16px] overflow-hidden flex flex-col group/card cursor-pointer shadow-md">
-                                        <div className="w-full aspect-[4/3] bg-cover bg-[center_top] transition-transform duration-700 group-hover/card:scale-105" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=400')" }}></div>
-                                        <div className="p-5 flex-1 flex flex-col justify-between">
-                                            <div>
-                                                <h4 className="font-bold text-gray-900 dark:text-white text-base mb-2 line-clamp-2 leading-tight">필드 위를 수놓는 뷰티풀 임팩트, 챔피언십 핫샷</h4>
-                                            </div>
-                                            <div className="flex items-center gap-2 mt-4">
-                                                <div className="w-5 h-5 rounded-full bg-[#E53935] flex items-center justify-center text-white text-[10px] font-bold italic pr-0.5">P</div>
-                                                <span className="text-[11px] text-gray-500 font-bold tracking-tight">2026 PERFECT투어</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {/* Card 3 (Shorts Style) */}
-                                    <div className="snap-start shrink-0 w-[240px] md:w-[280px] relative rounded-[16px] overflow-hidden aspect-[9/16] group/card cursor-pointer shadow-md bg-gray-900">
-                                        <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover/card:scale-105" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400')" }}></div>
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-                                        <div className="absolute bottom-0 left-0 p-5 w-full">
-                                            <h4 className="text-white font-bold text-base leading-tight mb-3">"얘가 저 괴롭혀요" 티격태격 찐친 케미 보여준 김민솔</h4>
-                                            <div className="flex items-center gap-2">
-                                                <div className="w-5 h-5 rounded-full bg-blue-800 flex items-center justify-center text-white text-[10px] font-bold">IN</div>
-                                                <span className="text-white/80 font-bold text-[11px]">인사이드 PERFECT</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {/* Card 4 (Standard Style) */}
-                                    <div className="snap-start shrink-0 w-[300px] md:w-[320px] bg-white dark:bg-[#1A1A1A] rounded-[16px] overflow-hidden flex flex-col group/card cursor-pointer shadow-md">
-                                        <div className="w-full aspect-[4/3] bg-cover bg-[center_top] transition-transform duration-700 group-hover/card:scale-105 relative" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400')" }}>
-                                            <div className="absolute bottom-2 right-2 bg-black/70 text-white text-[10px] font-bold px-1.5 py-0.5 rounded">03:42</div>
-                                        </div>
-                                        <div className="p-5 flex-1 flex flex-col justify-between">
-                                            <div>
-                                                <h4 className="font-bold text-gray-900 dark:text-white text-base mb-2 line-clamp-2 leading-tight">김아림 극찬에 서교림 반응은?! 시즌 4승을 향한 경쟁</h4>
-                                            </div>
-                                            <div className="flex items-center gap-2 mt-4">
-                                                <div className="w-5 h-5 rounded-full bg-blue-800 flex items-center justify-center text-white text-[10px] font-bold">IN</div>
-                                                <span className="text-[11px] text-gray-500 font-bold tracking-tight">인사이드 PERFECT</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {/* Card 5 (Shorts Style) */}
-                                    <div className="snap-start shrink-0 w-[240px] md:w-[280px] relative rounded-[16px] overflow-hidden aspect-[9/16] group/card cursor-pointer shadow-md bg-[#001040]">
-                                        <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover/card:scale-105 opacity-70 mix-blend-overlay" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400')" }}></div>
-                                        <div className="absolute inset-0 bg-gradient-to-t from-[#001040] via-[#001040]/60 to-transparent"></div>
-                                        <div className="absolute bottom-0 left-0 p-5 w-full flex flex-col items-center text-center">
-                                            <div className="text-white/80 font-bold text-[10px] mb-1">부모님께 드리는 선물, 효녀가 된 서교림</div>
-                                            <h4 className="text-white font-black text-xl leading-tight mb-4 drop-shadow-md">우승자 부상이 와르르</h4>
-                                            <div className="bg-[#E53935] text-white font-bold text-xs px-3 py-1.5 w-full shadow-lg">PERFECT 챔피언십</div>
-                                        </div>
-                                    </div>
-                                </React.Fragment>
+                                </div>
                             ))}
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            {/* RANKING SECTION */}
-            <section className="w-full bg-transparent py-20 border-b border-gray-300 dark:border-[#27272A]">
-                <div className="max-w-[1280px] mx-auto px-4 ">
-                    
-                    <div className="flex justify-between items-center mb-8 pb-4 border-b border-gray-300 dark:border-[#27272A]">
-                        <div className="flex items-baseline gap-3">
-                            <h3 className="text-3xl md:text-4xl font-black text-gray-900 dark:text-white tracking-widest uppercase">2026 RANKING</h3>
-                            <span className="text-sm font-bold text-gray-500 dark:text-[#9E9E9E]">2026.08.09 현재</span>
+                {/* 3. Event Banner */}
+                <section>
+                    <div className="w-full h-[140px] rounded-[8px] bg-blue-900 overflow-hidden relative cursor-pointer shadow-sm">
+                        <div className="absolute inset-0 bg-cover bg-center opacity-50" style={{backgroundImage: "url('https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=1200')"}}></div>
+                        <div className="absolute inset-0 flex items-center justify-between px-10">
+                            <div className="text-white">
+                                <h3 className="text-2xl font-bold mb-2">신규 프로 회원가입 이벤트</h3>
+                                <p className="text-sm opacity-80">지금 가입하고 피닉스다트 공식 굿즈 받자!</p>
+                            </div>
+                            <button className="bg-white text-blue-900 px-6 py-2 rounded-[4px] font-bold text-sm">자세히 보기</button>
                         </div>
-                        <a href="#" className="bg-[#121212] text-white hover:bg-black dark:bg-white dark:text-black dark:hover:bg-gray-200 transition-all duration-300 text-xs font-black px-6 py-2.5 rounded-full uppercase shadow-sm origin-center hover:scale-[1.2]">MORE</a>
                     </div>
-                    
-                    <div className="flex gap-6 mb-8 mt-4 border-b border-gray-200 dark:border-[#333]">
-                        <button className="pb-3 border-b-[3px] border-[#E53935] font-black text-gray-900 dark:text-white tracking-widest text-sm">JAPAN</button>
-                        <button className="pb-3 text-gray-400 font-bold hover:text-gray-900 dark:hover:text-white tracking-widest text-sm transition-colors">JAPAN LADIES</button>
-                        <button className="pb-3 text-gray-400 font-bold hover:text-gray-900 dark:hover:text-white tracking-widest text-sm transition-colors">BRANDS</button>
-                    </div>
+                </section>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                {/* 4. News */}
+                <section>
+                    <div className="flex justify-between items-end mb-6">
+                        <div className="flex items-center gap-6">
+                            <h3 className="text-2xl font-bold text-gray-900">NEWS</h3>
+                            <div className="flex gap-4">
+                                {['전체', '대회', '공지', '업데이트'].map(tab => (
+                                    <button 
+                                        key={tab} 
+                                        onClick={() => setNewsTab(tab)}
+                                        className={`text-sm font-bold pb-1 border-b-2 transition-colors ${newsTab === tab ? 'border-gray-900 text-gray-900' : 'border-transparent text-gray-400 hover:text-gray-700'}`}
+                                    >
+                                        {tab}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                        <button className="text-sm font-medium text-gray-500 hover:text-gray-900">리뷰 전체보기 &gt;</button>
+                    </div>
+                    <div className="bg-white rounded-[8px] border border-gray-200 shadow-sm p-4">
+                        {[1, 2, 3, 4].map(item => (
+                            <div key={item} className="flex justify-between items-center py-4 border-b border-gray-100 last:border-0 cursor-pointer group">
+                                <div className="flex items-center gap-4">
+                                    <span className="text-xs font-bold text-red-600 bg-red-50 px-2 py-1 rounded">대회</span>
+                                    <p className="text-gray-800 font-medium group-hover:underline">[제11전 이시카와] 남자부/여자부 결승전 결과 안내</p>
+                                </div>
+                                <span className="text-sm text-gray-400">2026.08.10</span>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* 5. Ranking (Full image cards with gradient) */}
+                <section>
+                    <div className="flex justify-between items-end mb-6">
+                        <div className="flex items-center gap-6">
+                            <h3 className="text-2xl font-bold text-gray-900">선수 랭킹</h3>
+                            <div className="flex gap-4">
+                                {['남자', '여자', '브랜드'].map(tab => (
+                                    <button 
+                                        key={tab} 
+                                        onClick={() => setRankTab(tab)}
+                                        className={`text-sm font-bold pb-1 border-b-2 transition-colors ${rankTab === tab ? 'border-gray-900 text-gray-900' : 'border-transparent text-gray-400 hover:text-gray-700'}`}
+                                    >
+                                        {tab}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                        <button className="text-sm font-medium text-gray-500 hover:text-gray-900">전체보기 &gt;</button>
+                    </div>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         {rankingData.map((player) => (
-                            <div key={player.rank} className="flex items-center p-4 bg-white dark:bg-[#1A1A1A] border border-gray-200 dark:border-[#333] rounded-[16px] shadow-sm hover:shadow-md hover:border-[#E53935] hover:-translate-y-1 transition-all duration-300 cursor-pointer">
-                                <div className={`w-12 text-center text-3xl font-black ${player.rank === 1 ? 'text-[#FFB300]' : 'text-gray-400 dark:text-gray-500'}`}>
-                                    {player.rank}
+                            <div key={player.rank} className="relative w-full aspect-[3/4] rounded-[8px] overflow-hidden group cursor-pointer shadow-sm">
+                                <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style={{backgroundImage: `url('${player.img}')`}}></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                                <div className="absolute top-3 left-3 bg-white/90 text-gray-900 text-xs font-black px-2 py-1 rounded">
+                                    TOP {player.rank}
                                 </div>
-                                <div className="w-16 h-16 rounded-[12px] mx-4 bg-gray-200 bg-cover bg-center" style={{ backgroundImage: `url('${player.img}')` }}></div>
-                                <div className="flex-1">
-                                    <div className="flex items-end gap-2 mb-1.5">
-                                        <div className="font-bold text-lg text-gray-900 dark:text-white leading-none">{player.name}</div>
-                                        <div className="text-xs text-gray-400 leading-none pb-0.5">{player.enName}</div>
-                                    </div>
-                                    <div className="flex gap-2">
-                                        {player.sponsors.map((sp, idx) => (
-                                            <span key={idx} className="text-[9px] bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-2 py-0.5 rounded-[4px] font-bold tracking-wider">{sp}</span>
-                                        ))}
-                                    </div>
-                                </div>
-                                <div className="flex items-center gap-4 text-right pr-2">
-                                    <div>
-                                        <div className="text-[9px] font-bold text-gray-400 mb-1 tracking-widest">POINTS</div>
-                                        <div className="text-2xl font-black text-gray-900 dark:text-white leading-none">{player.pts}</div>
-                                    </div>
-                                    <div className="w-6 flex flex-col items-center justify-center">
-                                        {player.trend === 'same' && (
-                                            <svg className="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                                        )}
-                                        {player.trend === 'up' && (
-                                            <>
-                                                <svg className="w-4 h-4 text-[#E53935]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M5 10l7-7m0 0l7 7m-7-7v18" /></svg>
-                                                <span className="text-[#E53935] font-black text-xs">{player.trendVal}</span>
-                                            </>
-                                        )}
-                                        {player.trend === 'down' && (
-                                            <>
-                                                <svg className="w-4 h-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
-                                                <span className="text-blue-500 font-black text-xs">{player.trendVal}</span>
-                                            </>
-                                        )}
+                                <div className="absolute bottom-0 left-0 w-full p-4">
+                                    <h4 className="text-white font-bold text-lg mb-1">{player.name}</h4>
+                                    <div className="flex justify-between items-end">
+                                        <span className="text-gray-300 text-xs">{player.enName}</span>
+                                        <span className="text-red-400 font-bold text-sm">{player.pts} Pts</span>
                                     </div>
                                 </div>
                             </div>
                         ))}
                     </div>
-                </div>
-            </section>
+                </section>
 
-            {/* TOPICS SECTION */}
-            <section className="w-full bg-transparent py-20 border-b border-gray-300 dark:border-[#27272A]">
-                <div className="max-w-[1280px] mx-auto px-4 ">
-                    <div className="flex justify-between items-center mb-10 pb-4 border-b border-gray-300 dark:border-[#27272A]">
-                        <div className="flex items-baseline gap-3">
-                            <h3 className="text-3xl md:text-4xl font-black text-gray-900 dark:text-white tracking-widest uppercase">TOPICS</h3>
-                        </div>
-                        <a href="#" className="bg-[#121212] text-white hover:bg-black dark:bg-white dark:text-black dark:hover:bg-gray-200 transition-all duration-300 text-xs font-black px-6 py-2.5 rounded-full uppercase shadow-sm origin-center hover:scale-[1.2]">MORE</a>
+                {/* 6. Media */}
+                <section>
+                    <div className="flex justify-between items-end mb-6">
+                        <h3 className="text-2xl font-bold text-gray-900">미디어</h3>
+                        <button className="text-sm font-medium text-gray-500 hover:text-gray-900">전체보기 &gt;</button>
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {[
-                            {
-                                title: "프로테스트 정보",
-                                subtitle: "CERTIFICATION EXAM",
-                                date: "2026.08.15",
-                                img: "https://images.unsplash.com/photo-1594950488669-e092120e2fc0?q=80&w=600"
-                            },
-                            {
-                                title: "연간 아카이브",
-                                subtitle: "YEARLY ARCHIVE",
-                                date: "2026.08.10",
-                                img: "https://images.unsplash.com/photo-1627885483163-547df7c5f87b?q=80&w=600"
-                            },
-                            {
-                                title: "시합 동영상",
-                                subtitle: "MATCH VIDEO",
-                                date: "2026.08.05",
-                                img: "https://images.unsplash.com/photo-1563261763-7140889f4b3f?q=80&w=600"
-                            },
-                            {
-                                title: "공식 포스터",
-                                subtitle: "POSTER DOWNLOAD",
-                                date: "2026.08.01",
-                                img: "https://images.unsplash.com/photo-1582236528775-6e54f8e658ec?q=80&w=600"
-                            }
-                        ].map((topic, i) => (
-                            <div key={i} className="bg-white dark:bg-[#121212] border border-gray-300 dark:border-[#27272A] rounded-[8px] hover:border-[#E53935] hover:-translate-y-1 cursor-pointer transition-all duration-300 group overflow-hidden flex flex-col shadow-sm">
-                                <div className="w-full h-40 bg-gray-100 dark:bg-zinc-800 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style={{ backgroundImage: `url('${topic.img}')` }}></div>
-                                <div className="p-6 bg-white dark:bg-[#121212] relative z-10 flex-1">
-                                    <div className="text-xs text-[#E53935] mb-3 font-mono">{topic.date}</div>
-                                    <h4 className="text-lg font-bold text-gray-900 dark:text-white transition mb-1">{topic.title}</h4>
-                                    <p className="text-xs text-gray-500 dark:text-[#777]">{topic.subtitle}</p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="md:col-span-2 relative aspect-video rounded-[8px] overflow-hidden group cursor-pointer shadow-sm">
+                            <div className="absolute inset-0 bg-cover bg-center" style={{backgroundImage: "url('https://images.unsplash.com/photo-1563261763-7140889f4b3f?q=80&w=800')"}}></div>
+                            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                                <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center text-white pl-1">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8"><path d="M8 5v14l11-7z"/></svg>
                                 </div>
                             </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* OFFICIAL SPONSORS SECTION */}
-            <section className="w-full bg-transparent py-24">
-                <div className="max-w-[1280px] mx-auto px-4 ">
-                    <div className="flex justify-between items-center mb-12 pb-4 border-b border-gray-300 dark:border-[#27272A]">
-                        <div className="flex items-baseline gap-3">
-                            <h3 className="text-3xl md:text-4xl font-black text-gray-900 dark:text-white tracking-widest uppercase">OFFICIAL SPONSORS</h3>
+                            <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/80 to-transparent">
+                                <span className="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded mb-2 inline-block">LIVE</span>
+                                <h4 className="text-white font-bold text-lg">제11전 이시카와 결승전 하이라이트</h4>
+                            </div>
                         </div>
-                        <a href="#" className="bg-[#121212] text-white hover:bg-black dark:bg-white dark:text-black dark:hover:bg-gray-200 transition-all duration-300 text-xs font-black px-6 py-2.5 rounded-full uppercase shadow-sm origin-center hover:scale-[1.2]">MORE</a>
-                    </div>
-                    <div className="max-w-4xl mx-auto">
-                        <h4 className="text-xs font-bold text-[#555] mb-6 text-center tracking-[0.2em]">TOUR SPONSOR</h4>
-                        <div className="flex justify-center mb-16">
-                            <div className="w-72 h-24 bg-white dark:bg-white/5 rounded-[8px] border border-gray-300 dark:border-[#333] flex items-center justify-center font-black text-gray-900 dark:text-white text-2xl hover:bg-gray-50 dark:hover:bg-white/10 transition cursor-pointer shadow-sm">PHOENIXDARTS</div>
-                        </div>
-                        <h4 className="text-xs font-bold text-[#555] mb-6 text-center tracking-[0.2em]">MAIN SPONSOR</h4>
-                        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                            {[
-                                "InBusiBull",
-                                "Pro.VISION",
-                                "Pro.Formar",
-                                "FLK",
-                                "WAKE",
-                                "JET",
-                                "AQUARIUS",
-                                "Ryu",
-                                "TRiNiDAD",
-                                "CONDOR",
-                                "L-style",
-                                "TARGET"
-                            ].map((sp, i) => (
-                                <div key={i} className="bg-white dark:bg-white/5 border border-gray-300 dark:border-[#222] h-16 flex items-center justify-center font-bold text-gray-500 dark:text-[#999] rounded-[8px] text-sm hover:bg-gray-50 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white hover:border-gray-400 dark:hover:border-[#444] transition cursor-pointer shadow-sm">
-                                    {sp}
+                        <div className="flex flex-col gap-4">
+                            {[1, 2].map(item => (
+                                <div key={item} className="flex bg-white rounded-[8px] overflow-hidden border border-gray-200 shadow-sm cursor-pointer group">
+                                    <div className="w-1/3 bg-cover bg-center" style={{backgroundImage: "url('https://images.unsplash.com/photo-1582236528775-6e54f8e658ec?q=80&w=200')"}}></div>
+                                    <div className="w-2/3 p-3 flex flex-col justify-between">
+                                        <h4 className="text-sm font-bold text-gray-900 line-clamp-2 group-hover:underline">아베 유타로, 극적인 역전승으로 2연패 달성</h4>
+                                        <span className="text-xs text-gray-400">2026.08.12</span>
+                                    </div>
                                 </div>
                             ))}
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+
+                {/* 7. Sponsor List */}
+                <section className="mb-12">
+                    <div className="flex justify-between items-end mb-6">
+                        <h3 className="text-xl font-bold text-gray-900">SPONSORS</h3>
+                    </div>
+                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2">
+                        {["PHOENIXDARTS", "TRiNiDAD", "CONDOR", "L-style", "DYNASTY", "TARGET"].map((sp, idx) => (
+                            <div key={idx} className="bg-white border border-gray-200 h-16 flex items-center justify-center rounded-[8px] text-gray-500 font-bold text-sm shadow-sm hover:border-gray-400 cursor-pointer transition-colors">
+                                {sp}
+                            </div>
+                        ))}
+                    </div>
+                </section>
+            </div>
         </main>
     );
 }
