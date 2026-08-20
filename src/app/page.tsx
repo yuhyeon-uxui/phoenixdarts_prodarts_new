@@ -225,7 +225,7 @@ export default function Home() {
 
                     {/* Right Horizontal Scroll Cards */}
                     <div 
-                        className="flex-1 relative"
+                        className="flex-1 relative min-w-0"
                         onMouseEnter={() => setNewsHover(true)}
                         onMouseLeave={() => setNewsHover(false)}
                     >
