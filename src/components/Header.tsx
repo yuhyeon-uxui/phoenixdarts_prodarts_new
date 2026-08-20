@@ -18,8 +18,8 @@ export default function Header() {
   }, [isDark]);
 
   return (
-    <header className="sticky top-0 z-[100] w-full backdrop-blur-xl bg-white/90 dark:bg-[#121212]/90 transition-colors duration-300 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 lg:pr-[60px] h-20 flex items-center justify-between">
+    <header className="sticky top-0 z-[100] w-full backdrop-blur-xl bg-white/90 dark:bg-[#121212]/90 transition-colors duration-300">
+      <div className="max-w-[1280px] mx-auto px-4 lg:px-[60px] h-20 flex items-center justify-between">
         
         {/* Logo */}
         <div className="font-black text-2xl tracking-tighter text-black dark:text-white italic cursor-pointer">
@@ -29,7 +29,7 @@ export default function Header() {
 
         {/* Pill Navigation (Centered) */}
         <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2">
-          <nav className="flex items-center bg-gray-100 dark:bg-[#1A1A1A] rounded-lg p-1 shadow-inner border border-gray-200 dark:border-[#333]">
+          <nav className="flex items-center bg-gray-100 dark:bg-[#1A1A1A] rounded-lg p-1">
             {['PERFECT 소개', '투어 일정', 'LIVE 중계', '매치 결과', '랭킹'].map((item) => (
               <div 
                 key={item} 
