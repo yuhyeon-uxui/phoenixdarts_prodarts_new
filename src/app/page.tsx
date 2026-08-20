@@ -49,16 +49,20 @@ export default function Home() {
     const [isDraggingNews, setIsDraggingNews] = useState(false);
     const [startXNews, setStartXNews] = useState(0);
     const [scrollLeftNews, setScrollLeftNews] = useState(0);
+    const [isNewsHovered, setIsNewsHovered] = useState(false);
 
-    const onDragStartNews = (e: React.MouseEvent) => {
+    const onPointerDownNews = (e: React.PointerEvent<HTMLDivElement>) => {
         setIsDraggingNews(true);
         setStartXNews(e.pageX - (newsScrollRef.current?.offsetLeft || 0));
         setScrollLeftNews(newsScrollRef.current?.scrollLeft || 0);
+        e.currentTarget.setPointerCapture(e.pointerId);
     };
-    const onDragEndNews = () => setIsDraggingNews(false);
-    const onDragMoveNews = (e: React.MouseEvent) => {
+    const onPointerUpNews = (e: React.PointerEvent<HTMLDivElement>) => {
+        setIsDraggingNews(false);
+        e.currentTarget.releasePointerCapture(e.pointerId);
+    };
+    const onPointerMoveNews = (e: React.PointerEvent<HTMLDivElement>) => {
         if (!isDraggingNews || !newsScrollRef.current) return;
-        e.preventDefault();
         const x = e.pageX - newsScrollRef.current.offsetLeft;
         const walk = (x - startXNews) * 2;
         newsScrollRef.current.scrollLeft = scrollLeftNews - walk;
@@ -192,16 +196,21 @@ export default function Home() {
                     </div>
 
                     {/* Right Horizontal Scroll Cards */}
-                    <div className="flex-1 relative group/news">
+                    <div 
+                        className="flex-1 relative"
+                        onMouseEnter={() => setIsNewsHovered(true)}
+                        onMouseLeave={() => setIsNewsHovered(false)}
+                    >
                         <div 
-                            className="overflow-x-auto scrollbar-hide pb-4 cursor-grab active:cursor-grabbing"
+                            className="overflow-x-auto scrollbar-hide pb-4 cursor-grab active:cursor-grabbing flex gap-4 w-full"
                             ref={newsScrollRef}
-                            onMouseDown={onDragStartNews}
-                            onMouseLeave={onDragEndNews}
-                            onMouseUp={onDragEndNews}
-                            onMouseMove={onDragMoveNews}
+                            onPointerDown={onPointerDownNews}
+                            onPointerUp={onPointerUpNews}
+                            onPointerCancel={onPointerUpNews}
+                            onPointerMove={onPointerMoveNews}
                         >
-                            <div className="flex gap-4 w-max">
+                            {/* Inner wide container for cards */}
+                            <div className="flex gap-4 w-max shrink-0">
                                 {newsData.map((news) => (
                                     <div key={news.id} className="w-[300px] h-[300px] bg-white border border-gray-200 rounded-[8px] p-6 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow group">
                                         <div className="pointer-events-none select-none">
@@ -218,12 +227,12 @@ export default function Home() {
                         </div>
 
                         {/* Right Scroll Arrow (visible on hover) */}
-                        <div className="absolute right-0 top-0 bottom-4 w-24 bg-gradient-to-l from-gray-100 to-transparent flex items-center justify-end pr-2 opacity-0 group-hover/news:opacity-100 transition-opacity pointer-events-none">
+                        <div className={`absolute right-0 top-0 bottom-4 w-32 bg-gradient-to-l from-gray-100 via-gray-100/70 to-transparent flex items-center justify-end pr-4 transition-opacity duration-300 pointer-events-none ${isNewsHovered ? 'opacity-100' : 'opacity-0'}`}>
                             <button 
                                 onClick={scrollNewsRight}
-                                className="w-12 h-12 rounded-full bg-black/40 text-white flex items-center justify-center backdrop-blur-sm hover:bg-black/60 transition pointer-events-auto"
+                                className="w-12 h-12 rounded-full bg-gray-900/80 text-white flex items-center justify-center backdrop-blur-sm hover:bg-black transition-colors pointer-events-auto shadow-lg"
                             >
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-6 h-6"><path d="M9 18l6-6-6-6" /></svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-6 h-6"><path d="M9 18l6-6-6-6" /></svg>
                             </button>
                         </div>
                     </div>
