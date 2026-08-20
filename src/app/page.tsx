@@ -95,10 +95,10 @@ export default function Home() {
     }, []);
 
     const scrollNewsLeft = () => {
-        if (newsScrollRef.current) newsScrollRef.current.scrollBy({ left: -320, behavior: 'smooth' });
+        if (newsScrollRef.current) newsScrollRef.current.scrollBy({ left: -316, behavior: 'smooth' });
     };
     const scrollNewsRight = () => {
-        if (newsScrollRef.current) newsScrollRef.current.scrollBy({ left: 320, behavior: 'smooth' });
+        if (newsScrollRef.current) newsScrollRef.current.scrollBy({ left: 316, behavior: 'smooth' });
     };
 
     const [newsTab, setNewsTab] = useState("전체");
