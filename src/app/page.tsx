@@ -417,12 +417,14 @@ export default function Home() {
                                         {/* Rank Number */}
                                         <div className={`w-6 text-center font-black text-xl ${item.rank === 1 ? 'text-[#EAA51D]' : item.rank === 2 ? 'text-[#7C8B9D]' : item.rank === 3 ? 'text-[#A06B60]' : item.rank >= 6 ? 'text-[#6B6B6B]' : 'text-gray-900'}`}>{item.rank}</div>
                                         {/* Profile or Brand Logo */}
-                                        <div className={`h-12 rounded-[8px] bg-cover bg-center shrink-0 border border-gray-100 ${rankTab === '브랜드' ? 'w-24 bg-contain bg-no-repeat bg-white' : 'w-12'}`} style={{backgroundImage: `url('${item.img}')`}}></div>
+                                        <div className={`h-12 rounded-[8px] bg-cover bg-center shrink-0 border border-gray-100 ${rankTab === '브랜드' ? 'w-12 bg-contain bg-no-repeat bg-white' : 'w-12'}`} style={{backgroundImage: `url('${item.img}')`}}></div>
                                         {/* Name & Sponsors */}
                                         <div className="flex flex-col justify-center overflow-hidden">
                                             <div className="flex items-baseline gap-1.5 mb-1 truncate">
                                                 <span className="font-bold text-gray-900 leading-none truncate group-hover:underline">{item.name}</span>
-                                                <span className="text-[10px] text-gray-400 font-medium leading-none hidden sm:inline-block">{item.enName}</span>
+                                                {rankTab !== '브랜드' && (
+                                                    <span className="text-[10px] text-gray-400 font-medium leading-none hidden sm:inline-block">{item.enName}</span>
+                                                )}
                                             </div>
                                             {rankTab !== '브랜드' && (
                                                 <div className="flex gap-1.5 flex-wrap">
