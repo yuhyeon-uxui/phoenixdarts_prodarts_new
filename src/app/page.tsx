@@ -46,7 +46,6 @@ export default function Home() {
 
     // 3. News Carousel Drag & Scroll
     const newsScrollRef = useRef<HTMLDivElement>(null);
-    const [newsHover, setNewsHover] = useState(false);
 
     useEffect(() => {
         const slider = newsScrollRef.current;
@@ -95,6 +94,9 @@ export default function Home() {
         };
     }, []);
 
+    const scrollNewsLeft = () => {
+        if (newsScrollRef.current) newsScrollRef.current.scrollBy({ left: -320, behavior: 'smooth' });
+    };
     const scrollNewsRight = () => {
         if (newsScrollRef.current) newsScrollRef.current.scrollBy({ left: 320, behavior: 'smooth' });
     };
@@ -224,11 +226,7 @@ export default function Home() {
                     </div>
 
                     {/* Right Horizontal Scroll Cards */}
-                    <div 
-                        className="flex-1 relative min-w-0"
-                        onMouseEnter={() => setNewsHover(true)}
-                        onMouseLeave={() => setNewsHover(false)}
-                    >
+                    <div className="flex-1 relative min-w-0">
                         <div 
                             className="overflow-x-auto scrollbar-hide pb-4 cursor-grab flex gap-4 w-full select-none touch-pan-x"
                             ref={newsScrollRef}
@@ -250,11 +248,17 @@ export default function Home() {
                             </div>
                         </div>
 
-                        {/* Right Scroll Arrow (visible on hover) */}
-                        <div className={`absolute right-0 top-0 bottom-4 w-32 bg-gradient-to-l from-gray-100 via-gray-100/70 to-transparent flex items-center justify-end pr-4 transition-opacity duration-300 pointer-events-none z-50 ${newsHover ? 'opacity-100' : 'opacity-0'}`}>
+                        {/* Scroll Arrows (Always visible) */}
+                        <div className="absolute right-0 top-0 bottom-4 w-32 bg-gradient-to-l from-gray-100 via-gray-100/70 to-transparent flex flex-col items-end justify-center pr-4 gap-2 pointer-events-none z-50">
+                            <button 
+                                onClick={scrollNewsLeft}
+                                className="w-12 h-12 rounded-full bg-[#4A4A4A] text-white flex items-center justify-center hover:bg-black transition-colors pointer-events-auto shadow-lg"
+                            >
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-6 h-6"><path d="M15 18l-6-6 6-6" /></svg>
+                            </button>
                             <button 
                                 onClick={scrollNewsRight}
-                                className="w-12 h-12 rounded-full bg-gray-900/80 text-white flex items-center justify-center backdrop-blur-sm hover:bg-black transition-colors pointer-events-auto shadow-lg"
+                                className="w-12 h-12 rounded-full bg-[#4A4A4A] text-white flex items-center justify-center hover:bg-black transition-colors pointer-events-auto shadow-lg"
                             >
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-6 h-6"><path d="M9 18l6-6-6-6" /></svg>
                             </button>
