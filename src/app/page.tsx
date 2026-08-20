@@ -15,6 +15,14 @@ const rankingData = [
     { rank: 10, name: "야마다 유키", enName: "Yamada Yuki", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=300", sponsors: ["COSMO DARTS"], pts: "610", trend: "same" },
 ];
 
+const newsData = Array.from({ length: 16 }, (_, i) => ({
+    id: i,
+    category: i % 3 === 0 ? 'Notice' : i % 3 === 1 ? 'Tournament' : 'Event',
+    title: `PERFECT 2026 제${11 + i}전 이시카와 대회 결과 안내`,
+    desc: '열띤 경쟁 속에서 펼쳐진 이번 이시카와 대회에서 새로운 챔피언이 탄생했습니다. 경기 내용 및 자세한 결과...',
+    date: `2026.08.${30 - i}`
+}));
+
 export default function Home() {
     // 1. Hero Carousel (Dissolve)
     const [activeHero, setActiveHero] = useState(0);
@@ -34,6 +42,29 @@ export default function Home() {
     const nextMatchRef = useRef<HTMLDivElement>(null);
     const scrollNextMatch = (dir: number) => {
         if (nextMatchRef.current) nextMatchRef.current.scrollBy({ left: dir * 320, behavior: 'smooth' });
+    };
+
+    // 3. News Carousel Drag & Scroll
+    const newsScrollRef = useRef<HTMLDivElement>(null);
+    const [isDraggingNews, setIsDraggingNews] = useState(false);
+    const [startXNews, setStartXNews] = useState(0);
+    const [scrollLeftNews, setScrollLeftNews] = useState(0);
+
+    const onDragStartNews = (e: React.MouseEvent) => {
+        setIsDraggingNews(true);
+        setStartXNews(e.pageX - (newsScrollRef.current?.offsetLeft || 0));
+        setScrollLeftNews(newsScrollRef.current?.scrollLeft || 0);
+    };
+    const onDragEndNews = () => setIsDraggingNews(false);
+    const onDragMoveNews = (e: React.MouseEvent) => {
+        if (!isDraggingNews || !newsScrollRef.current) return;
+        e.preventDefault();
+        const x = e.pageX - newsScrollRef.current.offsetLeft;
+        const walk = (x - startXNews) * 2;
+        newsScrollRef.current.scrollLeft = scrollLeftNews - walk;
+    };
+    const scrollNewsRight = () => {
+        if (newsScrollRef.current) newsScrollRef.current.scrollBy({ left: 320, behavior: 'smooth' });
     };
 
     const [newsTab, setNewsTab] = useState("전체");
@@ -161,47 +192,39 @@ export default function Home() {
                     </div>
 
                     {/* Right Horizontal Scroll Cards */}
-                    <div className="flex-1 overflow-x-auto scrollbar-hide pb-4">
-                        <div className="flex gap-4 w-max">
-                            {/* Card 1 */}
-                            <div className="w-[300px] h-[300px] bg-white border border-gray-200 rounded-[8px] p-6 shadow-sm flex flex-col justify-between cursor-pointer hover:shadow-md transition-shadow group">
-                                <div>
-                                    <span className="bg-blue-50 text-blue-600 text-[10px] font-bold px-2 py-1 rounded-[4px] inline-block mb-4">Notice</span>
-                                    <h4 className="text-lg font-bold text-gray-900 mb-3 group-hover:underline line-clamp-2 leading-snug">PERFECT 2026 제11전 이시카와 대회 결과 안내</h4>
-                                    <p className="text-sm text-gray-500 line-clamp-3 leading-relaxed">열띤 경쟁 속에서 펼쳐진 이번 이시카와 대회에서 새로운 챔피언이 탄생했습니다. 경기 내용 및 자세한 결과...</p>
-                                </div>
-                                <span className="text-sm text-gray-400 font-medium">2026.08.10</span>
+                    <div className="flex-1 relative group/news">
+                        <div 
+                            className="overflow-x-auto scrollbar-hide pb-4 cursor-grab active:cursor-grabbing"
+                            ref={newsScrollRef}
+                            onMouseDown={onDragStartNews}
+                            onMouseLeave={onDragEndNews}
+                            onMouseUp={onDragEndNews}
+                            onMouseMove={onDragMoveNews}
+                        >
+                            <div className="flex gap-4 w-max">
+                                {newsData.map((news) => (
+                                    <div key={news.id} className="w-[300px] h-[300px] bg-white border border-gray-200 rounded-[8px] p-6 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow group">
+                                        <div className="pointer-events-none select-none">
+                                            <span className={`text-[10px] font-bold px-2 py-1 rounded-[4px] inline-block mb-4 ${news.category === 'Notice' ? 'bg-blue-50 text-blue-600' : news.category === 'Tournament' ? 'bg-red-50 text-red-600' : 'bg-green-50 text-green-600'}`}>
+                                                {news.category}
+                                            </span>
+                                            <h4 className="text-lg font-bold text-gray-900 mb-3 group-hover:underline line-clamp-2 leading-snug">{news.title}</h4>
+                                            <p className="text-sm text-gray-500 line-clamp-3 leading-relaxed">{news.desc}</p>
+                                        </div>
+                                        <span className="text-sm text-gray-400 font-medium pointer-events-none select-none">{news.date}</span>
+                                    </div>
+                                ))}
                             </div>
-                            
-                            {/* Card 2 */}
-                            <div className="w-[300px] h-[300px] bg-white border border-gray-200 rounded-[8px] p-6 shadow-sm flex flex-col justify-between cursor-pointer hover:shadow-md transition-shadow group">
-                                <div>
-                                    <span className="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-1 rounded-[4px] inline-block mb-4">Tournament</span>
-                                    <h4 className="text-lg font-bold text-gray-900 mb-3 group-hover:underline line-clamp-2 leading-snug">2026 시즌 개막 기념 VVIP 티켓 래플 안내</h4>
-                                    <p className="text-sm text-gray-500 line-clamp-3 leading-relaxed">열띤 경쟁 속에서 펼쳐진 이번 이시카와 대회에서 새로운 챔피언이 탄생했습니다. 경기 내용 및 자세한 결과...</p>
-                                </div>
-                                <span className="text-sm text-gray-400 font-medium">2026.08.08</span>
-                            </div>
+                        </div>
 
-                            {/* Card 3 */}
-                            <div className="w-[300px] h-[300px] bg-white border border-gray-200 rounded-[8px] p-6 shadow-sm flex flex-col justify-between cursor-pointer hover:shadow-md transition-shadow group">
-                                <div>
-                                    <span className="bg-green-50 text-green-600 text-[10px] font-bold px-2 py-1 rounded-[4px] inline-block mb-4">Event</span>
-                                    <h4 className="text-lg font-bold text-gray-900 mb-3 group-hover:underline line-clamp-2 leading-snug">프로다트 신규 선수 등록 및 라이센스 갱신 안내</h4>
-                                    <p className="text-sm text-gray-500 line-clamp-3 leading-relaxed">열띤 경쟁 속에서 펼쳐진 이번 이시카와 대회에서 새로운 챔피언이 탄생했습니다. 경기 내용 및 자세한 결과...</p>
-                                </div>
-                                <span className="text-sm text-gray-400 font-medium">2026.08.05</span>
-                            </div>
-                            
-                            {/* Card 4 */}
-                            <div className="w-[300px] h-[300px] bg-white border border-gray-200 rounded-[8px] p-6 shadow-sm flex flex-col justify-between cursor-pointer hover:shadow-md transition-shadow group">
-                                <div>
-                                    <span className="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-1 rounded-[4px] inline-block mb-4">Tournament</span>
-                                    <h4 className="text-lg font-bold text-gray-900 mb-3 group-hover:underline line-clamp-2 leading-snug">제12전 하마마츠 대회 관련 주요 안내 사항</h4>
-                                    <p className="text-sm text-gray-500 line-clamp-3 leading-relaxed">열띤 경쟁 속에서 펼쳐진 이번 이시카와 대회에서 새로운 챔피언이 탄생했습니다. 경기 내용 및 자세한 결과...</p>
-                                </div>
-                                <span className="text-sm text-gray-400 font-medium">2026.07.29</span>
-                            </div>
+                        {/* Right Scroll Arrow (visible on hover) */}
+                        <div className="absolute right-0 top-0 bottom-4 w-24 bg-gradient-to-l from-gray-100 to-transparent flex items-center justify-end pr-2 opacity-0 group-hover/news:opacity-100 transition-opacity pointer-events-none">
+                            <button 
+                                onClick={scrollNewsRight}
+                                className="w-12 h-12 rounded-full bg-black/40 text-white flex items-center justify-center backdrop-blur-sm hover:bg-black/60 transition pointer-events-auto"
+                            >
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-6 h-6"><path d="M9 18l6-6-6-6" /></svg>
+                            </button>
                         </div>
                     </div>
                 </section>
