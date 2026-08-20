@@ -381,7 +381,7 @@ export default function Home() {
                     <div className="flex-1 bg-white rounded-[8px] p-6 border border-gray-100 shadow-sm">
                         {/* Title Row */}
                         <div className="flex items-center justify-between mb-4">
-                            <h3 className="text-2xl font-black text-gray-900">랭킹</h3>
+                            <h3 className="text-2xl font-bold text-gray-900">랭킹</h3>
                             <button className="text-sm font-bold text-gray-400 hover:text-gray-900 flex items-center gap-1 transition-colors">
                                 MORE
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4"><path d="M9 18l6-6-6-6" /></svg>
@@ -466,7 +466,7 @@ export default function Home() {
 
                     {/* Right: 대회 리더보드 */}
                     <div className="w-full lg:w-[320px] shrink-0 bg-white rounded-[8px] p-6 border border-gray-100 shadow-sm flex flex-col">
-                        <h3 className="text-xl font-black text-gray-900 mb-1">이전 대회 우승자</h3>
+                        <h3 className="text-2xl font-bold text-gray-900 mb-2">이전 대회 우승자</h3>
                         <p className="text-sm font-bold text-gray-500 mb-4">제11전 이시카와 챔피언십</p>
                         
                         <div 
@@ -539,7 +539,10 @@ export default function Home() {
                 <section>
                     <div className="flex justify-between items-end mb-6">
                         <h3 className="text-2xl font-bold text-gray-900">미디어</h3>
-                        <button className="text-sm font-medium text-gray-500 hover:text-gray-900">전체보기 &gt;</button>
+                        <button className="text-sm font-bold text-gray-400 hover:text-gray-900 flex items-center gap-1 transition-colors">
+                            MORE
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4"><path d="M9 18l6-6-6-6" /></svg>
+                        </button>
                     </div>
                     <div className="flex flex-col lg:flex-row gap-6">
                         <a href="https://youtu.be/VOA4GNHOsdE?si=SxSuMJW1FwiTHJtZ" target="_blank" rel="noopener noreferrer" className="flex-1 relative aspect-video rounded-[8px] overflow-hidden group cursor-pointer shadow-sm block">
@@ -579,7 +582,7 @@ export default function Home() {
                 {/* 7. Sponsor List */}
                 <section className="mb-12">
                     <div className="flex justify-between items-end mb-6">
-                        <h3 className="text-xl font-bold text-gray-900">SPONSORS</h3>
+                        <h3 className="text-2xl font-bold text-gray-900 uppercase">SPONSORS</h3>
                     </div>
                     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2">
                         {["PHOENIXDARTS", "TRiNiDAD", "CONDOR", "L-style", "DYNASTY", "TARGET"].map((sp, idx) => (
