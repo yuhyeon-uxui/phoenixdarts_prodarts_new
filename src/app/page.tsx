@@ -478,10 +478,10 @@ export default function Home() {
                         <button className="text-sm font-medium text-gray-500 hover:text-gray-900">전체보기 &gt;</button>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div className="md:col-span-2 relative aspect-video rounded-[8px] overflow-hidden group cursor-pointer shadow-sm">
-                            <div className="absolute inset-0 bg-cover bg-center" style={{backgroundImage: "url('https://images.unsplash.com/photo-1563261763-7140889f4b3f?q=80&w=800')"}}></div>
+                        <a href="https://youtu.be/VOA4GNHOsdE?si=SxSuMJW1FwiTHJtZ" target="_blank" rel="noopener noreferrer" className="md:col-span-2 relative aspect-video rounded-[8px] overflow-hidden group cursor-pointer shadow-sm block">
+                            <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style={{backgroundImage: "url('https://img.youtube.com/vi/VOA4GNHOsdE/maxresdefault.jpg')"}}></div>
                             <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors flex items-center justify-center">
-                                <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center text-white pl-1">
+                                <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center text-white pl-1 shadow-lg transition-transform duration-300 group-hover:scale-110">
                                     <svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8"><path d="M8 5v14l11-7z"/></svg>
                                 </div>
                             </div>
@@ -489,16 +489,22 @@ export default function Home() {
                                 <span className="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded mb-2 inline-block">LIVE</span>
                                 <h4 className="text-white font-bold text-lg">제11전 이시카와 결승전 하이라이트</h4>
                             </div>
-                        </div>
-                        <div className="flex flex-col gap-4">
-                            {[1, 2].map(item => (
-                                <div key={item} className="flex bg-white rounded-[8px] overflow-hidden border border-gray-200 shadow-sm cursor-pointer group">
-                                    <div className="w-1/3 bg-cover bg-center" style={{backgroundImage: "url('https://images.unsplash.com/photo-1582236528775-6e54f8e658ec?q=80&w=200')"}}></div>
+                        </a>
+                        <div className="flex flex-col gap-4 max-h-[calc(100vw*9/16)] md:max-h-[auto] overflow-y-auto scrollbar-hide">
+                            {[
+                                { id: "mLjESz59Dts", title: "퍼펙트 투어 주요 장면 하이라이트", date: "2026.08.15", link: "https://youtu.be/mLjESz59Dts?si=yoF7wNjVJ7ENrC8y" },
+                                { id: "ERhNtYm6tjw", title: "최고의 명승부, 결승전 다시보기", date: "2026.08.12", link: "https://youtu.be/ERhNtYm6tjw?si=sMEN8-bBM1laVHsJ" },
+                                { id: "-DRC1OOKWAg", title: "주목할 만한 신인 선수 인터뷰", date: "2026.08.10", link: "https://youtu.be/-DRC1OOKWAg?si=jFDoWt1wQ-nD_wPq" },
+                                { id: "N9pVyM6WLeg", title: "투어 비하인드 씬 대공개", date: "2026.08.05", link: "https://youtu.be/N9pVyM6WLeg?si=xRcvuwGKuXN8NYSn" },
+                                { id: "S8XDJRxAZnY", title: "다트 프로들의 연습 루틴 엿보기", date: "2026.08.01", link: "https://youtu.be/S8XDJRxAZnY?si=p4Zfz_3Eh8OKhF9_" },
+                            ].map((item, idx) => (
+                                <a key={idx} href={item.link} target="_blank" rel="noopener noreferrer" className="flex bg-white rounded-[8px] overflow-hidden border border-gray-200 shadow-sm cursor-pointer group shrink-0 h-[88px]">
+                                    <div className="w-1/3 shrink-0 bg-cover bg-center" style={{backgroundImage: `url('https://img.youtube.com/vi/${item.id}/hqdefault.jpg')`}}></div>
                                     <div className="w-2/3 p-3 flex flex-col justify-between">
-                                        <h4 className="text-sm font-bold text-gray-900 line-clamp-2 group-hover:underline">아베 유타로, 극적인 역전승으로 2연패 달성</h4>
-                                        <span className="text-xs text-gray-400">2026.08.12</span>
+                                        <h4 className="text-sm font-bold text-gray-900 line-clamp-2 group-hover:underline leading-snug">{item.title}</h4>
+                                        <span className="text-xs text-gray-400">{item.date}</span>
                                     </div>
-                                </div>
+                                </a>
                             ))}
                         </div>
                     </div>
