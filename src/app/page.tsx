@@ -14,7 +14,31 @@ const rankingData = [
     { rank: 9, name: "니시타니 죠지", enName: "Nishitani Joji", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=300", sponsors: ["TARGET"], pts: "650", trend: "up" },
     { rank: 10, name: "야마다 유키", enName: "Yamada Yuki", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=300", sponsors: ["COSMO DARTS"], pts: "610", trend: "same" },
 ];
+const rankingDataWomen = [
+    { rank: 1, name: "오오시로 아키호", enName: "Akiho Oshiro", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300", sponsors: ["TRiNiDAD", "L-style"], pts: "1,200", trend: "up" },
+    { rank: 2, name: "사토 카스미", enName: "Kasumi Sato", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=300", sponsors: ["TARGET", "CONDOR"], pts: "1,150", trend: "same" },
+    { rank: 3, name: "오오우치 마유미", enName: "Mayumi Ouchi", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=300", sponsors: ["DYNASTY", "L-style"], pts: "1,080", trend: "down" },
+    { rank: 4, name: "스즈키 미쿠", enName: "Miku Suzuki", img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=300", sponsors: ["TARGET"], pts: "950", trend: "up" },
+    { rank: 5, name: "이와타 나츠미", enName: "Natsumi Iwata", img: "https://images.unsplash.com/photo-1509967419530-da38b4704bc6?q=80&w=300", sponsors: ["COSMO DARTS"], pts: "920", trend: "same" },
+    { rank: 6, name: "야마자키 유코", enName: "Yuko Yamazaki", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=300", sponsors: ["TRiNiDAD"], pts: "890", trend: "down" },
+    { rank: 7, name: "호시노 리에", enName: "Rie Hoshino", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=300", sponsors: ["TARGET"], pts: "850", trend: "same" },
+    { rank: 8, name: "시미즈 사오리", enName: "Saori Shimizu", img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=300", sponsors: ["L-style"], pts: "820", trend: "up" },
+    { rank: 9, name: "마츠모토 메구미", enName: "Megumi Matsumoto", img: "https://images.unsplash.com/photo-1509967419530-da38b4704bc6?q=80&w=300", sponsors: ["TRiNiDAD"], pts: "790", trend: "down" },
+    { rank: 10, name: "카와카미 마리", enName: "Mari Kawakami", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300", sponsors: ["DYNASTY"], pts: "750", trend: "same" },
+];
 
+const rankingDataBrand = [
+    { rank: 1, name: "TRiNiDAD", enName: "트리니다드", img: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?q=80&w=300", sponsors: ["SPONSOR"], pts: "5,430", trend: "same" },
+    { rank: 2, name: "TARGET", enName: "타겟", img: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?q=80&w=300", sponsors: ["SPONSOR"], pts: "4,920", trend: "up" },
+    { rank: 3, name: "DYNASTY", enName: "다이너스티", img: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?q=80&w=300", sponsors: ["SPONSOR"], pts: "4,510", trend: "down" },
+    { rank: 4, name: "COSMO DARTS", enName: "코스모 다트", img: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?q=80&w=300", sponsors: ["SPONSOR"], pts: "4,100", trend: "up" },
+    { rank: 5, name: "L-style", enName: "엘스타일", img: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?q=80&w=300", sponsors: ["SPONSOR"], pts: "3,800", trend: "same" },
+    { rank: 6, name: "CONDOR", enName: "콘도르", img: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?q=80&w=300", sponsors: ["SPONSOR"], pts: "3,500", trend: "down" },
+    { rank: 7, name: "unicorn", enName: "유니콘", img: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?q=80&w=300", sponsors: ["SPONSOR"], pts: "2,900", trend: "up" },
+    { rank: 8, name: "Monster", enName: "몬스터", img: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?q=80&w=300", sponsors: ["SPONSOR"], pts: "2,500", trend: "down" },
+    { rank: 9, name: "Winmau", enName: "윈마우", img: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?q=80&w=300", sponsors: ["SPONSOR"], pts: "2,100", trend: "same" },
+    { rank: 10, name: "Harrows", enName: "해로우즈", img: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?q=80&w=300", sponsors: ["SPONSOR"], pts: "1,800", trend: "up" },
+];
 const newsData = Array.from({ length: 16 }, (_, i) => ({
     id: i,
     category: i % 3 === 0 ? 'Notice' : i % 3 === 1 ? 'Tournament' : 'Event',
@@ -129,8 +153,11 @@ export default function Home() {
         if (newsScrollRef.current) newsScrollRef.current.scrollBy({ left: 316, behavior: 'smooth' });
     };
 
-    const [newsTab, setNewsTab] = useState("전체");
+    const [newsTab, setNewsTab] = useState("전체 보기 (ALL)");
     const [rankTab, setRankTab] = useState("남자");
+
+    const activeRankingData = rankTab === '남자' ? rankingData : rankTab === '여자' ? rankingDataWomen : rankingDataBrand;
+    const filteredNews = newsTab === "전체 보기 (ALL)" ? newsData : newsData.filter(n => `#${n.category}` === newsTab);
 
     return (
         <main className="flex flex-col w-full font-sans bg-gray-100 min-h-screen text-gray-900">
@@ -286,11 +313,16 @@ export default function Home() {
                             LATEST<br />NEWS &amp;<br />NOTICES.
                         </h3>
                         
-                        <div className="flex flex-col gap-4 font-bold text-sm">
-                            <button className="text-left text-gray-900 border-b-2 border-gray-900 pb-1 w-fit">전체 보기 (ALL)</button>
-                            <button className="text-left text-gray-500 hover:text-gray-900 transition-colors w-fit">#Tournament</button>
-                            <button className="text-left text-gray-500 hover:text-gray-900 transition-colors w-fit">#Notice</button>
-                            <button className="text-left text-gray-500 hover:text-gray-900 transition-colors w-fit">#Event</button>
+                        <div className="flex flex-col gap-4 mb-auto">
+                            {['전체 보기 (ALL)', '#Tournament', '#Notice', '#Event'].map(tab => (
+                                <button 
+                                    key={tab}
+                                    onClick={() => setNewsTab(tab)}
+                                    className={`text-left transition-colors w-fit ${newsTab === tab ? 'text-gray-900 border-b-2 border-gray-900 pb-1 font-bold' : 'text-gray-500 hover:text-gray-900'}`}
+                                >
+                                    {tab}
+                                </button>
+                            ))}
                         </div>
                         
                         <button className="text-red-600 font-bold text-sm mt-12 hover:underline">VIEW ALL +</button>
@@ -304,7 +336,7 @@ export default function Home() {
                         >
                             {/* Inner wide container for cards */}
                             <div className="flex gap-4 w-max shrink-0">
-                                {newsData.map((news) => (
+                                {filteredNews.map((news) => (
                                     <div key={news.id} className="w-[300px] h-[340px] bg-white border border-gray-200 rounded-[8px] flex flex-col hover:shadow-md transition-shadow group overflow-hidden">
                                         <div className="p-6 flex flex-col flex-1 pointer-events-none select-none">
                                             <div>
@@ -349,10 +381,11 @@ export default function Home() {
                         <div className="flex items-center gap-4 md:gap-6 mb-6 overflow-x-auto scrollbar-hide">
                             <h3 className="text-2xl font-black text-gray-900 shrink-0">선수 랭킹</h3>
                             <div className="flex gap-2 shrink-0">
-                                {['남자', '여자', '브랜드'].map((tab, idx) => (
+                                {['남자', '여자', '브랜드'].map((tab) => (
                                     <button 
                                         key={tab} 
-                                        className={`px-4 py-1.5 rounded-full text-sm font-bold border transition-colors ${idx === 0 ? 'bg-black text-white border-black' : 'bg-white text-gray-400 border-gray-200 hover:border-gray-400 hover:text-gray-600'}`}
+                                        onClick={() => setRankTab(tab)}
+                                        className={`px-4 py-1.5 rounded-full text-sm font-bold border transition-colors ${rankTab === tab ? 'bg-black text-white border-black' : 'bg-white text-gray-400 border-gray-200 hover:border-gray-400 hover:text-gray-600'}`}
                                     >
                                         {tab}
                                     </button>
@@ -362,7 +395,7 @@ export default function Home() {
                         
                         {/* 2-column list layout */}
                         <div className="grid grid-cols-1 xl:grid-cols-2 xl:grid-rows-5 xl:grid-flow-col gap-x-12 gap-y-0">
-                            {rankingData.map((player) => (
+                            {activeRankingData.map((player) => (
                                 <div key={player.rank} className="flex items-center justify-between py-4 px-2 border-b border-gray-100 hover:bg-gray-50 transition-colors cursor-pointer group">
                                     <div className="flex items-center gap-3 md:gap-4">
                                         {/* Rank Number */}
