@@ -408,9 +408,9 @@ export default function Home() {
                                                 <span className="font-bold text-gray-900 leading-none truncate group-hover:underline">{player.name}</span>
                                                 <span className="text-[10px] text-gray-400 font-medium leading-none hidden sm:inline-block">{player.enName}</span>
                                             </div>
-                                            <div className="flex gap-2 flex-wrap">
+                                            <div className="flex gap-1.5 flex-wrap">
                                                 {player.sponsors.map(sp => (
-                                                    <span key={sp} className="text-[9px] text-gray-400 font-bold uppercase tracking-wider">{sp}</span>
+                                                    <span key={sp} className="text-[9px] bg-gray-50 text-gray-500 px-1.5 py-0.5 rounded-[4px] border border-gray-200 font-bold uppercase tracking-wider">{sp}</span>
                                                 ))}
                                             </div>
                                         </div>
