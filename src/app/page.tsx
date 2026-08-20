@@ -11,6 +11,8 @@ const rankingData = [
     { rank: 6, name: "아사다 세이고", enName: "Asada Seigo", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=300", sponsors: ["unicorn", "L-style"], pts: "750", trend: "down" },
     { rank: 7, name: "마츠다 준", enName: "Matsuda Jun", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=300", sponsors: ["DYNASTY", "L-style"], pts: "720", trend: "up" },
     { rank: 8, name: "고토 토모야", enName: "Goto Tomoya", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=300", sponsors: ["TRiNiDAD", "CONDOR"], pts: "690", trend: "down" },
+    { rank: 9, name: "니시타니 죠지", enName: "Nishitani Joji", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=300", sponsors: ["TARGET"], pts: "650", trend: "up" },
+    { rank: 10, name: "야마다 유키", enName: "Yamada Yuki", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=300", sponsors: ["COSMO DARTS"], pts: "610", trend: "same" },
 ];
 
 export default function Home() {
@@ -211,7 +213,7 @@ export default function Home() {
                         <div className="flex items-center gap-4 md:gap-6 mb-8 overflow-x-auto scrollbar-hide pb-2">
                             <h3 className="text-2xl font-black text-gray-900 shrink-0">선수 랭킹</h3>
                             <div className="flex gap-2 shrink-0">
-                                {['누적', '1R', '2R', '3R', 'FR'].map((tab, idx) => (
+                                {['남자', '여자', '브랜드'].map((tab, idx) => (
                                     <button 
                                         key={tab} 
                                         className={`px-4 py-1.5 rounded-full text-sm font-bold border transition-colors ${idx === 0 ? 'bg-black text-white border-black' : 'bg-white text-gray-400 border-gray-200 hover:border-gray-400 hover:text-gray-600'}`}
@@ -223,7 +225,7 @@ export default function Home() {
                         </div>
                         
                         {/* 2-column list layout */}
-                        <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-6 gap-y-3">
+                        <div className="grid grid-cols-1 xl:grid-cols-2 xl:grid-rows-5 xl:grid-flow-col gap-x-6 gap-y-3">
                             {rankingData.map((player) => (
                                 <div key={player.rank} className="flex items-center justify-between p-3 rounded-[12px] bg-white border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-md transition-shadow cursor-pointer group">
                                     <div className="flex items-center gap-3 md:gap-4">
