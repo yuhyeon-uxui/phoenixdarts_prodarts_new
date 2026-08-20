@@ -204,42 +204,111 @@ export default function Home() {
                     </div>
                 </section>
 
-                {/* 5. Ranking (Full image cards with gradient) */}
-                <section>
-                    <div className="flex justify-between items-end mb-6">
-                        <div className="flex items-center gap-6">
-                            <h3 className="text-2xl font-bold text-gray-900">선수 랭킹</h3>
-                            <div className="flex gap-4">
-                                {['남자', '여자', '브랜드'].map(tab => (
+                {/* 5. Ranking (New Layout from Image) */}
+                <section className="flex flex-col lg:flex-row gap-6">
+                    {/* Left: 선수 랭킹 */}
+                    <div className="flex-1 bg-white rounded-[16px] p-6 md:p-8 border border-gray-100 shadow-sm">
+                        <div className="flex items-center gap-4 md:gap-6 mb-8 overflow-x-auto scrollbar-hide pb-2">
+                            <h3 className="text-2xl font-black text-gray-900 shrink-0">선수 랭킹</h3>
+                            <div className="flex gap-2 shrink-0">
+                                {['누적', '1R', '2R', '3R', 'FR'].map((tab, idx) => (
                                     <button 
                                         key={tab} 
-                                        onClick={() => setRankTab(tab)}
-                                        className={`text-sm font-bold pb-1 border-b-2 transition-colors ${rankTab === tab ? 'border-gray-900 text-gray-900' : 'border-transparent text-gray-400 hover:text-gray-700'}`}
+                                        className={`px-4 py-1.5 rounded-full text-sm font-bold border transition-colors ${idx === 0 ? 'bg-black text-white border-black' : 'bg-white text-gray-400 border-gray-200 hover:border-gray-400 hover:text-gray-600'}`}
                                     >
                                         {tab}
                                     </button>
                                 ))}
                             </div>
                         </div>
-                        <button className="text-sm font-medium text-gray-500 hover:text-gray-900">전체보기 &gt;</button>
-                    </div>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        {rankingData.map((player) => (
-                            <div key={player.rank} className="relative w-full aspect-[3/4] rounded-[8px] overflow-hidden group cursor-pointer shadow-sm">
-                                <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style={{backgroundImage: `url('${player.img}')`}}></div>
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                                <div className="absolute top-3 left-3 bg-white/90 text-gray-900 text-xs font-black px-2 py-1 rounded">
-                                    TOP {player.rank}
-                                </div>
-                                <div className="absolute bottom-0 left-0 w-full p-4">
-                                    <h4 className="text-white font-bold text-lg mb-1">{player.name}</h4>
-                                    <div className="flex justify-between items-end">
-                                        <span className="text-gray-300 text-xs">{player.enName}</span>
-                                        <span className="text-red-400 font-bold text-sm">{player.pts} Pts</span>
+                        
+                        {/* 2-column list layout */}
+                        <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-6 gap-y-3">
+                            {rankingData.map((player) => (
+                                <div key={player.rank} className="flex items-center justify-between p-3 rounded-[12px] bg-white border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-md transition-shadow cursor-pointer group">
+                                    <div className="flex items-center gap-3 md:gap-4">
+                                        {/* Rank Number */}
+                                        <div className={`w-6 text-center font-black text-xl ${player.rank <= 3 ? 'text-[#B8860B]' : 'text-gray-500'}`}>{player.rank}</div>
+                                        {/* Profile Image */}
+                                        <div className="w-12 h-12 rounded-lg bg-cover bg-center shrink-0 border border-gray-100" style={{backgroundImage: `url('${player.img}')`}}></div>
+                                        {/* Name & Sponsors */}
+                                        <div className="flex flex-col justify-center overflow-hidden">
+                                            <div className="flex items-baseline gap-1.5 mb-1 truncate">
+                                                <span className="font-bold text-gray-900 leading-none truncate group-hover:underline">{player.name}</span>
+                                                <span className="text-[10px] text-gray-400 font-medium leading-none hidden sm:inline-block">{player.enName}</span>
+                                            </div>
+                                            <div className="flex gap-2 flex-wrap">
+                                                {player.sponsors.map(sp => (
+                                                    <span key={sp} className="text-[9px] text-gray-400 font-bold uppercase tracking-wider">{sp}</span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* Score */}
+                                    <div className="flex flex-col items-end shrink-0 pl-2">
+                                        <span className="text-[9px] font-bold text-gray-400 tracking-wider">POINTS</span>
+                                        <div className="flex items-center gap-1.5">
+                                            <span className={`text-xl md:text-2xl font-black tracking-tighter ${player.rank <= 3 ? 'text-[#B8860B]' : 'text-gray-700'}`}>{player.pts}</span>
+                                            {/* Trend Icon */}
+                                            <div className="w-4 flex justify-center">
+                                                {player.trend === 'up' && <span className="text-red-500 font-bold text-sm">↑</span>}
+                                                {player.trend === 'down' && <span className="text-blue-500 font-bold text-sm">↓</span>}
+                                                {player.trend === 'same' && <span className="text-green-500 font-bold text-sm">→</span>}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Right: 대회 리더보드 */}
+                    <div className="w-full lg:w-[320px] shrink-0 bg-white rounded-[16px] p-6 md:p-8 border border-gray-100 shadow-sm flex flex-col">
+                        <h3 className="text-xl font-black text-gray-900 mb-1">대회 리더보드</h3>
+                        <p className="text-sm font-bold text-gray-500 mb-8">제11전 이시카와 챔피언십</p>
+                        
+                        <div className="flex flex-col gap-6">
+                            {/* 1st Place */}
+                            <div className="flex gap-4 items-start relative pb-6 border-b border-gray-100">
+                                <div className="text-5xl font-black text-[#B8860B] mt-2">1</div>
+                                <div className="absolute -top-3 -left-2 text-3xl z-10 rotate-[-15deg]">👑</div>
+                                <div className="w-20 h-24 rounded bg-cover bg-center shadow-sm shrink-0 ml-2" style={{backgroundImage: "url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300')"}}></div>
+                                <div className="flex flex-col">
+                                    <span className="font-bold text-gray-900 text-lg">아리하라 류타</span>
+                                    <span className="text-xs text-gray-400 mb-2">0003 | Ryuta Arihara</span>
+                                    <span className="text-[10px] text-[#B8860B] font-bold">unicorn</span>
+                                    <span className="text-[10px] text-[#B8860B] font-bold">L-style</span>
+                                    <span className="text-[10px] text-[#B8860B] font-bold">SHADE</span>
+                                </div>
                             </div>
-                        ))}
+                            
+                            {/* 2nd Place */}
+                            <div className="flex gap-4 items-center cursor-pointer hover:bg-gray-50 p-2 -mx-2 rounded-lg transition-colors">
+                                <div className="text-3xl font-black text-gray-400 w-8 text-center">2</div>
+                                <div className="flex flex-col">
+                                    <span className="font-bold text-gray-900">시마노우치 유키</span>
+                                    <span className="text-xs text-gray-400">0015 | Yuki Shimanouchi</span>
+                                </div>
+                            </div>
+                            
+                            {/* 3rd Place */}
+                            <div className="flex gap-4 items-center cursor-pointer hover:bg-gray-50 p-2 -mx-2 rounded-lg transition-colors">
+                                <div className="text-3xl font-black text-[#CD7F32] w-8 text-center">3</div>
+                                <div className="flex flex-col">
+                                    <span className="font-bold text-gray-900">하마다 아키노리</span>
+                                    <span className="text-xs text-gray-400">1046 | Akinori Hamada</span>
+                                </div>
+                            </div>
+
+                            {/* 3rd Place (Tied) */}
+                            <div className="flex gap-4 items-center cursor-pointer hover:bg-gray-50 p-2 -mx-2 rounded-lg transition-colors">
+                                <div className="text-3xl font-black text-[#CD7F32] w-8 text-center">3</div>
+                                <div className="flex flex-col">
+                                    <span className="font-bold text-gray-900">무라마츠 하루키</span>
+                                    <span className="text-xs text-gray-400">0001 | Haruki Muramatsu</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
