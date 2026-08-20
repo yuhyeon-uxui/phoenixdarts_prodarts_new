@@ -492,44 +492,44 @@ export default function Home() {
                         <h3 className="text-2xl font-bold text-gray-900 mb-2">PREVIOUS WINNER</h3>
                         <p className="text-sm font-bold text-gray-500 mb-4">제11전 이시카와 챔피언십</p>
                         
-                        <div className="flex flex-col gap-6">
+                        <div className="flex flex-col gap-3">
                             {/* MEN */}
-                            <div className="flex flex-col gap-2">
-                                <h4 className="text-[10px] font-black tracking-widest text-gray-400 mb-1 ml-2">MEN</h4>
+                            <div className="flex flex-col gap-0.5">
+                                <h4 className="text-[10px] font-black tracking-widest text-gray-400 mb-0.5 ml-2">MEN</h4>
                                 {[
                                     { rank: 1, name: "아리하라 류타", enName: "Ryuta Arihara", no: "0003", color: "text-[#B8860B]", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300" },
                                     { rank: 2, name: "시마노우치 유키", enName: "Yuki Shimanouchi", no: "0015", color: "text-gray-400", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=300" },
                                     { rank: 3, name: "하마다 아키노리", enName: "Akinori Hamada", no: "1046", color: "text-[#CD7F32]", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=300" },
                                     { rank: 3, name: "무라마츠 하루키", enName: "Haruki Muramatsu", no: "0001", color: "text-[#CD7F32]", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" },
                                 ].map((p, idx) => (
-                                    <div key={idx} className="flex gap-3 items-center pointer-events-none p-2 -mx-2 rounded-[8px] relative group">
-                                        {p.rank === 1 && <div className="absolute -top-1 left-2 text-xl z-10 rotate-[-15deg]">👑</div>}
-                                        <div className={`text-2xl font-black w-8 text-center shrink-0 ${p.color}`}>{p.rank}</div>
-                                        <div className="w-10 h-10 rounded-full bg-cover bg-center border border-gray-100 shrink-0" style={{backgroundImage: `url('${p.img}')`}}></div>
+                                    <div key={idx} className="flex gap-3 items-center pointer-events-none py-1.5 px-2 -mx-2 rounded-[8px] relative group">
+                                        {p.rank === 1 && <div className="absolute -top-0.5 left-2 text-lg z-10 rotate-[-15deg]">👑</div>}
+                                        <div className={`text-xl font-black w-6 text-center shrink-0 ${p.color}`}>{p.rank}</div>
+                                        <div className="w-8 h-8 rounded-full bg-cover bg-center border border-gray-100 shrink-0" style={{backgroundImage: `url('${p.img}')`}}></div>
                                         <div className="flex flex-col overflow-hidden">
-                                            <span className="font-bold text-gray-900 truncate text-sm">{p.name}</span>
-                                            <span className="text-[10px] text-gray-400 truncate">{p.no} | {p.enName}</span>
+                                            <span className="font-bold text-gray-900 truncate text-[13px]">{p.name}</span>
+                                            <span className="text-[9px] text-gray-400 truncate leading-tight">{p.no} | {p.enName}</span>
                                         </div>
                                     </div>
                                 ))}
                             </div>
                             
                             {/* WOMEN */}
-                            <div className="flex flex-col gap-2">
-                                <h4 className="text-[10px] font-black tracking-widest text-gray-400 mb-1 ml-2">WOMEN</h4>
+                            <div className="flex flex-col gap-0.5">
+                                <h4 className="text-[10px] font-black tracking-widest text-gray-400 mb-0.5 ml-2">WOMEN</h4>
                                 {[
                                     { rank: 1, name: "오오시로 아키호", enName: "Akiho Oshiro", no: "0022", color: "text-[#B8860B]", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300" },
                                     { rank: 2, name: "사토 카스미", enName: "Kasumi Sato", no: "0089", color: "text-gray-400", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=300" },
                                     { rank: 3, name: "오오우치 마유미", enName: "Mayumi Ouchi", no: "0077", color: "text-[#CD7F32]", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=300" },
                                     { rank: 3, name: "스즈키 미쿠", enName: "Miku Suzuki", no: "0004", color: "text-[#CD7F32]", img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=300" },
                                 ].map((p, idx) => (
-                                    <div key={idx} className="flex gap-3 items-center pointer-events-none p-2 -mx-2 rounded-[8px] relative group">
-                                        {p.rank === 1 && <div className="absolute -top-1 left-2 text-xl z-10 rotate-[-15deg]">👑</div>}
-                                        <div className={`text-2xl font-black w-8 text-center shrink-0 ${p.color}`}>{p.rank}</div>
-                                        <div className="w-10 h-10 rounded-full bg-cover bg-center border border-gray-100 shrink-0" style={{backgroundImage: `url('${p.img}')`}}></div>
+                                    <div key={idx} className="flex gap-3 items-center pointer-events-none py-1.5 px-2 -mx-2 rounded-[8px] relative group">
+                                        {p.rank === 1 && <div className="absolute -top-0.5 left-2 text-lg z-10 rotate-[-15deg]">👑</div>}
+                                        <div className={`text-xl font-black w-6 text-center shrink-0 ${p.color}`}>{p.rank}</div>
+                                        <div className="w-8 h-8 rounded-full bg-cover bg-center border border-gray-100 shrink-0" style={{backgroundImage: `url('${p.img}')`}}></div>
                                         <div className="flex flex-col overflow-hidden">
-                                            <span className="font-bold text-gray-900 truncate text-sm">{p.name}</span>
-                                            <span className="text-[10px] text-gray-400 truncate">{p.no} | {p.enName}</span>
+                                            <span className="font-bold text-gray-900 truncate text-[13px]">{p.name}</span>
+                                            <span className="text-[9px] text-gray-400 truncate leading-tight">{p.no} | {p.enName}</span>
                                         </div>
                                     </div>
                                 ))}
