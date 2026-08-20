@@ -140,35 +140,67 @@ export default function Home() {
                     </div>
                 </section>
 
-                {/* 4. News */}
-                <section>
-                    <div className="flex justify-between items-end mb-6">
-                        <div className="flex items-center gap-6">
-                            <h3 className="text-2xl font-bold text-gray-900">NEWS</h3>
-                            <div className="flex gap-4">
-                                {['전체', '대회', '공지', '업데이트'].map(tab => (
-                                    <button 
-                                        key={tab} 
-                                        onClick={() => setNewsTab(tab)}
-                                        className={`text-sm font-bold pb-1 border-b-2 transition-colors ${newsTab === tab ? 'border-gray-900 text-gray-900' : 'border-transparent text-gray-400 hover:text-gray-700'}`}
-                                    >
-                                        {tab}
-                                    </button>
-                                ))}
+                {/* 4. News (New Layout: Side Title & Horizontal Cards) */}
+                <section className="flex flex-col md:flex-row gap-8">
+                    {/* Left Title & Filters */}
+                    <div className="w-full md:w-[280px] shrink-0">
+                        <h3 className="text-4xl font-black text-gray-900 leading-tight mb-8 tracking-tighter">
+                            LATEST<br />NEWS &amp;<br />NOTICES.
+                        </h3>
+                        
+                        <div className="flex flex-col gap-4 font-bold text-sm">
+                            <button className="text-left text-gray-900 border-b-2 border-gray-900 pb-1 w-fit">전체 보기 (ALL)</button>
+                            <button className="text-left text-gray-500 hover:text-gray-900 transition-colors w-fit">#Tournament</button>
+                            <button className="text-left text-gray-500 hover:text-gray-900 transition-colors w-fit">#Notice</button>
+                            <button className="text-left text-gray-500 hover:text-gray-900 transition-colors w-fit">#Event</button>
+                        </div>
+                        
+                        <button className="text-red-600 font-bold text-sm mt-12 hover:underline">VIEW ALL +</button>
+                    </div>
+
+                    {/* Right Horizontal Scroll Cards */}
+                    <div className="flex-1 overflow-x-auto scrollbar-hide pb-4">
+                        <div className="flex gap-4 w-max">
+                            {/* Card 1 */}
+                            <div className="w-[300px] h-[300px] bg-white border border-gray-200 rounded-[8px] p-6 shadow-sm flex flex-col justify-between cursor-pointer hover:shadow-md transition-shadow group">
+                                <div>
+                                    <span className="bg-blue-50 text-blue-600 text-[10px] font-bold px-2 py-1 rounded-[4px] inline-block mb-4">Notice</span>
+                                    <h4 className="text-lg font-bold text-gray-900 mb-3 group-hover:underline line-clamp-2 leading-snug">PERFECT 2026 제11전 이시카와 대회 결과 안내</h4>
+                                    <p className="text-sm text-gray-500 line-clamp-3 leading-relaxed">열띤 경쟁 속에서 펼쳐진 이번 이시카와 대회에서 새로운 챔피언이 탄생했습니다. 경기 내용 및 자세한 결과...</p>
+                                </div>
+                                <span className="text-sm text-gray-400 font-medium">2026.08.10</span>
+                            </div>
+                            
+                            {/* Card 2 */}
+                            <div className="w-[300px] h-[300px] bg-white border border-gray-200 rounded-[8px] p-6 shadow-sm flex flex-col justify-between cursor-pointer hover:shadow-md transition-shadow group">
+                                <div>
+                                    <span className="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-1 rounded-[4px] inline-block mb-4">Tournament</span>
+                                    <h4 className="text-lg font-bold text-gray-900 mb-3 group-hover:underline line-clamp-2 leading-snug">2026 시즌 개막 기념 VVIP 티켓 래플 안내</h4>
+                                    <p className="text-sm text-gray-500 line-clamp-3 leading-relaxed">열띤 경쟁 속에서 펼쳐진 이번 이시카와 대회에서 새로운 챔피언이 탄생했습니다. 경기 내용 및 자세한 결과...</p>
+                                </div>
+                                <span className="text-sm text-gray-400 font-medium">2026.08.08</span>
+                            </div>
+
+                            {/* Card 3 */}
+                            <div className="w-[300px] h-[300px] bg-white border border-gray-200 rounded-[8px] p-6 shadow-sm flex flex-col justify-between cursor-pointer hover:shadow-md transition-shadow group">
+                                <div>
+                                    <span className="bg-green-50 text-green-600 text-[10px] font-bold px-2 py-1 rounded-[4px] inline-block mb-4">Event</span>
+                                    <h4 className="text-lg font-bold text-gray-900 mb-3 group-hover:underline line-clamp-2 leading-snug">프로다트 신규 선수 등록 및 라이센스 갱신 안내</h4>
+                                    <p className="text-sm text-gray-500 line-clamp-3 leading-relaxed">열띤 경쟁 속에서 펼쳐진 이번 이시카와 대회에서 새로운 챔피언이 탄생했습니다. 경기 내용 및 자세한 결과...</p>
+                                </div>
+                                <span className="text-sm text-gray-400 font-medium">2026.08.05</span>
+                            </div>
+                            
+                            {/* Card 4 */}
+                            <div className="w-[300px] h-[300px] bg-white border border-gray-200 rounded-[8px] p-6 shadow-sm flex flex-col justify-between cursor-pointer hover:shadow-md transition-shadow group">
+                                <div>
+                                    <span className="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-1 rounded-[4px] inline-block mb-4">Tournament</span>
+                                    <h4 className="text-lg font-bold text-gray-900 mb-3 group-hover:underline line-clamp-2 leading-snug">제12전 하마마츠 대회 관련 주요 안내 사항</h4>
+                                    <p className="text-sm text-gray-500 line-clamp-3 leading-relaxed">열띤 경쟁 속에서 펼쳐진 이번 이시카와 대회에서 새로운 챔피언이 탄생했습니다. 경기 내용 및 자세한 결과...</p>
+                                </div>
+                                <span className="text-sm text-gray-400 font-medium">2026.07.29</span>
                             </div>
                         </div>
-                        <button className="text-sm font-medium text-gray-500 hover:text-gray-900">리뷰 전체보기 &gt;</button>
-                    </div>
-                    <div className="bg-white rounded-[8px] border border-gray-200 shadow-sm p-4">
-                        {[1, 2, 3, 4].map(item => (
-                            <div key={item} className="flex justify-between items-center py-4 border-b border-gray-100 last:border-0 cursor-pointer group">
-                                <div className="flex items-center gap-4">
-                                    <span className="text-xs font-bold text-red-600 bg-red-50 px-2 py-1 rounded">대회</span>
-                                    <p className="text-gray-800 font-medium group-hover:underline">[제11전 이시카와] 남자부/여자부 결승전 결과 안내</p>
-                                </div>
-                                <span className="text-sm text-gray-400">2026.08.10</span>
-                            </div>
-                        ))}
                     </div>
                 </section>
 
