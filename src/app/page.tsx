@@ -425,9 +425,17 @@ export default function Home() {
                         </div>
 
                         {/* Swipe Indicators */}
-                        <div className="flex justify-center gap-1.5 mt-8 pointer-events-none">
-                            <div className={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${activeWinnerTab === 0 ? 'bg-gray-800' : 'bg-gray-300'}`}></div>
-                            <div className={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${activeWinnerTab === 1 ? 'bg-gray-800' : 'bg-gray-300'}`}></div>
+                        <div className="flex justify-center gap-2 mt-8">
+                            <button 
+                                onClick={() => winnersScrollRef.current?.scrollTo({ left: 0, behavior: 'smooth' })}
+                                className={`w-2 h-2 rounded-full transition-all duration-300 hover:bg-gray-500 ${activeWinnerTab === 0 ? 'bg-gray-800 scale-125' : 'bg-gray-300'}`}
+                                aria-label="Men"
+                            />
+                            <button 
+                                onClick={() => winnersScrollRef.current?.scrollTo({ left: winnersScrollRef.current.clientWidth, behavior: 'smooth' })}
+                                className={`w-2 h-2 rounded-full transition-all duration-300 hover:bg-gray-500 ${activeWinnerTab === 1 ? 'bg-gray-800 scale-125' : 'bg-gray-300'}`}
+                                aria-label="Women"
+                            />
                         </div>
                     </div>
                 </section>
