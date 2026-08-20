@@ -353,50 +353,27 @@ export default function Home() {
 
                     {/* Right: 대회 리더보드 */}
                     <div className="w-full lg:w-[320px] shrink-0 bg-white rounded-[8px] p-6 border border-gray-100 shadow-sm flex flex-col">
-                        <h3 className="text-xl font-black text-gray-900 mb-1">대회 리더보드</h3>
-                        <p className="text-sm font-bold text-gray-500 mb-8">제11전 이시카와 챔피언십</p>
+                        <h3 className="text-xl font-black text-gray-900 mb-1">이전 대회 우승자</h3>
+                        <p className="text-sm font-bold text-gray-500 mb-6">제11전 이시카와 챔피언십</p>
                         
-                        <div className="flex flex-col gap-6">
-                            {/* 1st Place */}
-                            <div className="flex gap-4 items-start relative pb-6 border-b border-gray-100">
-                                <div className="text-5xl font-black text-[#B8860B] mt-2">1</div>
-                                <div className="absolute -top-3 -left-2 text-3xl z-10 rotate-[-15deg]">👑</div>
-                                <div className="w-20 h-24 rounded bg-cover bg-center shadow-sm shrink-0 ml-2" style={{backgroundImage: "url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300')"}}></div>
-                                <div className="flex flex-col">
-                                    <span className="font-bold text-gray-900 text-lg">아리하라 류타</span>
-                                    <span className="text-xs text-gray-400 mb-2">0003 | Ryuta Arihara</span>
-                                    <span className="text-[10px] text-[#B8860B] font-bold">unicorn</span>
-                                    <span className="text-[10px] text-[#B8860B] font-bold">L-style</span>
-                                    <span className="text-[10px] text-[#B8860B] font-bold">SHADE</span>
+                        <div className="flex flex-col gap-2">
+                            {[
+                                { rank: 1, name: "아리하라 류타", enName: "Ryuta Arihara", no: "0003", color: "text-[#B8860B]", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300" },
+                                { rank: 2, name: "시마노우치 유키", enName: "Yuki Shimanouchi", no: "0015", color: "text-gray-400", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=300" },
+                                { rank: 3, name: "하마다 아키노리", enName: "Akinori Hamada", no: "1046", color: "text-[#CD7F32]", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=300" },
+                                { rank: 3, name: "무라마츠 하루키", enName: "Haruki Muramatsu", no: "0001", color: "text-[#CD7F32]", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" },
+                                { rank: 5, name: "아사다 세이고", enName: "Seigo Asada", no: "0005", color: "text-gray-400", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=300" },
+                            ].map((p, idx) => (
+                                <div key={idx} className="flex gap-3 items-center cursor-pointer hover:bg-gray-50 p-2 -mx-2 rounded-[8px] transition-colors relative group">
+                                    {p.rank === 1 && <div className="absolute -top-1 left-2 text-xl z-10 rotate-[-15deg]">👑</div>}
+                                    <div className={`text-2xl font-black w-8 text-center shrink-0 ${p.color}`}>{p.rank}</div>
+                                    <div className="w-10 h-10 rounded-full bg-cover bg-center border border-gray-100 shrink-0" style={{backgroundImage: `url('${p.img}')`}}></div>
+                                    <div className="flex flex-col overflow-hidden">
+                                        <span className="font-bold text-gray-900 truncate group-hover:underline text-sm">{p.name}</span>
+                                        <span className="text-[10px] text-gray-400 truncate">{p.no} | {p.enName}</span>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            {/* 2nd Place */}
-                            <div className="flex gap-4 items-center cursor-pointer hover:bg-gray-50 p-2 -mx-2 rounded-[8px] transition-colors">
-                                <div className="text-3xl font-black text-gray-400 w-8 text-center">2</div>
-                                <div className="flex flex-col">
-                                    <span className="font-bold text-gray-900">시마노우치 유키</span>
-                                    <span className="text-xs text-gray-400">0015 | Yuki Shimanouchi</span>
-                                </div>
-                            </div>
-                            
-                            {/* 3rd Place */}
-                            <div className="flex gap-4 items-center cursor-pointer hover:bg-gray-50 p-2 -mx-2 rounded-[8px] transition-colors">
-                                <div className="text-3xl font-black text-[#CD7F32] w-8 text-center">3</div>
-                                <div className="flex flex-col">
-                                    <span className="font-bold text-gray-900">하마다 아키노리</span>
-                                    <span className="text-xs text-gray-400">1046 | Akinori Hamada</span>
-                                </div>
-                            </div>
-
-                            {/* 3rd Place (Tied) */}
-                            <div className="flex gap-4 items-center cursor-pointer hover:bg-gray-50 p-2 -mx-2 rounded-[8px] transition-colors">
-                                <div className="text-3xl font-black text-[#CD7F32] w-8 text-center">3</div>
-                                <div className="flex flex-col">
-                                    <span className="font-bold text-gray-900">무라마츠 하루키</span>
-                                    <span className="text-xs text-gray-400">0001 | Haruki Muramatsu</span>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                     </div>
                 </section>
