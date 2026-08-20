@@ -309,12 +309,12 @@ export default function Home() {
                 {/* 4. News (New Layout: Side Title & Horizontal Cards) */}
                 <section className="flex flex-col lg:flex-row gap-6">
                     {/* Left Title & Filters */}
-                    <div className="w-full lg:w-[256px] shrink-0">
+                    <div className="w-full lg:w-[256px] shrink-0 flex flex-col">
                         <h3 className="text-4xl font-black text-gray-900 leading-tight mb-8 tracking-tighter">
                             LATEST<br />NEWS &amp;<br />NOTICES.
                         </h3>
                         
-                        <div className="flex flex-col gap-4 mb-auto">
+                        <div className="flex flex-col gap-4">
                             {['전체 보기 (ALL)', '#Tournament', '#Notice', '#Event'].map(tab => (
                                 <button 
                                     key={tab}
@@ -326,7 +326,10 @@ export default function Home() {
                             ))}
                         </div>
                         
-                        <button className="text-red-600 font-bold text-sm mt-12 hover:underline">VIEW ALL +</button>
+                        <button className="text-sm font-bold text-gray-400 hover:text-gray-900 flex items-center gap-1 transition-colors mt-auto mb-4 w-fit">
+                            MORE
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4"><path d="M9 18l6-6-6-6" /></svg>
+                        </button>
                     </div>
 
                     {/* Right Horizontal Scroll Cards */}
