@@ -410,7 +410,7 @@ export default function Home() {
                                             </div>
                                             <div className="flex gap-1.5 flex-wrap">
                                                 {player.sponsors.map(sp => (
-                                                    <span key={sp} className="text-[9px] bg-gray-50 text-gray-500 px-1.5 py-0.5 rounded-[4px] border border-gray-200 font-bold uppercase tracking-wider">{sp}</span>
+                                                    <span key={sp} className="text-[9px] bg-gray-100 text-gray-500 px-1.5 py-0.5 rounded-[4px] font-bold uppercase tracking-wider">{sp}</span>
                                                 ))}
                                             </div>
                                         </div>
