@@ -230,7 +230,7 @@ export default function Home() {
                                 <div key={player.rank} className="flex items-center justify-between p-6 rounded-[12px] bg-white border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-md transition-shadow cursor-pointer group">
                                     <div className="flex items-center gap-3 md:gap-4">
                                         {/* Rank Number */}
-                                        <div className={`w-6 text-center font-black text-xl ${player.rank === 1 ? 'text-[#EAA51D]' : player.rank === 2 ? 'text-[#7C8B9D]' : player.rank === 3 ? 'text-[#A06B60]' : 'text-gray-500'}`}>{player.rank}</div>
+                                        <div className={`w-6 text-center font-black text-xl ${player.rank === 1 ? 'text-[#EAA51D]' : player.rank === 2 ? 'text-[#7C8B9D]' : player.rank === 3 ? 'text-[#A06B60]' : 'text-[#6B6B6B]'}`}>{player.rank}</div>
                                         {/* Profile Image */}
                                         <div className="w-12 h-12 rounded-lg bg-cover bg-center shrink-0 border border-gray-100" style={{backgroundImage: `url('${player.img}')`}}></div>
                                         {/* Name & Sponsors */}
@@ -250,7 +250,7 @@ export default function Home() {
                                     <div className="flex flex-col items-end shrink-0 pl-2">
                                         <span className="text-[9px] font-bold text-gray-400 tracking-wider">POINTS</span>
                                         <div className="flex items-center gap-1.5">
-                                            <span className={`text-xl md:text-2xl font-black tracking-tighter ${player.rank === 1 ? 'text-[#EAA51D]' : player.rank === 2 ? 'text-[#7C8B9D]' : player.rank === 3 ? 'text-[#A06B60]' : 'text-gray-700'}`}>{player.pts}</span>
+                                            <span className={`text-xl md:text-2xl font-black tracking-tighter ${player.rank === 1 ? 'text-[#EAA51D]' : player.rank === 2 ? 'text-[#7C8B9D]' : player.rank === 3 ? 'text-[#A06B60]' : player.rank >= 6 ? 'text-[#6B6B6B]' : 'text-gray-700'}`}>{player.pts}</span>
                                             {/* Trend Icon */}
                                             <div className="w-4 flex justify-center">
                                                 {player.trend === 'up' && <span className="text-red-500 font-bold text-sm">↑</span>}
