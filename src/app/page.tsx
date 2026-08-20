@@ -24,8 +24,9 @@ const newsData = Array.from({ length: 16 }, (_, i) => ({
 }));
 
 export default function Home() {
-    // 1. Hero Carousel (Dissolve)
+    // 2. Main Hero State
     const [activeHero, setActiveHero] = useState(0);
+    const [heroHover, setHeroHover] = useState(false);
     const heroSlides = [
         { title: "2026 PERFECT 챔피언십\n결승전 LIVE", image: "https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=2000" },
         { title: "오키나와 에어리어\n차세대 선수 결정전", image: "https://images.unsplash.com/photo-1611394145458-71e16f31620c?q=80&w=2000" }
@@ -110,7 +111,11 @@ export default function Home() {
                 {/* HERO SECTION - SIDE-BY-SIDE */}
                 <section className="flex flex-col lg:flex-row gap-6 mb-16">
                     {/* Left Card: Main Hero (Crossfade Slider) */}
-                    <div className="flex-1 rounded-[8px] bg-gray-900 relative overflow-hidden h-[500px] flex flex-col justify-center shadow-lg">
+                    <div 
+                        className="flex-1 rounded-[8px] bg-gray-900 relative overflow-hidden h-[500px] flex flex-col justify-center shadow-lg"
+                        onMouseEnter={() => setHeroHover(true)}
+                        onMouseLeave={() => setHeroHover(false)}
+                    >
                         {heroSlides.map((slide, idx) => (
                             <div 
                                 key={idx}
@@ -139,6 +144,24 @@ export default function Home() {
                                 <div key={idx} onClick={() => setActiveHero(idx)} className={`h-1.5 rounded-full cursor-pointer transition-all ${activeHero === idx ? 'w-6 bg-white' : 'w-1.5 bg-white/50 hover:bg-white/80'}`}></div>
                             ))}
                             <span className="text-white ml-2 text-xs font-black tracking-widest cursor-pointer">II</span>
+                        </div>
+
+                        {/* Left/Right Arrows (visible on hover) */}
+                        <div className={`absolute inset-y-0 left-0 w-24 flex items-center justify-start pl-6 transition-opacity duration-300 z-50 pointer-events-none ${heroHover ? 'opacity-100' : 'opacity-0'}`}>
+                            <button 
+                                onClick={() => setActiveHero((prev) => (prev === 0 ? heroSlides.length - 1 : prev - 1))}
+                                className="w-12 h-12 rounded-full bg-black/40 text-white flex items-center justify-center backdrop-blur-sm hover:bg-black/80 transition-colors pointer-events-auto"
+                            >
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-6 h-6"><path d="M15 18l-6-6 6-6" /></svg>
+                            </button>
+                        </div>
+                        <div className={`absolute inset-y-0 right-0 w-24 flex items-center justify-end pr-6 transition-opacity duration-300 z-50 pointer-events-none ${heroHover ? 'opacity-100' : 'opacity-0'}`}>
+                            <button 
+                                onClick={() => setActiveHero((prev) => (prev === heroSlides.length - 1 ? 0 : prev + 1))}
+                                className="w-12 h-12 rounded-full bg-black/40 text-white flex items-center justify-center backdrop-blur-sm hover:bg-black/80 transition-colors pointer-events-auto"
+                            >
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-6 h-6"><path d="M9 18l6-6-6-6" /></svg>
+                            </button>
                         </div>
                     </div>
 
