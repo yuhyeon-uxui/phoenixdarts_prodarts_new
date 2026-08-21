@@ -454,17 +454,17 @@ export default function Home() {
                             <div className="grid grid-cols-1 xl:grid-cols-2 xl:grid-rows-5 xl:grid-flow-col gap-x-12 gap-y-0 h-full">
                             {activeRankingData.map((item, idx) => (
                                 <div key={item.rank} className={`flex items-center justify-between py-4 px-2 ${idx === 4 || idx === 9 ? '' : 'border-b border-gray-100'} hover:bg-gray-50 transition-colors cursor-pointer group`}>
-                                    <div className="flex items-center gap-3 md:gap-4">
+                                    <div className="flex items-center gap-3 md:gap-4 flex-1 min-w-0">
                                         {/* Rank Number */}
                                         <div className={`w-6 text-center font-black text-xl ${item.rank === 1 ? 'text-[#EAA51D]' : item.rank === 2 ? 'text-[#7C8B9D]' : item.rank === 3 ? 'text-[#A06B60]' : item.rank >= 6 ? 'text-[#6B6B6B]' : 'text-gray-900'}`}>{item.rank}</div>
                                         {/* Profile or Brand Logo */}
                                         <div className={`h-12 rounded-[8px] bg-cover bg-center shrink-0 border border-gray-100 ${rankTab === '브랜드' ? 'w-12 bg-contain bg-no-repeat bg-white' : 'w-12'}`} style={{backgroundImage: `url('${item.img}')`}}></div>
                                         {/* Name & Sponsors */}
-                                        <div className="flex flex-col justify-center overflow-hidden">
-                                            <div className="flex items-baseline gap-1.5 mb-1 truncate">
-                                                <span className="font-bold text-gray-900 leading-none truncate group-hover:underline">{item.name}</span>
+                                        <div className="flex flex-col justify-center overflow-hidden flex-1 min-w-0">
+                                            <div className="flex items-baseline gap-1.5 mb-1 w-full overflow-hidden">
+                                                <span className="font-bold text-gray-900 leading-none shrink-0 group-hover:underline">{item.name}</span>
                                                 {rankTab !== '브랜드' && (
-                                                    <span className="text-[10px] text-gray-400 font-medium leading-none hidden sm:inline-block">{item.enName}</span>
+                                                    <span className="text-[10px] text-gray-400 font-medium leading-none hidden sm:block truncate">{item.enName}</span>
                                                 )}
                                             </div>
                                             {rankTab !== '브랜드' && (
