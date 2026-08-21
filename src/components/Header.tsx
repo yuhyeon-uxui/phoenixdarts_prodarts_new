@@ -72,8 +72,7 @@ export default function Header() {
             )}
           </button>
           
-          <a href="#" className="flex bg-[#E53935] hover:bg-[#D32F2F] text-white px-3 py-1.5 lg:px-7 lg:py-2.5 rounded-md lg:rounded-lg text-[11px] lg:text-sm font-black tracking-widest shadow-md transition-all hover:scale-105 active:scale-95 items-center gap-1.5 lg:gap-2">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 lg:w-4 lg:h-4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <a href="#" className={`${isMobileMenuOpen ? 'flex' : 'hidden lg:flex'} bg-[#E53935] hover:bg-[#D32F2F] text-white px-4 py-1.5 lg:px-7 lg:py-2.5 rounded-md lg:rounded-lg text-xs lg:text-sm font-black tracking-widest shadow-md transition-all hover:scale-105 active:scale-95 items-center justify-center`}>
             LOGIN
           </a>
 
