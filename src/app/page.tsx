@@ -64,8 +64,8 @@ export default function Home() {
     const [heroHover, setHeroHover] = useState(false);
     const [isHeroPaused, setIsHeroPaused] = useState(false);
     const heroSlides = [
-        { title: "2026 PERFECT 챔피언십\n결승전 LIVE", image: "https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=2000" },
-        { title: "오키나와 에어리어\n차세대 선수 결정전", image: "https://images.unsplash.com/photo-1611394145458-71e16f31620c?q=80&w=2000" }
+        { title: "2026 PERFECT 챔피언십\n결승전 LIVE", image: "/hero_bg_1.jpg" },
+        { title: "오키나와 에어리어\n차세대 선수 결정전", image: "/hero_bg_2.jpg" }
     ];
 
     useEffect(() => {
