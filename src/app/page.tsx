@@ -238,14 +238,36 @@ export default function Home() {
                     </div>
 
                     {/* Right Card: NEXT PERFECT */}
-                    <div className="w-full lg:w-[320px] shrink-0 h-[500px] rounded-[12px] relative p-6 shadow-sm flex flex-col bg-gray-50 border border-gray-200 overflow-hidden">
+                    <div className="w-full lg:w-[320px] shrink-0 h-[500px] rounded-[12px] relative p-6 shadow-sm flex flex-col bg-gray-50 border border-gray-200 overflow-hidden group">
                         <div className="mb-4 flex justify-between items-center shrink-0">
-                            <h3 className="text-sm font-black text-red-600 tracking-widest">NEXT PERFECT</h3>
+                            <h3 className="text-lg font-black text-black tracking-wider">NEXT PERFECT</h3>
                             <button className="bg-gray-900 text-white hover:bg-black text-[10px] font-bold px-4 py-1.5 rounded-full transition-colors z-10">전체일정</button>
                         </div>
                         
+                        {/* Navigation Arrows */}
+                        <button 
+                            onClick={() => {
+                                const el = nextMatchRef.current;
+                                if (el) el.scrollBy({ left: -el.clientWidth, behavior: 'smooth' });
+                            }}
+                            className="absolute left-4 top-[220px] w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60 z-20 transition-colors opacity-0 group-hover:opacity-100 disabled:opacity-0"
+                            style={{ display: activeNextMatchTab === 0 ? 'none' : 'flex' }}
+                        >
+                            <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+                        </button>
+                        <button 
+                            onClick={() => {
+                                const el = nextMatchRef.current;
+                                if (el) el.scrollBy({ left: el.clientWidth, behavior: 'smooth' });
+                            }}
+                            className="absolute right-4 top-[220px] w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60 z-20 transition-colors opacity-0 group-hover:opacity-100"
+                            style={{ display: activeNextMatchTab === 2 ? 'none' : 'flex' }}
+                        >
+                            <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                        </button>
+
                         <div 
-                            className="flex-1 overflow-x-auto scrollbar-hide snap-x snap-mandatory flex w-full cursor-grab active:cursor-grabbing select-none touch-pan-x gap-6"
+                            className="flex-1 overflow-x-auto scrollbar-hide snap-x snap-mandatory flex w-full cursor-grab active:cursor-grabbing select-none touch-pan-x gap-6 relative z-10"
                             ref={nextMatchRef}
                             onScroll={onNextMatchScroll}
                         >
@@ -263,36 +285,43 @@ export default function Home() {
                                     s = Math.floor((diff / 1000) % 60).toString().padStart(2, '0');
                                 }
 
+                                const titleParts = match.title.split(' ');
+                                const redPart = titleParts[0];
+                                const blackPart = titleParts.slice(1).join(' ');
+
                                 return (
                                 <div key={idx} className="w-full shrink-0 snap-start flex flex-col pointer-events-none">
-                                    <div className="w-full h-[180px] rounded-[8px] mb-6 bg-contain bg-no-repeat bg-top shrink-0" style={{backgroundImage: `url('${match.img}')`}}></div>
-                                    
-                                    <div className="text-left mb-6 shrink-0">
-                                        <div className="text-red-600 font-bold text-xs italic mb-1.5">{match.tour}</div>
-                                        <h4 className="text-2xl font-black text-gray-900 mb-2">{match.title}</h4>
-                                        <p className="text-gray-500 text-xs font-medium">{match.date}</p>
+                                    <div className="text-left mb-4 shrink-0">
+                                        <div className="text-gray-500 font-bold text-[13px] italic mb-1">{match.tour}</div>
+                                        <h4 className="text-[26px] font-black text-black mb-2">
+                                            <span className="text-red-600 mr-1.5">{redPart}</span>
+                                            {blackPart}
+                                        </h4>
+                                        <p className="text-gray-500 text-[13px] font-medium">{match.date}</p>
                                     </div>
 
+                                    <div className="w-full h-[180px] rounded-[10px] mb-6 bg-cover bg-center shrink-0 shadow-sm" style={{backgroundImage: `url('${match.img}')`}}></div>
+                                    
                                     {/* Countdown Timer */}
                                     <div className="flex justify-center gap-2 shrink-0">
                                         <div className="text-center w-[52px]">
-                                            <div className="text-[9px] text-gray-500 mb-1 font-bold">DAY</div>
-                                            <div className="bg-white rounded-[8px] py-2 text-xl font-mono font-black text-gray-900 border border-gray-200 shadow-sm">{d}</div>
+                                            <div className="text-[10px] text-gray-500 mb-1.5 font-bold">DAY</div>
+                                            <div className="bg-white rounded-[8px] py-2 text-xl font-black text-gray-900 border border-gray-200 shadow-sm">{d}</div>
                                         </div>
-                                        <div className="text-xl font-bold text-gray-300 mt-4">:</div>
+                                        <div className="text-xl font-bold text-gray-300 mt-5">:</div>
                                         <div className="text-center w-[52px]">
-                                            <div className="text-[9px] text-gray-500 mb-1 font-bold">HOUR</div>
-                                            <div className="bg-white rounded-[8px] py-2 text-xl font-mono font-black text-gray-900 border border-gray-200 shadow-sm">{h}</div>
+                                            <div className="text-[10px] text-gray-500 mb-1.5 font-bold">HOUR</div>
+                                            <div className="bg-white rounded-[8px] py-2 text-xl font-black text-gray-900 border border-gray-200 shadow-sm">{h}</div>
                                         </div>
-                                        <div className="text-xl font-bold text-gray-300 mt-4">:</div>
+                                        <div className="text-xl font-bold text-gray-300 mt-5">:</div>
                                         <div className="text-center w-[52px]">
-                                            <div className="text-[9px] text-gray-500 mb-1 font-bold">MIN</div>
-                                            <div className="bg-white rounded-[8px] py-2 text-xl font-mono font-black text-gray-900 border border-gray-200 shadow-sm">{m}</div>
+                                            <div className="text-[10px] text-gray-500 mb-1.5 font-bold">MIN</div>
+                                            <div className="bg-white rounded-[8px] py-2 text-xl font-black text-gray-900 border border-gray-200 shadow-sm">{m}</div>
                                         </div>
-                                        <div className="text-xl font-bold text-gray-300 mt-4">:</div>
+                                        <div className="text-xl font-bold text-gray-300 mt-5">:</div>
                                         <div className="text-center w-[52px]">
-                                            <div className="text-[9px] text-gray-500 mb-1 font-bold">SEC</div>
-                                            <div className="bg-white rounded-[8px] py-2 text-xl font-mono font-black text-gray-900 border border-gray-200 shadow-sm">{s}</div>
+                                            <div className="text-[10px] text-gray-500 mb-1.5 font-bold">SEC</div>
+                                            <div className="bg-white rounded-[8px] py-2 text-xl font-black text-gray-900 border border-gray-200 shadow-sm">{s}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -310,7 +339,7 @@ export default function Home() {
                                             (el.children[idx] as HTMLElement).scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
                                         }
                                     }}
-                                    className={`w-2 h-2 rounded-full transition-all duration-300 hover:bg-gray-500 ${activeNextMatchTab === idx ? 'bg-gray-800 scale-125' : 'bg-gray-300'}`}
+                                    className={`w-2 h-2 rounded-full transition-all duration-300 ${activeNextMatchTab === idx ? 'bg-gray-800' : 'bg-gray-300 hover:bg-gray-400'}`}
                                     aria-label={`Slide ${idx + 1}`}
                                 />
                             ))}
