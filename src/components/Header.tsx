@@ -18,8 +18,10 @@ export default function Header() {
   }, [isDark]);
 
   return (
-    <header className="sticky top-0 z-[100] w-full backdrop-blur-xl bg-white/90 dark:bg-[#121212]/90 transition-colors duration-300">
-      <div className="max-w-[1280px] mx-auto px-4 lg:px-[60px] h-20 flex items-center justify-between">
+    <header className="sticky top-0 z-[100] w-full transition-colors duration-300">
+      {/* Header Background */}
+      <div className="absolute inset-0 backdrop-blur-xl bg-white/90 dark:bg-[#121212]/90 pointer-events-none -z-10"></div>
+      <div className="relative max-w-[1280px] mx-auto px-4 lg:px-[60px] h-20 flex items-center justify-between">
         
         {/* Logo */}
         <div className="font-black text-2xl tracking-tighter text-black dark:text-white italic cursor-pointer">
