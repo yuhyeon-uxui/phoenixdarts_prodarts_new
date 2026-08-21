@@ -45,7 +45,7 @@ export default function Header() {
 
                 {/* 2-Depth Dropdown (Glassmorphism) */}
                 {hoveredMenu === item && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-48 bg-white/40 dark:bg-black/40 backdrop-blur-md border border-white/40 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] rounded-lg py-3 flex flex-col z-[150] animate-in fade-in zoom-in-95 duration-200">
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-48 bg-white/80 dark:bg-black/80 backdrop-filter backdrop-blur-2xl border border-white/50 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] rounded-lg py-3 flex flex-col z-[150] animate-in fade-in zoom-in-95 duration-200">
                     <a href="#" className="px-5 py-2.5 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/10 transition-colors">서브메뉴 1</a>
                     <a href="#" className="px-5 py-2.5 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/10 transition-colors">서브메뉴 2</a>
                     <a href="#" className="px-5 py-2.5 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/10 transition-colors">서브메뉴 3</a>
