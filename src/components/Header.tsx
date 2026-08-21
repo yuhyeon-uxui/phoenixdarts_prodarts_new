@@ -72,8 +72,8 @@ export default function Header() {
             )}
           </button>
           
-          <a href="#" className="hidden lg:flex bg-[#E53935] hover:bg-[#D32F2F] text-white px-7 py-2.5 rounded-lg text-sm font-black tracking-widest shadow-md transition-all hover:scale-105 active:scale-95 items-center gap-2">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <a href="#" className="flex bg-[#E53935] hover:bg-[#D32F2F] text-white px-3 py-1.5 lg:px-7 lg:py-2.5 rounded-md lg:rounded-lg text-[11px] lg:text-sm font-black tracking-widest shadow-md transition-all hover:scale-105 active:scale-95 items-center gap-1.5 lg:gap-2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 lg:w-4 lg:h-4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
             LOGIN
           </a>
 
@@ -111,12 +111,6 @@ export default function Header() {
               </div>
             ))}
           </nav>
-          
-          {/* Mobile Login Button */}
-          <a href="#" className="bg-[#E53935] hover:bg-[#D32F2F] text-white px-7 py-3 rounded-lg text-lg font-black tracking-widest shadow-md transition-all flex items-center justify-center gap-2 w-full mt-auto mb-10">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            LOGIN
-          </a>
         </div>
       )}
     </header>
