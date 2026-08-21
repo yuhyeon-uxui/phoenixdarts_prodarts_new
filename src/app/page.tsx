@@ -503,7 +503,6 @@ export default function Home() {
                                     { rank: 3, name: "무라마츠 하루키", enName: "Haruki Muramatsu", no: "0001", color: "text-[#CD7F32]", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" },
                                 ].map((p, idx) => (
                                     <div key={idx} className="flex gap-3 items-center pointer-events-none py-1.5 px-2 -mx-2 rounded-[8px] relative group">
-                                        {p.rank === 1 && <div className="absolute -top-0.5 left-2 text-lg z-10 rotate-[-15deg]">👑</div>}
                                         <div className={`text-xl font-black w-6 text-center shrink-0 ${p.color}`}>{p.rank}</div>
                                         <div className="w-8 h-8 rounded-full bg-cover bg-center border border-gray-100 shrink-0" style={{backgroundImage: `url('${p.img}')`}}></div>
                                         <div className="flex flex-col overflow-hidden">
@@ -524,7 +523,6 @@ export default function Home() {
                                     { rank: 3, name: "스즈키 미쿠", enName: "Miku Suzuki", no: "0004", color: "text-[#CD7F32]", img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=300" },
                                 ].map((p, idx) => (
                                     <div key={idx} className="flex gap-3 items-center pointer-events-none py-1.5 px-2 -mx-2 rounded-[8px] relative group">
-                                        {p.rank === 1 && <div className="absolute -top-0.5 left-2 text-lg z-10 rotate-[-15deg]">👑</div>}
                                         <div className={`text-xl font-black w-6 text-center shrink-0 ${p.color}`}>{p.rank}</div>
                                         <div className="w-8 h-8 rounded-full bg-cover bg-center border border-gray-100 shrink-0" style={{backgroundImage: `url('${p.img}')`}}></div>
                                         <div className="flex flex-col overflow-hidden">
