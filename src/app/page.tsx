@@ -176,7 +176,8 @@ export default function Home() {
         <main className="flex flex-col w-full font-sans bg-gray-100 min-h-screen text-gray-900">
             <div className="max-w-[1280px] mx-auto w-full px-4 lg:px-[60px] pt-10">
                 {/* HERO SECTION - SIDE-BY-SIDE */}
-                <section className="flex flex-col lg:flex-row gap-6 mb-16">
+                <FadeUp>
+<section className="flex flex-col lg:flex-row gap-6 mb-16">
                     {/* Left Card: Main Hero (Crossfade Slider) */}
                     <div 
                         className="w-full lg:flex-1 rounded-[12px] bg-gray-900 relative overflow-hidden h-[500px] flex flex-col justify-center shadow-lg"
@@ -316,12 +317,14 @@ export default function Home() {
                         </div>
                     </div>
                 </section>
+</FadeUp>
                 
                 {/* Inner Content Wrapper */}
                 <div className="flex flex-col gap-16 pb-12">
 
                 {/* 3. Event Banner */}
-                <section>
+                <FadeUp>
+<section>
                     <div className="w-full h-[140px] rounded-[8px] bg-blue-900 overflow-hidden relative cursor-pointer shadow-sm">
                         <div className="absolute inset-0 bg-cover bg-center opacity-50" style={{backgroundImage: "url('https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=1200')"}}></div>
                         <div className="absolute inset-0 flex items-center justify-between px-10">
@@ -333,9 +336,11 @@ export default function Home() {
                         </div>
                     </div>
                 </section>
+</FadeUp>
 
                 {/* 4. News (New Layout: Side Title & Horizontal Cards) */}
-                <section className="flex flex-col lg:flex-row gap-6">
+                <FadeUp>
+<section className="flex flex-col lg:flex-row gap-6">
                     {/* Left Title & Filters */}
                     <div className="w-full lg:w-[256px] shrink-0 flex flex-col">
                         <h3 className="text-2xl font-bold text-gray-900 mb-8">
@@ -405,9 +410,11 @@ export default function Home() {
                         </div>
                     </div>
                 </section>
+</FadeUp>
 
                 {/* 5. Ranking (New Layout from Image) */}
-                <section className="flex flex-col lg:flex-row gap-6 lg:gap-8 mb-16">
+                <FadeUp>
+<section className="flex flex-col lg:flex-row gap-6 lg:gap-8 mb-16">
                     {/* Left: 선수 랭킹 */}
                     <div className="flex-1 flex flex-col">
                         {/* Title Row */}
@@ -547,9 +554,11 @@ export default function Home() {
                         </div>
                     </div>
                 </section>
+</FadeUp>
 
                 {/* 6. Media */}
-                <section>
+                <FadeUp>
+<section>
                     <div className="flex justify-between items-end mb-6">
                         <h3 className="text-2xl font-bold text-gray-900">MEDIA</h3>
                         <button className="text-sm font-bold text-gray-400 hover:text-gray-900 flex items-center gap-1 transition-colors">
@@ -591,9 +600,11 @@ export default function Home() {
                         </div>
                     </div>
                 </section>
+</FadeUp>
 
                 {/* 7. Sponsor List */}
-                <section className="mb-12">
+                <FadeUp>
+<section className="mb-12">
                     <div className="flex justify-between items-end mb-6">
                         <h3 className="text-2xl font-bold text-gray-900 uppercase">SPONSORS</h3>
                     </div>
@@ -605,8 +616,36 @@ export default function Home() {
                         ))}
                     </div>
                 </section>
+</FadeUp>
             </div>
             </div>
         </main>
+    );
+}
+
+function FadeUp({ children, delay = 0, className = '' }: { children: React.ReactNode, delay?: number, className?: string }) {
+    const [isVisible, setIsVisible] = React.useState(false);
+    const ref = React.useRef<HTMLDivElement>(null);
+
+    React.useEffect(() => {
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                setIsVisible(true);
+                observer.unobserve(entry.target);
+            }
+        }, { threshold: 0.1, rootMargin: '50px' });
+
+        if (ref.current) observer.observe(ref.current);
+        return () => observer.disconnect();
+    }, []);
+
+    return (
+        <div 
+            ref={ref} 
+            className={`transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'} ${className}`}
+            style={{ transitionDelay: `${delay}ms` }}
+        >
+            {children}
+        </div>
     );
 }
