@@ -180,7 +180,7 @@ export default function Home() {
 <section className="flex flex-col lg:flex-row gap-6 mb-16">
                     {/* Left Card: Main Hero (Crossfade Slider) */}
                     <div 
-                        className="w-full lg:flex-1 rounded-[12px] bg-gray-900 relative overflow-hidden h-[500px] flex flex-col justify-center shadow-lg"
+                        className="w-full lg:flex-1 rounded-[4px] bg-gray-900 relative overflow-hidden h-[500px] flex flex-col justify-center shadow-lg"
                         onMouseEnter={() => setHeroHover(true)}
                         onMouseLeave={() => setHeroHover(false)}
                     >
@@ -200,7 +200,7 @@ export default function Home() {
                                     <p className="text-gray-200 mb-8 font-medium text-sm">
                                         2026.07.26 - 제7회 에어리어 챔피언스 컵 우승
                                     </p>
-                                    <button className="bg-red-600 hover:bg-red-700 transition text-white font-bold px-6 py-3 rounded-[8px] flex items-center gap-2 w-fit shadow-lg shadow-red-500/30 text-sm">
+                                    <button className="bg-red-600 hover:bg-red-700 transition text-white font-bold px-6 py-3 rounded-[4px] flex items-center gap-2 w-fit shadow-lg shadow-red-500/30 text-sm">
                                         더 알아보기 <span>&rarr;</span>
                                     </button>
                                 </div>
@@ -209,7 +209,7 @@ export default function Home() {
                         {/* Pagination indicator */}
                         <div className="absolute bottom-6 left-10 flex items-center gap-2 z-20">
                             {heroSlides.map((_, idx) => (
-                                <div key={idx} onClick={() => setActiveHero(idx)} className={`h-1.5 rounded-full cursor-pointer transition-all ${activeHero === idx ? 'w-6 bg-white' : 'w-1.5 bg-white/50 hover:bg-white/80'}`}></div>
+                                <div key={idx} onClick={() => setActiveHero(idx)} className={`h-1.5 rounded-[4px] cursor-pointer transition-all ${activeHero === idx ? 'w-6 bg-white' : 'w-1.5 bg-white/50 hover:bg-white/80'}`}></div>
                             ))}
                             <button onClick={() => setIsHeroPaused(!isHeroPaused)} className="text-white ml-2 hover:text-gray-300 transition-colors focus:outline-none flex items-center justify-center">
                                 {isHeroPaused ? (
@@ -224,13 +224,13 @@ export default function Home() {
                         <div className={`absolute inset-y-0 right-0 w-24 flex flex-col items-end justify-center pr-6 gap-3 transition-opacity duration-300 z-50 pointer-events-none ${heroHover ? 'opacity-100' : 'opacity-0'}`}>
                             <button 
                                 onClick={() => setActiveHero((prev) => (prev === 0 ? heroSlides.length - 1 : prev - 1))}
-                                className="w-12 h-12 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center backdrop-blur-md hover:bg-white/20 transition-colors pointer-events-auto shadow-lg"
+                                className="w-12 h-12 rounded-[4px] bg-white/10 border border-white/20 text-white flex items-center justify-center backdrop-blur-md hover:bg-white/20 transition-colors pointer-events-auto shadow-lg"
                             >
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5"><path d="M15 18l-6-6 6-6" /></svg>
                             </button>
                             <button 
                                 onClick={() => setActiveHero((prev) => (prev === heroSlides.length - 1 ? 0 : prev + 1))}
-                                className="w-12 h-12 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center backdrop-blur-md hover:bg-white/20 transition-colors pointer-events-auto shadow-lg"
+                                className="w-12 h-12 rounded-[4px] bg-white/10 border border-white/20 text-white flex items-center justify-center backdrop-blur-md hover:bg-white/20 transition-colors pointer-events-auto shadow-lg"
                             >
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5"><path d="M9 18l6-6-6-6" /></svg>
                             </button>
@@ -238,10 +238,10 @@ export default function Home() {
                     </div>
 
                     {/* Right Card: NEXT PERFECT */}
-                    <div className="w-full lg:w-[320px] shrink-0 h-[500px] rounded-[12px] relative p-6 shadow-sm flex flex-col bg-gray-50 border border-gray-200 overflow-hidden group">
+                    <div className="w-full lg:w-[320px] shrink-0 h-[500px] rounded-[4px] relative p-6 shadow-sm flex flex-col bg-gray-50 border border-gray-200 overflow-hidden group">
                         <div className="mb-4 flex justify-between items-center shrink-0">
                             <h3 className="text-lg font-black text-black tracking-wider">NEXT PERFECT</h3>
-                            <button className="bg-gray-900 text-white hover:bg-black text-[10px] font-bold px-4 py-1.5 rounded-full transition-colors z-10">전체일정</button>
+                            <button className="bg-gray-900 text-white hover:bg-black text-[10px] font-bold px-4 py-1.5 rounded-[4px] transition-colors z-10">전체일정</button>
                         </div>
                         
                         {/* Navigation Arrows */}
@@ -250,7 +250,7 @@ export default function Home() {
                                 const el = nextMatchRef.current;
                                 if (el) el.scrollBy({ left: -el.clientWidth, behavior: 'smooth' });
                             }}
-                            className="absolute left-4 top-[220px] w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60 z-20 transition-colors opacity-0 group-hover:opacity-100 disabled:opacity-0"
+                            className="absolute left-4 top-[220px] w-8 h-8 rounded-[4px] bg-black/40 text-white flex items-center justify-center hover:bg-black/60 z-20 transition-colors opacity-0 group-hover:opacity-100 disabled:opacity-0"
                             style={{ display: activeNextMatchTab === 0 ? 'none' : 'flex' }}
                         >
                             <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
@@ -260,7 +260,7 @@ export default function Home() {
                                 const el = nextMatchRef.current;
                                 if (el) el.scrollBy({ left: el.clientWidth, behavior: 'smooth' });
                             }}
-                            className="absolute right-4 top-[220px] w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60 z-20 transition-colors opacity-0 group-hover:opacity-100"
+                            className="absolute right-4 top-[220px] w-8 h-8 rounded-[4px] bg-black/40 text-white flex items-center justify-center hover:bg-black/60 z-20 transition-colors opacity-0 group-hover:opacity-100"
                             style={{ display: activeNextMatchTab === 2 ? 'none' : 'flex' }}
                         >
                             <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
@@ -300,28 +300,28 @@ export default function Home() {
                                         <p className="text-gray-500 text-[13px] font-medium">{match.date}</p>
                                     </div>
 
-                                    <div className="w-full h-[180px] rounded-[10px] mb-4 bg-cover bg-center shrink-0 shadow-sm" style={{backgroundImage: `url('${match.img}')`}}></div>
+                                    <div className="w-full h-[180px] rounded-[4px] mb-4 bg-cover bg-center shrink-0 shadow-sm" style={{backgroundImage: `url('${match.img}')`}}></div>
                                     
                                     {/* Countdown Timer */}
                                     <div className="flex justify-center gap-2 shrink-0 pb-2">
                                         <div className="text-center w-[52px]">
                                             <div className="text-[10px] text-gray-500 mb-1.5 font-bold">DAY</div>
-                                            <div className="bg-white rounded-[8px] py-2 text-xl font-black text-gray-900 border border-gray-200 shadow-sm">{d}</div>
+                                            <div className="bg-white rounded-[4px] py-2 text-xl font-black text-gray-900 border border-gray-200 shadow-sm">{d}</div>
                                         </div>
                                         <div className="text-xl font-bold text-gray-300 mt-5">:</div>
                                         <div className="text-center w-[52px]">
                                             <div className="text-[10px] text-gray-500 mb-1.5 font-bold">HOUR</div>
-                                            <div className="bg-white rounded-[8px] py-2 text-xl font-black text-gray-900 border border-gray-200 shadow-sm">{h}</div>
+                                            <div className="bg-white rounded-[4px] py-2 text-xl font-black text-gray-900 border border-gray-200 shadow-sm">{h}</div>
                                         </div>
                                         <div className="text-xl font-bold text-gray-300 mt-5">:</div>
                                         <div className="text-center w-[52px]">
                                             <div className="text-[10px] text-gray-500 mb-1.5 font-bold">MIN</div>
-                                            <div className="bg-white rounded-[8px] py-2 text-xl font-black text-gray-900 border border-gray-200 shadow-sm">{m}</div>
+                                            <div className="bg-white rounded-[4px] py-2 text-xl font-black text-gray-900 border border-gray-200 shadow-sm">{m}</div>
                                         </div>
                                         <div className="text-xl font-bold text-gray-300 mt-5">:</div>
                                         <div className="text-center w-[52px]">
                                             <div className="text-[10px] text-gray-500 mb-1.5 font-bold">SEC</div>
-                                            <div className="bg-white rounded-[8px] py-2 text-xl font-black text-gray-900 border border-gray-200 shadow-sm">{s}</div>
+                                            <div className="bg-white rounded-[4px] py-2 text-xl font-black text-gray-900 border border-gray-200 shadow-sm">{s}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -339,7 +339,7 @@ export default function Home() {
                                             (el.children[idx] as HTMLElement).scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
                                         }
                                     }}
-                                    className={`w-2 h-2 rounded-full transition-all duration-300 ${activeNextMatchTab === idx ? 'bg-gray-800' : 'bg-gray-300 hover:bg-gray-400'}`}
+                                    className={`w-2 h-2 rounded-[4px] transition-all duration-300 ${activeNextMatchTab === idx ? 'bg-gray-800' : 'bg-gray-300 hover:bg-gray-400'}`}
                                     aria-label={`Slide ${idx + 1}`}
                                 />
                             ))}
@@ -354,7 +354,7 @@ export default function Home() {
                 {/* 3. Event Banner */}
                 <FadeUp>
 <section>
-                    <div className="w-full h-[140px] rounded-[8px] bg-blue-900 overflow-hidden relative cursor-pointer shadow-sm">
+                    <div className="w-full h-[140px] rounded-[4px] bg-blue-900 overflow-hidden relative cursor-pointer shadow-sm">
                         <div className="absolute inset-0 bg-cover bg-center opacity-50" style={{backgroundImage: "url('https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=1200')"}}></div>
                         <div className="absolute inset-0 flex items-center justify-between px-10">
                             <div className="text-white">
@@ -403,7 +403,7 @@ export default function Home() {
                             {/* Inner wide container for cards */}
                             <div className="flex gap-4 w-max shrink-0">
                                 {filteredNews.map((news) => (
-                                    <div key={news.id} className="w-[260px] h-[400px] bg-white border border-gray-200 rounded-[8px] flex flex-col hover:shadow-md transition-shadow group overflow-hidden">
+                                    <div key={news.id} className="w-[260px] h-[400px] bg-white border border-gray-200 rounded-[4px] flex flex-col hover:shadow-md transition-shadow group overflow-hidden">
                                         <div className="p-6 flex flex-col flex-1 pointer-events-none select-none">
                                             <div>
                                                 <span className={`text-[10px] font-bold px-2 py-1 rounded-[4px] inline-block mb-4 text-white ${news.category === 'Notice' ? 'bg-blue-600' : news.category === 'Tournament' ? 'bg-red-600' : 'bg-green-600'}`}>
@@ -426,13 +426,13 @@ export default function Home() {
                         <div className="absolute right-0 top-0 bottom-4 w-32 bg-gradient-to-l from-gray-100 via-gray-100/70 to-transparent flex flex-col items-end justify-center pr-4 gap-2 pointer-events-none z-50">
                             <button 
                                 onClick={scrollNewsLeft}
-                                className="w-12 h-12 rounded-full bg-[#4A4A4A] text-white flex items-center justify-center hover:bg-black transition-colors pointer-events-auto shadow-lg"
+                                className="w-12 h-12 rounded-[4px] bg-[#4A4A4A] text-white flex items-center justify-center hover:bg-black transition-colors pointer-events-auto shadow-lg"
                             >
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-6 h-6"><path d="M15 18l-6-6 6-6" /></svg>
                             </button>
                             <button 
                                 onClick={scrollNewsRight}
-                                className="w-12 h-12 rounded-full bg-[#4A4A4A] text-white flex items-center justify-center hover:bg-black transition-colors pointer-events-auto shadow-lg"
+                                className="w-12 h-12 rounded-[4px] bg-[#4A4A4A] text-white flex items-center justify-center hover:bg-black transition-colors pointer-events-auto shadow-lg"
                             >
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-6 h-6"><path d="M9 18l6-6-6-6" /></svg>
                             </button>
@@ -462,7 +462,7 @@ export default function Home() {
                                     <button 
                                         key={tab} 
                                         onClick={() => setRankTab(tab)}
-                                        className={`px-4 py-1 rounded-full text-[13px] font-bold border transition-colors ${rankTab === tab ? 'bg-[#222] text-white border-[#222]' : 'bg-transparent text-gray-500 border-gray-300 hover:border-gray-400 hover:text-gray-700'}`}
+                                        className={`px-4 py-1 rounded-[4px] text-[13px] font-bold border transition-colors ${rankTab === tab ? 'bg-[#222] text-white border-[#222]' : 'bg-transparent text-gray-500 border-gray-300 hover:border-gray-400 hover:text-gray-700'}`}
                                     >
                                         {tab}
                                     </button>
@@ -476,7 +476,7 @@ export default function Home() {
                                         <button 
                                             key={sub}
                                             onClick={() => setBrandTab(sub)}
-                                            className={`px-3 py-1.5 text-xs font-bold rounded-[6px] transition-colors ${brandTab === sub ? 'bg-red-600 text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}
+                                            className={`px-3 py-1.5 text-xs font-bold rounded-[4px] transition-colors ${brandTab === sub ? 'bg-red-600 text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}
                                         >
                                             {sub}
                                         </button>
@@ -486,7 +486,7 @@ export default function Home() {
                         </div>
                         
                         {/* 2-column list layout */}
-                        <div className="bg-white rounded-[12px] p-4 sm:p-6 shadow-sm border border-gray-100 flex-1">
+                        <div className="bg-white rounded-[4px] p-4 sm:p-6 shadow-sm border border-gray-100 flex-1">
                             <div className="grid grid-cols-1 xl:grid-cols-2 xl:grid-rows-5 xl:grid-flow-col gap-x-12 gap-y-0 h-full">
                             {activeRankingData.map((item, idx) => (
                                 <div key={item.rank} className={`flex items-center justify-between py-4 px-2 ${idx === 4 || idx === 9 ? '' : 'border-b border-gray-100'} hover:bg-gray-50 transition-colors cursor-pointer group`}>
@@ -494,7 +494,7 @@ export default function Home() {
                                         {/* Rank Number */}
                                         <div className={`w-6 text-center font-black text-xl ${item.rank === 1 ? 'text-[#EAA51D]' : item.rank === 2 ? 'text-[#7C8B9D]' : item.rank === 3 ? 'text-[#A06B60]' : item.rank >= 6 ? 'text-[#6B6B6B]' : 'text-gray-900'}`}>{item.rank}</div>
                                         {/* Profile or Brand Logo */}
-                                        <div className={`h-12 rounded-[8px] bg-cover bg-center shrink-0 border border-gray-100 ${rankTab === '브랜드' ? 'w-12 bg-contain bg-no-repeat bg-white' : 'w-12'}`} style={{backgroundImage: `url('${item.img}')`}}></div>
+                                        <div className={`h-12 rounded-[4px] bg-cover bg-center shrink-0 border border-gray-100 ${rankTab === '브랜드' ? 'w-12 bg-contain bg-no-repeat bg-white' : 'w-12'}`} style={{backgroundImage: `url('${item.img}')`}}></div>
                                         {/* Name & Sponsors */}
                                         <div className="flex flex-col justify-center overflow-hidden flex-1 min-w-0">
                                             <div className="flex items-baseline gap-1.5 mb-1 w-full overflow-hidden">
@@ -550,9 +550,9 @@ export default function Home() {
                                     { rank: 3, name: "하마다 아키노리", enName: "Akinori Hamada", no: "1046", color: "text-[#CD7F32]", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=300" },
                                     { rank: 3, name: "무라마츠 하루키", enName: "Haruki Muramatsu", no: "0001", color: "text-[#CD7F32]", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" },
                                 ].map((p, idx) => (
-                                    <div key={idx} className="flex gap-3 items-center pointer-events-none py-2 px-2 -mx-2 rounded-[8px] relative group">
+                                    <div key={idx} className="flex gap-3 items-center pointer-events-none py-2 px-2 -mx-2 rounded-[4px] relative group">
                                         <div className={`text-xl font-black w-6 text-center shrink-0 ${p.color}`}>{p.rank}</div>
-                                        <div className="w-8 h-8 rounded-full bg-cover bg-center border border-gray-200 shrink-0" style={{backgroundImage: `url('${p.img}')`}}></div>
+                                        <div className="w-8 h-8 rounded-[4px] bg-cover bg-center border border-gray-200 shrink-0" style={{backgroundImage: `url('${p.img}')`}}></div>
                                         <div className="flex flex-col overflow-hidden">
                                             <span className="font-bold text-gray-900 truncate text-[13px]">{p.name}</span>
                                             <span className="text-[9px] text-gray-400 truncate leading-tight">{p.no} | {p.enName}</span>
@@ -570,9 +570,9 @@ export default function Home() {
                                     { rank: 3, name: "오오우치 마유미", enName: "Mayumi Ouchi", no: "0077", color: "text-[#CD7F32]", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=300" },
                                     { rank: 3, name: "스즈키 미쿠", enName: "Miku Suzuki", no: "0004", color: "text-[#CD7F32]", img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=300" },
                                 ].map((p, idx) => (
-                                    <div key={idx} className="flex gap-3 items-center pointer-events-none py-2 px-2 -mx-2 rounded-[8px] relative group">
+                                    <div key={idx} className="flex gap-3 items-center pointer-events-none py-2 px-2 -mx-2 rounded-[4px] relative group">
                                         <div className={`text-xl font-black w-6 text-center shrink-0 ${p.color}`}>{p.rank}</div>
-                                        <div className="w-8 h-8 rounded-full bg-cover bg-center border border-gray-200 shrink-0" style={{backgroundImage: `url('${p.img}')`}}></div>
+                                        <div className="w-8 h-8 rounded-[4px] bg-cover bg-center border border-gray-200 shrink-0" style={{backgroundImage: `url('${p.img}')`}}></div>
                                         <div className="flex flex-col overflow-hidden">
                                             <span className="font-bold text-gray-900 truncate text-[13px]">{p.name}</span>
                                             <span className="text-[9px] text-gray-400 truncate leading-tight">{p.no} | {p.enName}</span>
@@ -596,10 +596,10 @@ export default function Home() {
                         </button>
                     </div>
                     <div className="flex flex-col lg:flex-row gap-6">
-                        <a href="https://youtu.be/VOA4GNHOsdE?si=SxSuMJW1FwiTHJtZ" target="_blank" rel="noopener noreferrer" className="flex-1 relative aspect-video rounded-[8px] overflow-hidden group cursor-pointer shadow-sm block">
+                        <a href="https://youtu.be/VOA4GNHOsdE?si=SxSuMJW1FwiTHJtZ" target="_blank" rel="noopener noreferrer" className="flex-1 relative aspect-video rounded-[4px] overflow-hidden group cursor-pointer shadow-sm block">
                             <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style={{backgroundImage: "url('https://img.youtube.com/vi/VOA4GNHOsdE/maxresdefault.jpg')"}}></div>
                             <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors flex items-center justify-center">
-                                <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center text-white pl-1 shadow-lg transition-transform duration-300 group-hover:scale-110">
+                                <div className="w-16 h-16 bg-red-600 rounded-[4px] flex items-center justify-center text-white pl-1 shadow-lg transition-transform duration-300 group-hover:scale-110">
                                     <svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8"><path d="M8 5v14l11-7z"/></svg>
                                 </div>
                             </div>
@@ -617,7 +617,7 @@ export default function Home() {
                                     { id: "N9pVyM6WLeg", title: "투어 비하인드 씬 대공개", date: "2026.08.05", link: "https://youtu.be/N9pVyM6WLeg?si=xRcvuwGKuXN8NYSn" },
                                     { id: "S8XDJRxAZnY", title: "다트 프로들의 연습 루틴 엿보기", date: "2026.08.01", link: "https://youtu.be/S8XDJRxAZnY?si=p4Zfz_3Eh8OKhF9_" },
                                 ].map((item, idx) => (
-                                    <a key={idx} href={item.link} target="_blank" rel="noopener noreferrer" className="flex-1 min-h-[70px] flex bg-white rounded-[8px] overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer group">
+                                    <a key={idx} href={item.link} target="_blank" rel="noopener noreferrer" className="flex-1 min-h-[70px] flex bg-white rounded-[4px] overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer group">
                                         <div className="w-1/3 shrink-0 bg-cover bg-center" style={{backgroundImage: `url('https://img.youtube.com/vi/${item.id}/hqdefault.jpg')`}}></div>
                                         <div className="w-2/3 p-3 flex flex-col justify-center gap-1">
                                             <h4 className="text-sm font-bold text-gray-900 line-clamp-2 group-hover:underline decoration-2 underline-offset-2 leading-snug">{item.title}</h4>
@@ -639,7 +639,7 @@ export default function Home() {
                     </div>
                     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2">
                         {["PHOENIXDARTS", "TRiNiDAD", "CONDOR", "L-style", "DYNASTY", "TARGET"].map((sp, idx) => (
-                            <div key={idx} className="bg-white border border-gray-200 h-16 flex items-center justify-center rounded-[8px] text-gray-500 font-bold text-sm shadow-sm hover:border-gray-400 cursor-pointer transition-colors">
+                            <div key={idx} className="bg-white border border-gray-200 h-16 flex items-center justify-center rounded-[4px] text-gray-500 font-bold text-sm shadow-sm hover:border-gray-400 cursor-pointer transition-colors">
                                 {sp}
                             </div>
                         ))}
