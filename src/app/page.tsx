@@ -62,17 +62,19 @@ export default function Home() {
     // 2. Main Hero State
     const [activeHero, setActiveHero] = useState(0);
     const [heroHover, setHeroHover] = useState(false);
+    const [isHeroPaused, setIsHeroPaused] = useState(false);
     const heroSlides = [
         { title: "2026 PERFECT 챔피언십\n결승전 LIVE", image: "https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=2000" },
         { title: "오키나와 에어리어\n차세대 선수 결정전", image: "https://images.unsplash.com/photo-1611394145458-71e16f31620c?q=80&w=2000" }
     ];
 
     useEffect(() => {
+        if (isHeroPaused) return;
         const interval = setInterval(() => {
             setActiveHero(prev => (prev === heroSlides.length - 1 ? 0 : prev + 1));
         }, 5000);
         return () => clearInterval(interval);
-    }, [heroSlides.length]);
+    }, [heroSlides.length, isHeroPaused]);
 
     // 2. Next Match Carousel
     const nextMatchRef = useRef<HTMLDivElement>(null);
@@ -208,7 +210,13 @@ export default function Home() {
                             {heroSlides.map((_, idx) => (
                                 <div key={idx} onClick={() => setActiveHero(idx)} className={`h-1.5 rounded-full cursor-pointer transition-all ${activeHero === idx ? 'w-6 bg-white' : 'w-1.5 bg-white/50 hover:bg-white/80'}`}></div>
                             ))}
-                            <span className="text-white ml-2 text-xs font-black tracking-widest cursor-pointer">II</span>
+                            <button onClick={() => setIsHeroPaused(!isHeroPaused)} className="text-white ml-2 hover:text-gray-300 transition-colors focus:outline-none flex items-center justify-center">
+                                {isHeroPaused ? (
+                                    <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5"><path d="M8 5v14l11-7z"/></svg>
+                                ) : (
+                                    <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                )}
+                            </button>
                         </div>
 
                         {/* Left/Right Arrows (visible on hover) */}
