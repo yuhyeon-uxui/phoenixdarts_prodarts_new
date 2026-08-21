@@ -72,7 +72,7 @@ export default function Header() {
             )}
           </button>
           
-          <a href="#" className="bg-[#E53935] hover:bg-[#D32F2F] text-white px-4 lg:px-7 py-2 lg:py-2.5 rounded-lg text-sm font-black tracking-widest shadow-md transition-all hover:scale-105 active:scale-95 flex items-center gap-2">
+          <a href="#" className="hidden lg:flex bg-[#E53935] hover:bg-[#D32F2F] text-white px-7 py-2.5 rounded-lg text-sm font-black tracking-widest shadow-md transition-all hover:scale-105 active:scale-95 items-center gap-2">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
             LOGIN
           </a>
@@ -95,7 +95,7 @@ export default function Header() {
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 top-20 bg-white/95 dark:bg-[#121212]/95 backdrop-blur-xl z-[90] lg:hidden flex flex-col p-6 overflow-y-auto animate-in fade-in slide-in-from-top-4 duration-300 shadow-xl border-t border-gray-100 dark:border-gray-800">
-          <nav className="flex flex-col gap-2">
+          <nav className="flex flex-col gap-2 mb-8">
             {['PERFECT 소개', '투어 일정', 'LIVE 중계', '매치 결과', '랭킹'].map((item) => (
               <div key={item} className="flex flex-col border-b border-gray-100 dark:border-gray-800 last:border-0 pb-2">
                 <div className="flex justify-between items-center py-3">
@@ -111,6 +111,12 @@ export default function Header() {
               </div>
             ))}
           </nav>
+          
+          {/* Mobile Login Button */}
+          <a href="#" className="bg-[#E53935] hover:bg-[#D32F2F] text-white px-7 py-3 rounded-lg text-lg font-black tracking-widest shadow-md transition-all flex items-center justify-center gap-2 w-full mt-auto mb-10">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            LOGIN
+          </a>
         </div>
       )}
     </header>
