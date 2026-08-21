@@ -492,9 +492,9 @@ export default function Home() {
                         <h3 className="text-2xl font-bold text-gray-900 mb-2">PREVIOUS WINNER</h3>
                         <p className="text-sm font-bold text-gray-500 mb-4">제11전 이시카와 챔피언십</p>
                         
-                        <div className="flex flex-col gap-3">
+                        <div className="flex flex-col">
                             {/* MEN */}
-                            <div className="flex flex-col gap-0.5">
+                            <div className="flex flex-col gap-0.5 pb-1.5 border-b border-gray-100">
                                 <h4 className="text-[10px] font-black tracking-widest text-gray-400 mb-0.5 ml-2">MEN</h4>
                                 {[
                                     { rank: 1, name: "아리하라 류타", enName: "Ryuta Arihara", no: "0003", color: "text-[#B8860B]", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300" },
@@ -515,7 +515,7 @@ export default function Home() {
                             </div>
                             
                             {/* WOMEN */}
-                            <div className="flex flex-col gap-0.5">
+                            <div className="flex flex-col gap-0.5 pt-1.5">
                                 <h4 className="text-[10px] font-black tracking-widest text-gray-400 mb-0.5 ml-2">WOMEN</h4>
                                 {[
                                     { rank: 1, name: "오오시로 아키호", enName: "Akiho Oshiro", no: "0022", color: "text-[#B8860B]", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300" },
