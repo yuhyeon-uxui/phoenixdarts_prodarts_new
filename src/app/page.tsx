@@ -399,26 +399,26 @@ export default function Home() {
                 </section>
 
                 {/* 5. Ranking (New Layout from Image) */}
-                <section className="flex flex-col lg:flex-row gap-6">
+                <section className="flex flex-col lg:flex-row gap-6 lg:gap-8 mb-16">
                     {/* Left: 선수 랭킹 */}
-                    <div className="flex-1 bg-white rounded-[8px] p-6 border border-gray-100 shadow-sm">
+                    <div className="flex-1 flex flex-col">
                         {/* Title Row */}
-                        <div className="flex items-center justify-between mb-4">
-                            <h3 className="text-2xl font-bold text-gray-900">RANKING</h3>
-                            <button className="text-sm font-bold text-gray-400 hover:text-gray-900 flex items-center gap-1 transition-colors">
+                        <div className="flex items-end justify-between mb-3 px-1">
+                            <h3 className="text-3xl font-black text-gray-900 tracking-tighter">RANKING</h3>
+                            <button className="text-[11px] font-black text-gray-400 hover:text-gray-900 flex items-center gap-1 transition-colors tracking-widest pb-1">
                                 MORE
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4"><path d="M9 18l6-6-6-6" /></svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-3.5 h-3.5"><path d="M9 18l6-6-6-6" /></svg>
                             </button>
                         </div>
                         
                         {/* Tabs Row */}
-                        <div className="flex items-center mb-6 overflow-x-auto scrollbar-hide pb-1">
+                        <div className="flex items-center mb-4 overflow-x-auto scrollbar-hide pb-1 px-1">
                             <div className="flex gap-2 shrink-0">
                                 {['남자', '여자', '브랜드'].map((tab) => (
                                     <button 
                                         key={tab} 
                                         onClick={() => setRankTab(tab)}
-                                        className={`px-4 py-1.5 rounded-full text-sm font-bold border transition-colors ${rankTab === tab ? 'bg-black text-white border-black' : 'bg-white text-gray-400 border-gray-200 hover:border-gray-400 hover:text-gray-600'}`}
+                                        className={`px-4 py-1 rounded-full text-[13px] font-bold border transition-colors ${rankTab === tab ? 'bg-[#222] text-white border-[#222]' : 'bg-transparent text-gray-500 border-gray-300 hover:border-gray-400 hover:text-gray-700'}`}
                                     >
                                         {tab}
                                     </button>
@@ -442,7 +442,8 @@ export default function Home() {
                         </div>
                         
                         {/* 2-column list layout */}
-                        <div className="grid grid-cols-1 xl:grid-cols-2 xl:grid-rows-5 xl:grid-flow-col gap-x-12 gap-y-0">
+                        <div className="bg-white rounded-[12px] p-4 sm:p-6 shadow-sm border border-gray-100 flex-1">
+                            <div className="grid grid-cols-1 xl:grid-cols-2 xl:grid-rows-5 xl:grid-flow-col gap-x-12 gap-y-0 h-full">
                             {activeRankingData.map((item) => (
                                 <div key={item.rank} className="flex items-center justify-between py-4 px-2 border-b border-gray-100 hover:bg-gray-50 transition-colors cursor-pointer group">
                                     <div className="flex items-center gap-3 md:gap-4">
@@ -484,13 +485,16 @@ export default function Home() {
                                     </div>
                                 </div>
                             ))}
+                            </div>
                         </div>
                     </div>
 
                     {/* Right: 대회 리더보드 */}
-                    <div className="w-full lg:w-[320px] shrink-0 bg-white rounded-[8px] p-6 border border-gray-100 shadow-sm flex flex-col">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-2">PREVIOUS WINNER</h3>
-                        <p className="text-sm font-bold text-gray-500 mb-4">제11전 이시카와 챔피언십</p>
+                    <div className="w-full lg:w-[320px] shrink-0 flex flex-col pt-1 lg:pl-4">
+                        <div className="mb-6 px-1">
+                            <h3 className="text-3xl font-black text-gray-900 tracking-tighter mb-1">PREVIOUS WINNER</h3>
+                            <p className="text-[13px] font-bold text-gray-500">제11전 이시카와 챔피언십</p>
+                        </div>
                         
                         <div className="flex flex-col">
                             {/* MEN */}
