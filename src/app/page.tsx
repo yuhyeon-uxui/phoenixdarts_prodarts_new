@@ -224,13 +224,13 @@ export default function Home() {
                         <div className={`absolute inset-y-0 right-0 w-24 flex flex-col items-end justify-center pr-6 gap-3 transition-opacity duration-300 z-50 pointer-events-none ${heroHover ? 'opacity-100' : 'opacity-0'}`}>
                             <button 
                                 onClick={() => setActiveHero((prev) => (prev === 0 ? heroSlides.length - 1 : prev - 1))}
-                                className="w-12 h-12 rounded-[4px] bg-white/10 border border-white/20 text-white flex items-center justify-center backdrop-blur-md hover:bg-white/20 transition-colors pointer-events-auto shadow-lg"
+                                className="w-12 h-12 rounded-[2px] bg-white/10 border border-white/20 text-white flex items-center justify-center backdrop-blur-md hover:bg-white/20 transition-colors pointer-events-auto shadow-lg"
                             >
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5"><path d="M15 18l-6-6 6-6" /></svg>
                             </button>
                             <button 
                                 onClick={() => setActiveHero((prev) => (prev === heroSlides.length - 1 ? 0 : prev + 1))}
-                                className="w-12 h-12 rounded-[4px] bg-white/10 border border-white/20 text-white flex items-center justify-center backdrop-blur-md hover:bg-white/20 transition-colors pointer-events-auto shadow-lg"
+                                className="w-12 h-12 rounded-[2px] bg-white/10 border border-white/20 text-white flex items-center justify-center backdrop-blur-md hover:bg-white/20 transition-colors pointer-events-auto shadow-lg"
                             >
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5"><path d="M9 18l6-6-6-6" /></svg>
                             </button>
@@ -250,7 +250,7 @@ export default function Home() {
                                 const el = nextMatchRef.current;
                                 if (el) el.scrollBy({ left: -el.clientWidth, behavior: 'smooth' });
                             }}
-                            className="absolute left-4 top-[220px] w-8 h-8 rounded-[4px] bg-black/40 text-white flex items-center justify-center hover:bg-black/60 z-20 transition-colors opacity-0 group-hover:opacity-100 disabled:opacity-0"
+                            className="absolute left-4 top-[220px] w-8 h-8 rounded-[2px] bg-black/40 text-white flex items-center justify-center hover:bg-black/60 z-20 transition-colors opacity-0 group-hover:opacity-100 disabled:opacity-0"
                             style={{ display: activeNextMatchTab === 0 ? 'none' : 'flex' }}
                         >
                             <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
@@ -260,7 +260,7 @@ export default function Home() {
                                 const el = nextMatchRef.current;
                                 if (el) el.scrollBy({ left: el.clientWidth, behavior: 'smooth' });
                             }}
-                            className="absolute right-4 top-[220px] w-8 h-8 rounded-[4px] bg-black/40 text-white flex items-center justify-center hover:bg-black/60 z-20 transition-colors opacity-0 group-hover:opacity-100"
+                            className="absolute right-4 top-[220px] w-8 h-8 rounded-[2px] bg-black/40 text-white flex items-center justify-center hover:bg-black/60 z-20 transition-colors opacity-0 group-hover:opacity-100"
                             style={{ display: activeNextMatchTab === 2 ? 'none' : 'flex' }}
                         >
                             <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
@@ -406,7 +406,7 @@ export default function Home() {
                                     <div key={news.id} className="w-[260px] h-[400px] bg-white border border-gray-200 rounded-[4px] flex flex-col hover:shadow-md transition-shadow group overflow-hidden">
                                         <div className="p-6 flex flex-col flex-1 pointer-events-none select-none">
                                             <div>
-                                                <span className={`text-[10px] font-bold px-2 py-1 rounded-[4px] inline-block mb-4 text-white ${news.category === 'Notice' ? 'bg-blue-600' : news.category === 'Tournament' ? 'bg-red-600' : 'bg-green-600'}`}>
+                                                <span className={`text-[10px] font-bold px-2 py-1 rounded-[2px] inline-block mb-4 text-white ${news.category === 'Notice' ? 'bg-blue-600' : news.category === 'Tournament' ? 'bg-red-600' : 'bg-green-600'}`}>
                                                     {news.category}
                                                 </span>
                                                 <h4 className="text-lg font-bold text-gray-900 mb-3 group-hover:underline line-clamp-2 leading-snug">{news.title}</h4>
@@ -426,13 +426,13 @@ export default function Home() {
                         <div className="absolute right-0 top-0 bottom-4 w-32 bg-gradient-to-l from-gray-100 via-gray-100/70 to-transparent flex flex-col items-end justify-center pr-4 gap-2 pointer-events-none z-50">
                             <button 
                                 onClick={scrollNewsLeft}
-                                className="w-12 h-12 rounded-[4px] bg-[#4A4A4A] text-white flex items-center justify-center hover:bg-black transition-colors pointer-events-auto shadow-lg"
+                                className="w-12 h-12 rounded-[2px] bg-[#4A4A4A] text-white flex items-center justify-center hover:bg-black transition-colors pointer-events-auto shadow-lg"
                             >
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-6 h-6"><path d="M15 18l-6-6 6-6" /></svg>
                             </button>
                             <button 
                                 onClick={scrollNewsRight}
-                                className="w-12 h-12 rounded-[4px] bg-[#4A4A4A] text-white flex items-center justify-center hover:bg-black transition-colors pointer-events-auto shadow-lg"
+                                className="w-12 h-12 rounded-[2px] bg-[#4A4A4A] text-white flex items-center justify-center hover:bg-black transition-colors pointer-events-auto shadow-lg"
                             >
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-6 h-6"><path d="M9 18l6-6-6-6" /></svg>
                             </button>
@@ -462,7 +462,7 @@ export default function Home() {
                                     <button 
                                         key={tab} 
                                         onClick={() => setRankTab(tab)}
-                                        className={`px-4 py-1 rounded-[4px] text-[13px] font-bold border transition-colors ${rankTab === tab ? 'bg-[#222] text-white border-[#222]' : 'bg-transparent text-gray-500 border-gray-300 hover:border-gray-400 hover:text-gray-700'}`}
+                                        className={`px-4 py-1 rounded-[2px] text-[13px] font-bold border transition-colors ${rankTab === tab ? 'bg-[#222] text-white border-[#222]' : 'bg-transparent text-gray-500 border-gray-300 hover:border-gray-400 hover:text-gray-700'}`}
                                     >
                                         {tab}
                                     </button>
@@ -476,7 +476,7 @@ export default function Home() {
                                         <button 
                                             key={sub}
                                             onClick={() => setBrandTab(sub)}
-                                            className={`px-3 py-1.5 text-xs font-bold rounded-[4px] transition-colors ${brandTab === sub ? 'bg-red-600 text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}
+                                            className={`px-3 py-1.5 text-xs font-bold rounded-[2px] transition-colors ${brandTab === sub ? 'bg-red-600 text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}
                                         >
                                             {sub}
                                         </button>
@@ -506,7 +506,7 @@ export default function Home() {
                                             {rankTab !== '브랜드' && (
                                                 <div className="flex gap-1.5 flex-wrap">
                                                     {item.sponsors.map((sp: string) => (
-                                                        <span key={sp} className="text-[9px] bg-gray-100 text-gray-500 px-1.5 py-0.5 rounded-[4px] font-bold uppercase tracking-wider">{sp}</span>
+                                                        <span key={sp} className="text-[9px] bg-gray-100 text-gray-500 px-1.5 py-0.5 rounded-[2px] font-bold uppercase tracking-wider">{sp}</span>
                                                     ))}
                                                 </div>
                                             )}
