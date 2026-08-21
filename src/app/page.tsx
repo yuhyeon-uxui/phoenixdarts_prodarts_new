@@ -300,10 +300,10 @@ export default function Home() {
                                         <p className="text-gray-500 text-[13px] font-medium">{match.date}</p>
                                     </div>
 
-                                    <div className="w-full h-[180px] rounded-[10px] mb-6 bg-cover bg-center shrink-0 shadow-sm" style={{backgroundImage: `url('${match.img}')`}}></div>
+                                    <div className="w-full h-[180px] rounded-[10px] mb-4 bg-cover bg-center shrink-0 shadow-sm" style={{backgroundImage: `url('${match.img}')`}}></div>
                                     
                                     {/* Countdown Timer */}
-                                    <div className="flex justify-center gap-2 shrink-0">
+                                    <div className="flex justify-center gap-2 shrink-0 pb-2">
                                         <div className="text-center w-[52px]">
                                             <div className="text-[10px] text-gray-500 mb-1.5 font-bold">DAY</div>
                                             <div className="bg-white rounded-[8px] py-2 text-xl font-black text-gray-900 border border-gray-200 shadow-sm">{d}</div>
