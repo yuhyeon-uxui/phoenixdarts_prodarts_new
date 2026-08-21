@@ -3,65 +3,54 @@
 import Link from 'next/link';
 
 export default function Footer() {
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-
     return (
-        <footer className="w-full mt-auto flex flex-col">
-            {/* Top Bar (Black) */}
-            <div className="w-full h-10 bg-[#222] border-t-4 border-[#111] relative">
-                {/* Scroll to Top Button */}
-                <button 
-                    onClick={scrollToTop}
-                    className="absolute right-4 lg:right-[60px] top-0 h-full px-4 bg-gradient-to-b from-white to-gray-300 text-gray-800 text-xs font-bold flex items-center gap-1.5 shadow-sm hover:from-white hover:to-gray-100 rounded-t-sm"
-                >
-                    <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path d="M12 4l8 8h-6v8h-4v-8H4l8-8z"/></svg>
-                    ページの先頭へ
-                </button>
-            </div>
-
-            {/* Main Red Area */}
-            <div className="w-full bg-[#b91515] py-10 relative overflow-hidden" style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(0,0,0,0.05) 2px, rgba(0,0,0,0.05) 4px)' }}>
-                <div className="max-w-[1280px] mx-auto px-4 lg:px-[60px] flex flex-col md:flex-row justify-between items-end gap-8 relative z-10">
-                    
-                    {/* Left: PERFECT Logo */}
-                    <div className="flex flex-col items-center">
-                        <svg viewBox="0 0 100 60" fill="white" className="w-20 h-12 mb-1">
-                            {/* Abstract dart & hand shape */}
-                            <path d="M60,20 L80,15 L90,20 L80,25 Z" />
-                            <path d="M30,22 L60,20 L60,22 Z" stroke="white" strokeWidth="2" />
-                            <path d="M40,25 Q50,45 45,55 L35,55 Q35,35 45,25 Z" />
-                            <path d="M45,25 Q60,35 55,20 L50,15 Q40,20 45,25 Z" />
-                        </svg>
-                        <h2 className="text-4xl md:text-5xl font-serif font-black text-white tracking-[0.2em] leading-none mb-1 shadow-sm">
-                            PERFECT
-                        </h2>
-                        <span className="text-[9px] md:text-[10px] text-white tracking-[0.3em] font-medium opacity-90">
-                            SOFT DARTS PRO TOURNAMENT
-                        </span>
-                    </div>
-
-                    {/* Right: Links & Copyright */}
-                    <div className="flex flex-col items-end gap-16">
-                        {/* Links */}
-                        <div className="flex items-center gap-6">
-                            <Link href="#" className="flex items-center gap-1.5 text-white hover:text-gray-200 transition-colors text-sm font-medium">
-                                <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-                                お問い合わせ
-                            </Link>
-                            <Link href="#" className="flex items-center gap-1.5 text-white hover:text-gray-200 transition-colors text-sm font-medium">
-                                <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-                                プライバシーポリシー
-                            </Link>
+        <footer className="bg-[#111] text-gray-300 py-12 md:py-16 mt-auto border-t border-[#222]">
+            <div className="max-w-[1280px] mx-auto px-4 lg:px-[60px]">
+                <div className="flex flex-col lg:flex-row justify-between items-start gap-12 mb-12">
+                    {/* Logo & Info */}
+                    <div className="flex flex-col gap-4 lg:w-1/2">
+                        {/* PERFECT Logo (Premium Typography style) */}
+                        <div className="flex flex-col">
+                            <h2 className="text-3xl md:text-4xl font-serif font-black text-white tracking-[0.2em] mb-1">
+                                PERFECT
+                            </h2>
+                            <span className="text-[10px] text-gray-400 tracking-[0.3em] font-medium">
+                                SOFT DARTS PRO TOURNAMENT
+                            </span>
                         </div>
-
-                        {/* Copyright */}
-                        <p className="text-white text-xs font-medium tracking-wide">
-                            COPYRIGHT &copy; PERFECT. ALL RIGHTS RESERVED.
-                        </p>
                     </div>
-
+                    
+                    {/* Quick Links */}
+                    <div className="flex flex-col sm:flex-row gap-8 md:gap-16 items-start lg:items-center mt-4 lg:mt-0">
+                        <Link href="#" className="flex items-center gap-2 text-sm text-gray-400 hover:text-white hover:translate-x-1 transition-all">
+                            <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                            お問い合わせ
+                        </Link>
+                        <Link href="#" className="flex items-center gap-2 text-sm text-gray-400 hover:text-white hover:translate-x-1 transition-all">
+                            <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                            プライバシーポリシー
+                        </Link>
+                    </div>
+                </div>
+                
+                {/* Divider */}
+                <div className="w-full h-[1px] bg-[#222] mb-8"></div>
+                
+                {/* Bottom */}
+                <div className="flex flex-col-reverse md:flex-row justify-between items-center gap-6">
+                    <p className="text-xs text-gray-500 font-medium tracking-widest uppercase">
+                        &copy; PERFECT. ALL RIGHTS RESERVED.
+                    </p>
+                    
+                    {/* Social Icons (Optional but keeps it premium) */}
+                    <div className="flex items-center gap-3">
+                        <Link href="#" className="w-10 h-10 rounded-full bg-[#1a1a1a] border border-[#333] flex items-center justify-center hover:bg-red-600 hover:border-red-600 hover:scale-110 hover:text-white transition-all duration-300">
+                            <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.015 3.015 0 0 0-2.122 2.136C0 8.07 0 12 0 12s0 3.93.501 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.55 9.377.55 9.377.55s7.505 0 9.377-.55a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </Link>
+                        <Link href="#" className="w-10 h-10 rounded-full bg-[#1a1a1a] border border-[#333] flex items-center justify-center hover:bg-blue-600 hover:border-blue-600 hover:scale-110 hover:text-white transition-all duration-300">
+                            <svg viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </footer>
