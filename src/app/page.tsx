@@ -403,11 +403,11 @@ export default function Home() {
                     {/* Left: 선수 랭킹 */}
                     <div className="flex-1 flex flex-col">
                         {/* Title Row */}
-                        <div className="flex items-end justify-between mb-3 px-1">
-                            <h3 className="text-3xl font-black text-gray-900 tracking-tighter">RANKING</h3>
-                            <button className="text-[11px] font-black text-gray-400 hover:text-gray-900 flex items-center gap-1 transition-colors tracking-widest pb-1">
+                        <div className="flex items-center justify-between mb-4 px-1">
+                            <h3 className="text-2xl font-bold text-gray-900">RANKING</h3>
+                            <button className="text-sm font-bold text-gray-400 hover:text-gray-900 flex items-center gap-1 transition-colors">
                                 MORE
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-3.5 h-3.5"><path d="M9 18l6-6-6-6" /></svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4"><path d="M9 18l6-6-6-6" /></svg>
                             </button>
                         </div>
                         
@@ -492,8 +492,8 @@ export default function Home() {
                     {/* Right: 대회 리더보드 */}
                     <div className="w-full lg:w-[320px] shrink-0 flex flex-col pt-1 lg:pl-4">
                         <div className="mb-6 px-1">
-                            <h3 className="text-3xl font-black text-gray-900 tracking-tighter mb-1">PREVIOUS WINNER</h3>
-                            <p className="text-[13px] font-bold text-gray-500">제11전 이시카와 챔피언십</p>
+                            <h3 className="text-2xl font-bold text-gray-900 mb-2">PREVIOUS WINNER</h3>
+                            <p className="text-sm font-bold text-gray-500">제11전 이시카와 챔피언십</p>
                         </div>
                         
                         <div className="flex flex-col">
