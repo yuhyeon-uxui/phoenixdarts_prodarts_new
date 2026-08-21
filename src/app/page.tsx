@@ -177,7 +177,7 @@ export default function Home() {
                 <section className="flex flex-col lg:flex-row gap-6 mb-16">
                     {/* Left Card: Main Hero (Crossfade Slider) */}
                     <div 
-                        className="flex-1 rounded-[12px] bg-gray-900 relative overflow-hidden h-[500px] flex flex-col justify-center shadow-lg"
+                        className="w-full lg:flex-1 rounded-[12px] bg-gray-900 relative overflow-hidden h-[500px] flex flex-col justify-center shadow-lg"
                         onMouseEnter={() => setHeroHover(true)}
                         onMouseLeave={() => setHeroHover(false)}
                     >
