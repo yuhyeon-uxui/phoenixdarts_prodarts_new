@@ -64,7 +64,7 @@ export default function Home() {
     const [heroHover, setHeroHover] = useState(false);
     const [isHeroPaused, setIsHeroPaused] = useState(false);
     const heroSlides = [
-        { title: "2026 PERFECT 챔피언십\n결승전 LIVE", image: "/hero_bg_1.png?v=2" },
+        { title: "2026 PERFECT 챔피언십\n결승전 LIVE", image: "/hero_bg_1.png?v=3" },
         { title: "오키나와 에어리어\n차세대 선수 결정전", image: "/hero_bg_2.png?v=2" }
     ];
 
