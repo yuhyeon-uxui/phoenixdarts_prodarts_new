@@ -659,7 +659,7 @@ export default function Home() {
                                             <span className="w-20 text-sm font-medium text-red-500">
                                                 {tourScheduleData[nextTourIdx].date} <span className="text-[10px] ml-0.5">{tourScheduleData[nextTourIdx].day}</span>
                                             </span>
-                                            <span className={`w-[72px] text-center text-[10px] font-bold px-2 py-1 rounded-[2px] ${tourScheduleData[nextTourIdx].grade === 'PT300' ? 'bg-black text-white' : tourScheduleData[nextTourIdx].grade === 'PT200' ? 'bg-gray-200 text-gray-600' : 'bg-[#EAA51D] text-white'}`}>
+                                            <span className={`w-20 text-center text-[10px] font-bold px-2 py-1 rounded-[2px] ${tourScheduleData[nextTourIdx].grade === 'PT300' ? 'bg-black text-white' : tourScheduleData[nextTourIdx].grade === 'PT200' ? 'bg-gray-200 text-gray-600' : 'bg-[#EAA51D] text-white'}`}>
                                                 {tourScheduleData[nextTourIdx].grade}
                                             </span>
                                             <div className="w-8 flex gap-1">
@@ -675,7 +675,7 @@ export default function Home() {
                                     <h4 className="font-bold text-gray-900">2026 PERFECT 투어 일정</h4>
                                 </div>
                             )}
-                            <div className="overflow-y-auto flex-1 p-2">
+                            <div className="overflow-y-auto flex-1 p-2 custom-scrollbar pr-1">
                                 {tourScheduleData.map((item, idx) => {
                                     if (idx === nextTourIdx) return null; // Skip the pinned one
                                     return (
@@ -686,7 +686,7 @@ export default function Home() {
                                                 <span className="w-20 text-sm font-medium flex items-center text-gray-400">
                                                     {item.date} <span className="text-[10px] ml-0.5">{item.day}</span>
                                                 </span>
-                                                <span className={`w-[72px] text-center text-[10px] font-bold px-2 py-1 rounded-[2px] ${item.grade === 'PT300' ? 'bg-black text-white' : item.grade === 'PT200' ? 'bg-gray-200 text-gray-600' : 'bg-[#EAA51D] text-white'}`}>
+                                                <span className={`w-20 text-center text-[10px] font-bold px-2 py-1 rounded-[2px] ${item.grade === 'PT300' ? 'bg-black text-white' : item.grade === 'PT200' ? 'bg-gray-200 text-gray-600' : 'bg-[#EAA51D] text-white'}`}>
                                                     {item.grade}
                                                 </span>
                                                 <div className="w-8 flex gap-1">
@@ -706,7 +706,7 @@ export default function Home() {
                             <div className="p-4 border-b border-gray-800 bg-black/20 shrink-0">
                                 <h4 className="font-bold text-white">프로테스트 정보</h4>
                             </div>
-                            <div className="overflow-y-auto flex-1 p-2">
+                            <div className="overflow-y-auto flex-1 p-2 custom-scrollbar-dark pr-1">
                                 {proTestData.map((item, idx) => (
                                     <div key={idx} className="flex items-center justify-between py-2.5 px-3 hover:bg-gray-800 rounded-[4px] transition-colors border-b border-gray-800 last:border-0 group cursor-pointer">
                                         <div className="flex items-center gap-4">
