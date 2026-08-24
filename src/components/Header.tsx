@@ -5,7 +5,6 @@ import React, { useState, useEffect } from 'react';
 export default function Header() {
   // 임시로 라이트 모드 고정 (다크 모드 잠시 보류)
   const [isDark, setIsDark] = useState(false);
-  const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -34,27 +33,13 @@ export default function Header() {
         <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2">
           <nav className="flex items-center bg-gray-500/10 dark:bg-[#1A1A1A]/50 backdrop-blur-md rounded-[4px] p-1">
             {['PERFECT 소개', '투어 일정', 'LIVE 중계', '매치 결과', '랭킹'].map((item) => (
-              <div 
-                key={item} 
-                className="relative"
-                onMouseEnter={() => setHoveredMenu(item)}
-                onMouseLeave={() => setHoveredMenu(null)}
+              <a 
+                key={item}
+                href="#" 
+                className="block px-6 py-2.5 rounded-[4px] text-sm font-bold transition-all duration-300 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10"
               >
-                <a href="#" className={`block px-6 py-2.5 rounded-[4px] text-sm font-bold transition-all duration-300 ${
-                  hoveredMenu === item ? 'bg-black text-white dark:bg-white dark:text-black shadow-md' : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
-                }`}>
-                  {item}
-                </a>
-
-                {/* 2-Depth Dropdown (Glassmorphism) */}
-                {hoveredMenu === item && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-48 bg-white/80 dark:bg-black/80 backdrop-filter backdrop-blur-2xl border border-white/50 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] rounded-[4px] py-3 flex flex-col z-[150] animate-in fade-in zoom-in-95 duration-200">
-                    <a href="#" className="px-5 py-2.5 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/10 transition-colors">서브메뉴 1</a>
-                    <a href="#" className="px-5 py-2.5 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/10 transition-colors">서브메뉴 2</a>
-                    <a href="#" className="px-5 py-2.5 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/10 transition-colors">서브메뉴 3</a>
-                  </div>
-                )}
-              </div>
+                {item}
+              </a>
             ))}
           </nav>
         </div>
@@ -96,18 +81,10 @@ export default function Header() {
         <div className="fixed inset-0 top-20 bg-white/95 dark:bg-[#121212]/95 backdrop-blur-xl z-[90] lg:hidden flex flex-col p-6 overflow-y-auto animate-in fade-in slide-in-from-top-4 duration-300 shadow-xl border-t border-gray-100 dark:border-gray-800">
           <nav className="flex flex-col gap-2 mb-8">
             {['PERFECT 소개', '투어 일정', 'LIVE 중계', '매치 결과', '랭킹'].map((item) => (
-              <div key={item} className="flex flex-col border-b border-gray-100 dark:border-gray-800 last:border-0 pb-2">
-                <div className="flex justify-between items-center py-3">
-                  <a href="#" className="text-xl font-bold text-gray-900 dark:text-white">{item}</a>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400"><path d="M9 18l6-6-6-6"/></svg>
-                </div>
-                {/* Mobile Submenu */}
-                <div className="flex flex-col gap-3 pl-4 pt-2 pb-3 bg-gray-50/50 dark:bg-white/5 rounded-[4px]">
-                    <a href="#" className="text-sm font-semibold text-gray-600 dark:text-gray-400">서브메뉴 1</a>
-                    <a href="#" className="text-sm font-semibold text-gray-600 dark:text-gray-400">서브메뉴 2</a>
-                    <a href="#" className="text-sm font-semibold text-gray-600 dark:text-gray-400">서브메뉴 3</a>
-                </div>
-              </div>
+              <a key={item} href="#" className="flex justify-between items-center py-3 border-b border-gray-100 dark:border-gray-800 last:border-0">
+                <span className="text-xl font-bold text-gray-900 dark:text-white">{item}</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400"><path d="M9 18l6-6-6-6"/></svg>
+              </a>
             ))}
           </nav>
         </div>
