@@ -9,11 +9,11 @@ export default function Header() {
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
 
   const perfectMenu = [
-    { title: 'PERFECTについて', items: [] },
-    { title: 'ツアー概要', items: ['会員登録・エントリー方法'] },
-    { title: '競技規定', items: [] },
-    { title: 'プロ会員情報', items: ['プロ限定アイテムについて'] },
-    { title: 'ユニフォーム規定', items: ['ユニフォーム掲載広告について'] }
+    'PERFECTについて',
+    'ツアー概要',
+    '競技規定',
+    'プロ会員情報',
+    'ユニフォーム規定'
   ];
 
   useEffect(() => {
@@ -93,26 +93,15 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mega Menu Dropdown */}
+      {/* Mega Menu Dropdown (Simplified to 2-depth only) */}
       <div 
-        className={`absolute top-full left-0 w-full bg-white/95 dark:bg-[#121212]/95 backdrop-blur-xl border-t border-gray-100 dark:border-gray-800 shadow-xl transition-all duration-300 overflow-hidden ${hoveredMenu === 'PERFECT 소개' ? 'max-h-[500px] opacity-100 border-t' : 'max-h-0 opacity-0 border-transparent'}`}
+        className={`absolute top-full left-0 w-full bg-white/95 dark:bg-[#121212]/95 backdrop-blur-xl border-t border-gray-100 dark:border-gray-800 shadow-sm transition-all duration-300 overflow-hidden ${hoveredMenu === 'PERFECT 소개' ? 'max-h-[100px] opacity-100 border-t' : 'max-h-0 opacity-0 border-transparent'}`}
       >
-        <div className="max-w-[1280px] mx-auto px-4 lg:px-[60px] py-12 flex justify-center gap-16">
-          {hoveredMenu === 'PERFECT 소개' && perfectMenu.map((col, idx) => (
-            <div key={idx} className="flex flex-col gap-4">
-              <a href="#" className="text-base font-extrabold text-gray-900 dark:text-white hover:text-red-600 dark:hover:text-red-500 transition-colors whitespace-nowrap">
-                {col.title}
-              </a>
-              {col.items.length > 0 && (
-                <div className="flex flex-col gap-3 mt-1">
-                  {col.items.map(subItem => (
-                    <a href="#" key={subItem} className="text-[13px] font-semibold text-gray-500 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-colors whitespace-nowrap">
-                      {subItem}
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
+        <div className="max-w-[1280px] mx-auto px-4 lg:px-[60px] py-5 flex justify-center gap-14">
+          {hoveredMenu === 'PERFECT 소개' && perfectMenu.map((title, idx) => (
+            <a href="#" key={idx} className="text-[15px] font-bold text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-500 transition-colors whitespace-nowrap">
+              {title}
+            </a>
           ))}
         </div>
       </div>
