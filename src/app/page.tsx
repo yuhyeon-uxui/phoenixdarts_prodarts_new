@@ -57,12 +57,12 @@ const tourScheduleData = [
     { round: "제6전", location: "도치기", date: "05.23", day: "토", grade: "PT200", hasMen: true, hasWomen: true },
     { round: "제7전", location: "야마구치", date: "06.06", day: "토", grade: "PT200", hasMen: true, hasWomen: true },
     { round: "제8전", location: "후쿠시마", date: "06.28", day: "일", grade: "PT200", hasMen: true, hasWomen: true },
-    { round: "제9전", location: "삿포로", date: "07.19", day: "일", grade: "확장", hasMen: true, hasWomen: true },
+    { round: "제9전", location: "삿포로", date: "07.19", day: "일", grade: "Extension", hasMen: true, hasWomen: true },
     { round: "제10전", location: "고베", date: "07.25", day: "토", grade: "PT200", hasMen: true, hasWomen: true },
     { round: "제11전", location: "이시카와", date: "08.01", day: "토", grade: "PT200", hasMen: true, hasWomen: true },
     { round: "제12전", location: "하마마츠", date: "08.29", day: "토", grade: "PT200", hasMen: true, hasWomen: true },
     { round: "제13전", location: "교토", date: "09.05", day: "토", grade: "PT200", hasMen: true, hasWomen: true },
-    { round: "제14전", location: "후쿠오카", date: "09.26", day: "토", grade: "확장", hasMen: true, hasWomen: true },
+    { round: "제14전", location: "후쿠오카", date: "09.26", day: "토", grade: "Extension", hasMen: true, hasWomen: true },
     { round: "제15전", location: "시즈오카", date: "10.10", day: "토", grade: "PT200", hasMen: true, hasWomen: true },
     { round: "제16전", location: "군마", date: "10.24", day: "토", grade: "PT200", hasMen: true, hasWomen: true },
     { round: "제17전", location: "요코하마", date: "10.31", day: "토", grade: "PT300", hasMen: true, hasWomen: true },
@@ -91,6 +91,15 @@ const proTestData = [
 
 export default function Home() {
     const [now, setNow] = useState<Date | null>(null);
+
+    const nextTourIdx = React.useMemo(() => {
+        if (!now) return -1;
+        return tourScheduleData.findIndex(item => {
+            const parts = item.date.split('.');
+            const itemDate = new Date(2026, parseInt(parts[0]) - 1, parseInt(parts[1]), 23, 59, 59);
+            return itemDate > now;
+        });
+    }, [now]);
 
     useEffect(() => {
         setNow(new Date());
@@ -641,25 +650,31 @@ export default function Home() {
                                 <h4 className="font-bold text-gray-900">2026 PERFECT 투어 일정</h4>
                             </div>
                             <div className="overflow-y-auto flex-1 p-2">
-                                {tourScheduleData.map((item, idx) => (
-                                    <div key={idx} className="flex items-center justify-between py-2.5 px-3 hover:bg-gray-50 rounded-[4px] transition-colors border-b border-gray-50 last:border-0 group cursor-pointer">
-                                        <div className="flex items-center gap-4 flex-1">
-                                            <span className="w-12 text-sm font-bold text-gray-500">{item.round}</span>
-                                            <span className="w-20 font-bold text-gray-900 group-hover:text-red-600 transition-colors">{item.location}</span>
-                                            <span className="text-sm text-gray-400 font-medium">{item.date} <span className="text-[10px] ml-0.5">{item.day}</span></span>
-                                        </div>
-                                        <div className="flex items-center gap-3">
-                                            <span className={`text-[10px] font-bold px-2 py-1 rounded-[2px] ${item.grade === 'PT300' ? 'bg-black text-white' : item.grade === 'PT200' ? 'bg-gray-200 text-gray-600' : 'bg-red-600 text-white'}`}>
-                                                {item.grade}
-                                            </span>
-                                            <div className="flex gap-1">
-                                                {item.hasMen && <div className="w-2.5 h-2.5 rounded-[2px] bg-blue-500"></div>}
-                                                {item.hasWomen && <div className="w-2.5 h-2.5 rounded-[2px] bg-pink-500"></div>}
+                                {tourScheduleData.map((item, idx) => {
+                                    const isNext = idx === nextTourIdx;
+                                    return (
+                                        <div key={idx} className={`flex items-center justify-between py-2.5 px-3 rounded-[4px] transition-colors border-b last:border-0 group cursor-pointer ${isNext ? 'bg-red-50 border-red-100 shadow-[inset_0_0_0_1px_rgba(239,68,68,0.2)]' : 'hover:bg-gray-50 border-gray-50'}`}>
+                                            <div className="flex items-center gap-4 flex-1">
+                                                <span className={`w-12 text-sm font-bold ${isNext ? 'text-red-600' : 'text-gray-500'}`}>{item.round}</span>
+                                                <span className={`w-20 font-bold group-hover:text-red-600 transition-colors ${isNext ? 'text-red-600' : 'text-gray-900'}`}>{item.location}</span>
+                                                <span className={`text-sm font-medium flex items-center ${isNext ? 'text-red-500' : 'text-gray-400'}`}>
+                                                    {item.date} <span className="text-[10px] ml-0.5">{item.day}</span>
+                                                    {isNext && <span className="ml-3 text-[9px] font-black bg-red-600 text-white px-1.5 py-0.5 rounded-[2px] animate-pulse">UPCOMING</span>}
+                                                </span>
                                             </div>
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4 text-gray-300 group-hover:text-gray-900 transition-colors ml-2"><path d="M9 18l6-6-6-6" /></svg>
+                                            <div className="flex items-center gap-3">
+                                                <span className={`text-[10px] font-bold px-2 py-1 rounded-[2px] ${item.grade === 'PT300' ? 'bg-black text-white' : item.grade === 'PT200' ? 'bg-gray-200 text-gray-600' : 'bg-[#EAA51D] text-white'}`}>
+                                                    {item.grade}
+                                                </span>
+                                                <div className="flex gap-1">
+                                                    {item.hasMen && <div className="w-2.5 h-2.5 rounded-[2px] bg-blue-500"></div>}
+                                                    {item.hasWomen && <div className="w-2.5 h-2.5 rounded-[2px] bg-pink-500"></div>}
+                                                </div>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className={`w-4 h-4 transition-colors ml-2 ${isNext ? 'text-red-400 group-hover:text-red-600' : 'text-gray-300 group-hover:text-gray-900'}`}><path d="M9 18l6-6-6-6" /></svg>
+                                            </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    );
+                                })}
                             </div>
                         </div>
 
