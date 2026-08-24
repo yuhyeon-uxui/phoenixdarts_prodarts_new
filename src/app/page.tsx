@@ -656,20 +656,18 @@ export default function Home() {
                                         <div className="flex items-center gap-4 flex-1">
                                             <span className="w-12 text-sm font-bold text-red-600">{tourScheduleData[nextTourIdx].round}</span>
                                             <span className="w-20 font-bold text-red-600">{tourScheduleData[nextTourIdx].location}</span>
-                                            <span className="text-sm font-medium text-red-500">
+                                            <span className="w-20 text-sm font-medium text-red-500">
                                                 {tourScheduleData[nextTourIdx].date} <span className="text-[10px] ml-0.5">{tourScheduleData[nextTourIdx].day}</span>
                                             </span>
-                                        </div>
-                                        <div className="flex items-center gap-3">
-                                            <span className={`text-[10px] font-bold px-2 py-1 rounded-[2px] ${tourScheduleData[nextTourIdx].grade === 'PT300' ? 'bg-black text-white' : tourScheduleData[nextTourIdx].grade === 'PT200' ? 'bg-gray-200 text-gray-600' : 'bg-[#EAA51D] text-white'}`}>
+                                            <span className={`w-[72px] text-center text-[10px] font-bold px-2 py-1 rounded-[2px] ${tourScheduleData[nextTourIdx].grade === 'PT300' ? 'bg-black text-white' : tourScheduleData[nextTourIdx].grade === 'PT200' ? 'bg-gray-200 text-gray-600' : 'bg-[#EAA51D] text-white'}`}>
                                                 {tourScheduleData[nextTourIdx].grade}
                                             </span>
-                                            <div className="flex gap-1">
+                                            <div className="w-8 flex gap-1">
                                                 {tourScheduleData[nextTourIdx].hasMen && <div className="w-2.5 h-2.5 rounded-[2px] bg-blue-500"></div>}
                                                 {tourScheduleData[nextTourIdx].hasWomen && <div className="w-2.5 h-2.5 rounded-[2px] bg-pink-500"></div>}
                                             </div>
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4 text-red-400 ml-2"><path d="M9 18l6-6-6-6" /></svg>
                                         </div>
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4 text-red-400 ml-2 shrink-0"><path d="M9 18l6-6-6-6" /></svg>
                                     </div>
                                 </div>
                             ) : (
@@ -685,20 +683,18 @@ export default function Home() {
                                             <div className="flex items-center gap-4 flex-1">
                                                 <span className="w-12 text-sm font-bold text-gray-500">{item.round}</span>
                                                 <span className="w-20 font-bold group-hover:text-red-600 transition-colors text-gray-900">{item.location}</span>
-                                                <span className="text-sm font-medium flex items-center text-gray-400">
+                                                <span className="w-20 text-sm font-medium flex items-center text-gray-400">
                                                     {item.date} <span className="text-[10px] ml-0.5">{item.day}</span>
                                                 </span>
-                                            </div>
-                                            <div className="flex items-center gap-3">
-                                                <span className={`text-[10px] font-bold px-2 py-1 rounded-[2px] ${item.grade === 'PT300' ? 'bg-black text-white' : item.grade === 'PT200' ? 'bg-gray-200 text-gray-600' : 'bg-[#EAA51D] text-white'}`}>
+                                                <span className={`w-[72px] text-center text-[10px] font-bold px-2 py-1 rounded-[2px] ${item.grade === 'PT300' ? 'bg-black text-white' : item.grade === 'PT200' ? 'bg-gray-200 text-gray-600' : 'bg-[#EAA51D] text-white'}`}>
                                                     {item.grade}
                                                 </span>
-                                                <div className="flex gap-1">
+                                                <div className="w-8 flex gap-1">
                                                     {item.hasMen && <div className="w-2.5 h-2.5 rounded-[2px] bg-blue-500"></div>}
                                                     {item.hasWomen && <div className="w-2.5 h-2.5 rounded-[2px] bg-pink-500"></div>}
                                                 </div>
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4 transition-colors ml-2 text-gray-300 group-hover:text-gray-900"><path d="M9 18l6-6-6-6" /></svg>
                                             </div>
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4 transition-colors ml-2 shrink-0 text-gray-300 group-hover:text-gray-900"><path d="M9 18l6-6-6-6" /></svg>
                                         </div>
                                     );
                                 })}
