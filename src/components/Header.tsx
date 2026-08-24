@@ -29,14 +29,14 @@ export default function Header() {
           <span className="text-[10px] block font-normal -mt-1 opacity-60">SOFT DARTS PRO TOURNAMENT</span>
         </div>
 
-        {/* Pill Navigation (Centered) -> Changed to plain text list */}
+        {/* Plain Text Navigation (Centered) */}
         <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2">
-          <nav className="flex items-center gap-6">
+          <nav className="flex items-center gap-10 lg:gap-12">
             {['PERFECT 소개', '투어 일정', 'LIVE 중계', '매치 결과', '랭킹'].map((item) => (
               <a 
                 key={item}
                 href="#" 
-                className="text-sm font-bold transition-all duration-300 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                className="text-[18px] font-bold transition-all duration-300 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
               >
                 {item}
               </a>
