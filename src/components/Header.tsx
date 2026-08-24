@@ -6,6 +6,15 @@ export default function Header() {
   // 임시로 라이트 모드 고정 (다크 모드 잠시 보류)
   const [isDark, setIsDark] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
+
+  const perfectMenu = [
+    { title: 'PERFECTについて', items: [] },
+    { title: 'ツアー概要', items: ['会員登録・エントリー方法'] },
+    { title: '競技規定', items: [] },
+    { title: 'プロ会員情報', items: ['プロ限定アイテムについて'] },
+    { title: 'ユニフォーム規定', items: ['ユニフォーム掲載広告について'] }
+  ];
 
   useEffect(() => {
     if (isDark) {
@@ -18,7 +27,10 @@ export default function Header() {
   }, [isDark]);
 
   return (
-    <header className="sticky top-0 z-[100] w-full transition-colors duration-300">
+    <header 
+      className="sticky top-0 z-[100] w-full transition-colors duration-300"
+      onMouseLeave={() => setHoveredMenu(null)}
+    >
       {/* Header Background */}
       <div className="absolute inset-0 backdrop-blur-xl bg-white/90 dark:bg-[#121212]/90 pointer-events-none -z-10"></div>
       <div className="relative max-w-[1280px] mx-auto px-4 lg:px-[60px] h-20 flex items-center justify-between">
@@ -30,16 +42,21 @@ export default function Header() {
         </div>
 
         {/* Plain Text Navigation (Centered) */}
-        <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2">
-          <nav className="flex items-center gap-10 lg:gap-12">
+        <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 h-full">
+          <nav className="flex items-center gap-10 lg:gap-12 h-full">
             {['PERFECT 소개', '투어 일정', 'LIVE 중계', '매치 결과', '랭킹'].map((item) => (
-              <a 
+              <div 
                 key={item}
-                href="#" 
-                className="text-[18px] font-bold transition-all duration-300 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                className="h-full flex items-center cursor-pointer"
+                onMouseEnter={() => setHoveredMenu(item)}
               >
-                {item}
-              </a>
+                <a 
+                  href="#" 
+                  className={`text-[18px] font-bold transition-all duration-300 hover:text-red-600 ${hoveredMenu === item ? 'text-red-600 dark:text-red-500' : 'text-gray-900 dark:text-white'}`}
+                >
+                  {item}
+                </a>
+              </div>
             ))}
           </nav>
         </div>
@@ -73,6 +90,30 @@ export default function Header() {
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
             )}
           </button>
+        </div>
+      </div>
+
+      {/* Mega Menu Dropdown */}
+      <div 
+        className={`absolute top-full left-0 w-full bg-white/95 dark:bg-[#121212]/95 backdrop-blur-xl border-t border-gray-100 dark:border-gray-800 shadow-xl transition-all duration-300 overflow-hidden ${hoveredMenu === 'PERFECT 소개' ? 'max-h-[500px] opacity-100 border-t' : 'max-h-0 opacity-0 border-transparent'}`}
+      >
+        <div className="max-w-[1280px] mx-auto px-4 lg:px-[60px] py-12 flex justify-center gap-16">
+          {hoveredMenu === 'PERFECT 소개' && perfectMenu.map((col, idx) => (
+            <div key={idx} className="flex flex-col gap-4">
+              <a href="#" className="text-base font-extrabold text-gray-900 dark:text-white hover:text-red-600 dark:hover:text-red-500 transition-colors whitespace-nowrap">
+                {col.title}
+              </a>
+              {col.items.length > 0 && (
+                <div className="flex flex-col gap-3 mt-1">
+                  {col.items.map(subItem => (
+                    <a href="#" key={subItem} className="text-[13px] font-semibold text-gray-500 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-colors whitespace-nowrap">
+                      {subItem}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </div>
 
