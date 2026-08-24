@@ -679,7 +679,6 @@ export default function Home() {
                             )}
                             <div className="overflow-y-auto flex-1 p-2 custom-scrollbar pr-1">
                                 {tourScheduleData.map((item, idx) => {
-                                    if (idx === nextTourIdx) return null; // Skip the pinned one
                                     return (
                                         <div key={idx} className="flex items-center justify-between py-2.5 px-3 rounded-[4px] transition-colors border-b last:border-0 group cursor-pointer hover:bg-gray-50 border-gray-50">
                                             <div className="flex items-center gap-4 flex-1">
