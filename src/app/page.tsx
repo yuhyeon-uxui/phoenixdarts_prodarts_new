@@ -646,20 +646,47 @@ export default function Home() {
                     <div className="flex flex-col lg:flex-row gap-6 h-[400px]">
                         {/* Left: Tour Schedule */}
                         <div className="flex-1 bg-white rounded-[4px] border border-gray-200 shadow-sm flex flex-col overflow-hidden h-full">
-                            <div className="p-4 border-b border-gray-200 bg-gray-50 shrink-0">
-                                <h4 className="font-bold text-gray-900">2026 PERFECT 투어 일정</h4>
-                            </div>
+                            {nextTourIdx !== -1 ? (
+                                <div className="p-3 border-b border-red-200 bg-red-50 shrink-0 shadow-[0_1px_3px_rgba(239,68,68,0.1)] z-10 relative">
+                                    <div className="flex items-center gap-2 mb-1.5 ml-1">
+                                        <span className="text-[10px] font-black bg-red-600 text-white px-1.5 py-0.5 rounded-[2px] animate-pulse">UPCOMING</span>
+                                        <span className="text-[11px] font-bold text-gray-500">2026 PERFECT 투어 일정</span>
+                                    </div>
+                                    <div className="flex items-center justify-between py-1 px-1">
+                                        <div className="flex items-center gap-4 flex-1">
+                                            <span className="w-12 text-sm font-bold text-red-600">{tourScheduleData[nextTourIdx].round}</span>
+                                            <span className="w-20 font-bold text-red-600">{tourScheduleData[nextTourIdx].location}</span>
+                                            <span className="text-sm font-medium text-red-500">
+                                                {tourScheduleData[nextTourIdx].date} <span className="text-[10px] ml-0.5">{tourScheduleData[nextTourIdx].day}</span>
+                                            </span>
+                                        </div>
+                                        <div className="flex items-center gap-3">
+                                            <span className={`text-[10px] font-bold px-2 py-1 rounded-[2px] ${tourScheduleData[nextTourIdx].grade === 'PT300' ? 'bg-black text-white' : tourScheduleData[nextTourIdx].grade === 'PT200' ? 'bg-gray-200 text-gray-600' : 'bg-[#EAA51D] text-white'}`}>
+                                                {tourScheduleData[nextTourIdx].grade}
+                                            </span>
+                                            <div className="flex gap-1">
+                                                {tourScheduleData[nextTourIdx].hasMen && <div className="w-2.5 h-2.5 rounded-[2px] bg-blue-500"></div>}
+                                                {tourScheduleData[nextTourIdx].hasWomen && <div className="w-2.5 h-2.5 rounded-[2px] bg-pink-500"></div>}
+                                            </div>
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4 text-red-400 ml-2"><path d="M9 18l6-6-6-6" /></svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="p-4 border-b border-gray-200 bg-gray-50 shrink-0">
+                                    <h4 className="font-bold text-gray-900">2026 PERFECT 투어 일정</h4>
+                                </div>
+                            )}
                             <div className="overflow-y-auto flex-1 p-2">
                                 {tourScheduleData.map((item, idx) => {
-                                    const isNext = idx === nextTourIdx;
+                                    if (idx === nextTourIdx) return null; // Skip the pinned one
                                     return (
-                                        <div key={idx} className={`flex items-center justify-between py-2.5 px-3 rounded-[4px] transition-colors border-b last:border-0 group cursor-pointer ${isNext ? 'bg-red-50 border-red-100 shadow-[inset_0_0_0_1px_rgba(239,68,68,0.2)]' : 'hover:bg-gray-50 border-gray-50'}`}>
+                                        <div key={idx} className="flex items-center justify-between py-2.5 px-3 rounded-[4px] transition-colors border-b last:border-0 group cursor-pointer hover:bg-gray-50 border-gray-50">
                                             <div className="flex items-center gap-4 flex-1">
-                                                <span className={`w-12 text-sm font-bold ${isNext ? 'text-red-600' : 'text-gray-500'}`}>{item.round}</span>
-                                                <span className={`w-20 font-bold group-hover:text-red-600 transition-colors ${isNext ? 'text-red-600' : 'text-gray-900'}`}>{item.location}</span>
-                                                <span className={`text-sm font-medium flex items-center ${isNext ? 'text-red-500' : 'text-gray-400'}`}>
+                                                <span className="w-12 text-sm font-bold text-gray-500">{item.round}</span>
+                                                <span className="w-20 font-bold group-hover:text-red-600 transition-colors text-gray-900">{item.location}</span>
+                                                <span className="text-sm font-medium flex items-center text-gray-400">
                                                     {item.date} <span className="text-[10px] ml-0.5">{item.day}</span>
-                                                    {isNext && <span className="ml-3 text-[9px] font-black bg-red-600 text-white px-1.5 py-0.5 rounded-[2px] animate-pulse">UPCOMING</span>}
                                                 </span>
                                             </div>
                                             <div className="flex items-center gap-3">
@@ -670,7 +697,7 @@ export default function Home() {
                                                     {item.hasMen && <div className="w-2.5 h-2.5 rounded-[2px] bg-blue-500"></div>}
                                                     {item.hasWomen && <div className="w-2.5 h-2.5 rounded-[2px] bg-pink-500"></div>}
                                                 </div>
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className={`w-4 h-4 transition-colors ml-2 ${isNext ? 'text-red-400 group-hover:text-red-600' : 'text-gray-300 group-hover:text-gray-900'}`}><path d="M9 18l6-6-6-6" /></svg>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4 transition-colors ml-2 text-gray-300 group-hover:text-gray-900"><path d="M9 18l6-6-6-6" /></svg>
                                             </div>
                                         </div>
                                     );
