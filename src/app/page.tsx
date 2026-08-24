@@ -800,7 +800,8 @@ function FadeUp({ children, delay = 0, className = '' }: { children: React.React
         const observer = new IntersectionObserver(([entry]) => {
             if (entry.isIntersecting) {
                 setIsVisible(true);
-                observer.unobserve(entry.target);
+            } else {
+                setIsVisible(false);
             }
         }, { threshold: 0.1, rootMargin: '50px' });
 
