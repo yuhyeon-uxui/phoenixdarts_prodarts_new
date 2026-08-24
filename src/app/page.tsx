@@ -48,6 +48,47 @@ const newsData = Array.from({ length: 16 }, (_, i) => ({
     image: i % 2 === 0 ? 'https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=400' : undefined
 }));
 
+const tourScheduleData = [
+    { round: "개막전", location: "요코하마", date: "02.14", day: "토", grade: "PT300", hasMen: true, hasWomen: true },
+    { round: "제2전", location: "시즈오카", date: "03.14", day: "토", grade: "PT200", hasMen: true, hasWomen: true },
+    { round: "제3전", location: "요코하마", date: "04.11", day: "토", grade: "PT300", hasMen: true, hasWomen: true },
+    { round: "제4전", location: "니가타", date: "04.18", day: "토", grade: "PT200", hasMen: true, hasWomen: true },
+    { round: "제5전", location: "센다이", date: "05.09", day: "토", grade: "PT200", hasMen: true, hasWomen: true },
+    { round: "제6전", location: "도치기", date: "05.23", day: "토", grade: "PT200", hasMen: true, hasWomen: true },
+    { round: "제7전", location: "야마구치", date: "06.06", day: "토", grade: "PT200", hasMen: true, hasWomen: true },
+    { round: "제8전", location: "후쿠시마", date: "06.28", day: "일", grade: "PT200", hasMen: true, hasWomen: true },
+    { round: "제9전", location: "삿포로", date: "07.19", day: "일", grade: "확장", hasMen: true, hasWomen: true },
+    { round: "제10전", location: "고베", date: "07.25", day: "토", grade: "PT200", hasMen: true, hasWomen: true },
+    { round: "제11전", location: "이시카와", date: "08.01", day: "토", grade: "PT200", hasMen: true, hasWomen: true },
+    { round: "제12전", location: "하마마츠", date: "08.29", day: "토", grade: "PT200", hasMen: true, hasWomen: true },
+    { round: "제13전", location: "교토", date: "09.05", day: "토", grade: "PT200", hasMen: true, hasWomen: true },
+    { round: "제14전", location: "후쿠오카", date: "09.26", day: "토", grade: "확장", hasMen: true, hasWomen: true },
+    { round: "제15전", location: "시즈오카", date: "10.10", day: "토", grade: "PT200", hasMen: true, hasWomen: true },
+    { round: "제16전", location: "군마", date: "10.24", day: "토", grade: "PT200", hasMen: true, hasWomen: true },
+    { round: "제17전", location: "요코하마", date: "10.31", day: "토", grade: "PT300", hasMen: true, hasWomen: true },
+    { round: "제18전", location: "이바라키", date: "11.28", day: "토", grade: "PT200", hasMen: true, hasWomen: true },
+    { round: "최종전", location: "요코하마", date: "12.19", day: "토", grade: "PT300", hasMen: true, hasWomen: true },
+];
+
+const proTestData = [
+    { location: "도쿄", date: "2026.03.28", day: "토" },
+    { location: "군마", date: "2026.04.04", day: "토" },
+    { location: "이바라키", date: "2026.04.25", day: "토" },
+    { location: "센다이", date: "2026.04.26", day: "일" },
+    { location: "삿포로", date: "2026.06.14", day: "일" },
+    { location: "이시카와", date: "2026.07.04", day: "토" },
+    { location: "오사카", date: "2026.07.05", day: "일" },
+    { location: "오카야마", date: "2026.07.12", day: "일" },
+    { location: "나고야", date: "2026.08.02", day: "일" },
+    { location: "군마", date: "2026.08.08", day: "토" },
+    { location: "후쿠오카", date: "2026.09.06", day: "일" },
+    { location: "시즈오카", date: "2026.09.13", day: "일" },
+    { location: "도쿄", date: "2026.10.03", day: "토" },
+    { location: "이바라키", date: "2026.10.17", day: "토" },
+    { location: "도쿄", date: "2026.11.14", day: "토" },
+    { location: "오키나와", date: "2026.12.05", day: "토" },
+];
+
 export default function Home() {
     const [now, setNow] = useState<Date | null>(null);
 
@@ -584,6 +625,64 @@ export default function Home() {
                     </div>
                 </section>
 </FadeUp>
+                {/* 5.5 Schedule & Pro Test */}
+                <FadeUp>
+                <section className="mb-16">
+                    <div className="flex justify-between items-end mb-6">
+                        <div>
+                            <h3 className="text-2xl font-bold text-gray-900">2026 SCHEDULE</h3>
+                            <p className="text-sm font-bold text-gray-500 mt-1">투어 일정 및 프로테스트 정보</p>
+                        </div>
+                    </div>
+                    <div className="flex flex-col lg:flex-row gap-6 h-[400px]">
+                        {/* Left: Tour Schedule */}
+                        <div className="flex-1 bg-white rounded-[4px] border border-gray-200 shadow-sm flex flex-col overflow-hidden h-full">
+                            <div className="p-4 border-b border-gray-200 bg-gray-50 shrink-0">
+                                <h4 className="font-bold text-gray-900">2026 PERFECT 투어 일정</h4>
+                            </div>
+                            <div className="overflow-y-auto flex-1 p-2">
+                                {tourScheduleData.map((item, idx) => (
+                                    <div key={idx} className="flex items-center justify-between py-2.5 px-3 hover:bg-gray-50 rounded-[4px] transition-colors border-b border-gray-50 last:border-0 group cursor-pointer">
+                                        <div className="flex items-center gap-4 flex-1">
+                                            <span className="w-12 text-sm font-bold text-gray-500">{item.round}</span>
+                                            <span className="w-20 font-bold text-gray-900 group-hover:text-red-600 transition-colors">{item.location}</span>
+                                            <span className="text-sm text-gray-400 font-medium">{item.date} <span className="text-[10px] ml-0.5">{item.day}</span></span>
+                                        </div>
+                                        <div className="flex items-center gap-3">
+                                            <span className={`text-[10px] font-bold px-2 py-1 rounded-[2px] ${item.grade === 'PT300' ? 'bg-black text-white' : item.grade === 'PT200' ? 'bg-gray-200 text-gray-600' : 'bg-red-600 text-white'}`}>
+                                                {item.grade}
+                                            </span>
+                                            <div className="flex gap-1">
+                                                {item.hasMen && <div className="w-2.5 h-2.5 rounded-[2px] bg-blue-500"></div>}
+                                                {item.hasWomen && <div className="w-2.5 h-2.5 rounded-[2px] bg-pink-500"></div>}
+                                            </div>
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4 text-gray-300 group-hover:text-gray-900 transition-colors ml-2"><path d="M9 18l6-6-6-6" /></svg>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Right: Pro Test */}
+                        <div className="lg:w-[320px] shrink-0 bg-gray-900 rounded-[4px] shadow-sm flex flex-col overflow-hidden h-full text-white">
+                            <div className="p-4 border-b border-gray-800 bg-black/20 shrink-0">
+                                <h4 className="font-bold text-white">프로테스트 정보</h4>
+                            </div>
+                            <div className="overflow-y-auto flex-1 p-2">
+                                {proTestData.map((item, idx) => (
+                                    <div key={idx} className="flex items-center justify-between py-2.5 px-3 hover:bg-gray-800 rounded-[4px] transition-colors border-b border-gray-800 last:border-0 group cursor-pointer">
+                                        <div className="flex items-center gap-4">
+                                            <span className="w-16 font-bold group-hover:text-red-500 transition-colors">{item.location}</span>
+                                            <span className="text-sm text-gray-400 font-medium">{item.date} <span className="text-[10px] ml-0.5">{item.day}</span></span>
+                                        </div>
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4 text-gray-600 group-hover:text-white transition-colors"><path d="M9 18l6-6-6-6" /></svg>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                </FadeUp>
 
                 {/* 6. Media */}
                 <FadeUp>
