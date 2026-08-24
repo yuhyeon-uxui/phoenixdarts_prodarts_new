@@ -64,8 +64,8 @@ export default function Home() {
     const [heroHover, setHeroHover] = useState(false);
     const [isHeroPaused, setIsHeroPaused] = useState(false);
     const heroSlides = [
-        { title: "2026 PERFECT 챔피언십\n결승전 LIVE", image: "/hero_bg_1.png" },
-        { title: "오키나와 에어리어\n차세대 선수 결정전", image: "/hero_bg_2.png" }
+        { title: "2026 PERFECT 챔피언십\n결승전 LIVE", image: "/hero_bg_1.png?v=2" },
+        { title: "오키나와 에어리어\n차세대 선수 결정전", image: "/hero_bg_2.png?v=2" }
     ];
 
     useEffect(() => {
@@ -272,9 +272,9 @@ export default function Home() {
                             onScroll={onNextMatchScroll}
                         >
                             {[
-                                { tour: "2026 PERFECT TOUR", title: "제12전 하마마츠", date: "2026. 08. 29 (SUN) 10:00 / 액트시티 하마마츠", targetDate: "2026-08-29T10:00:00", img: "/next_perfect_poster.png", d: "08", h: "19", m: "48", s: "54" },
-                                { tour: "2026 PERFECT TOUR", title: "제13전 도쿄", date: "2026. 09. 15 (SUN) 10:00 / 도쿄 빅사이트", targetDate: "2026-09-15T10:00:00", img: "/next_perfect_poster.png", d: "25", h: "09", m: "12", s: "30" },
-                                { tour: "2026 PERFECT TOUR", title: "제14전 오사카", date: "2026. 10. 10 (SAT) 10:00 / 인텍스 오사카", targetDate: "2026-10-10T10:00:00", img: "/next_perfect_poster.png", d: "50", h: "14", m: "05", s: "11" },
+                                { tour: "2026 PERFECT TOUR", title: "제12전 하마마츠", date: "2026. 08. 29 (SUN) 10:00 / 액트시티 하마마츠", targetDate: "2026-08-29T10:00:00", img: "/next_perfect_poster.png?v=2", d: "08", h: "19", m: "48", s: "54" },
+                                { tour: "2026 PERFECT TOUR", title: "제13전 도쿄", date: "2026. 09. 15 (SUN) 10:00 / 도쿄 빅사이트", targetDate: "2026-09-15T10:00:00", img: "/next_perfect_poster.png?v=2", d: "25", h: "09", m: "12", s: "30" },
+                                { tour: "2026 PERFECT TOUR", title: "제14전 오사카", date: "2026. 10. 10 (SAT) 10:00 / 인텍스 오사카", targetDate: "2026-10-10T10:00:00", img: "/next_perfect_poster.png?v=2", d: "50", h: "14", m: "05", s: "11" },
                             ].map((match, idx) => {
                                 let d = match.d, h = match.h, m = match.m, s = match.s;
                                 if (now) {
