@@ -6,8 +6,6 @@ export default function Header() {
   // 임시로 라이트 모드 고정 (다크 모드 잠시 보류)
   const [isDark, setIsDark] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
-
   const perfectMenu = [
     'PERFECTについて',
     'ツアー概要',
@@ -29,7 +27,6 @@ export default function Header() {
   return (
     <header 
       className="sticky top-0 z-[100] w-full transition-colors duration-300"
-      onMouseLeave={() => setHoveredMenu(null)}
     >
       {/* Header Background */}
       <div className="absolute inset-0 backdrop-blur-xl bg-white/90 dark:bg-[#121212]/90 pointer-events-none -z-10"></div>
@@ -48,11 +45,10 @@ export default function Header() {
               <div 
                 key={item}
                 className="h-full flex items-center cursor-pointer"
-                onMouseEnter={() => setHoveredMenu(item)}
               >
                 <a 
                   href="#" 
-                  className={`text-[18px] font-bold transition-all duration-300 hover:text-red-600 ${hoveredMenu === item ? 'text-red-600 dark:text-red-500' : 'text-gray-900 dark:text-white'}`}
+                  className="text-[18px] font-bold transition-all duration-300 hover:text-red-600 text-gray-900 dark:text-white"
                 >
                   {item}
                 </a>
@@ -93,18 +89,7 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mega Menu Dropdown (Simplified to 2-depth only) */}
-      <div 
-        className={`absolute top-full left-0 w-full bg-white/95 dark:bg-[#121212]/95 backdrop-blur-xl border-t border-gray-100 dark:border-gray-800 shadow-sm transition-all duration-300 overflow-hidden ${hoveredMenu === 'PERFECT 소개' ? 'max-h-[100px] opacity-100 border-t' : 'max-h-0 opacity-0 border-transparent'}`}
-      >
-        <div className="max-w-[1280px] mx-auto px-4 lg:px-[60px] py-5 flex justify-center gap-14">
-          {hoveredMenu === 'PERFECT 소개' && perfectMenu.map((title, idx) => (
-            <a href="#" key={idx} className="text-[15px] font-bold text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-500 transition-colors whitespace-nowrap">
-              {title}
-            </a>
-          ))}
-        </div>
-      </div>
+      {/* Mega Menu Dropdown (Removed as per user feedback) */}
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
