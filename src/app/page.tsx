@@ -403,26 +403,19 @@ export default function Home() {
 
 
 
-                {/* 3-2. P.TOS Intro */}
+                {/* 3. P.TOS Banner */}
                 <FadeUp>
-                    <section className="bg-white rounded-[8px] border border-gray-200 p-8 shadow-sm">
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-6 h-6 rounded-full bg-gray-800 text-white flex items-center justify-center font-bold text-sm">
-                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+                    <section>
+                        <div className="w-full rounded-[4px] bg-[#121212] px-6 lg:px-10 py-6 flex flex-col md:flex-row md:items-center justify-between gap-6 cursor-pointer shadow-sm border border-[#27272A] hover:border-gray-600 transition-colors group">
+                            <div className="text-white flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-6">
+                                <div className="flex items-center gap-2 shrink-0">
+                                    <h3 className="text-[20px] font-bold">대회 시스템 <span className="text-red-600">'P.TOS'</span> 소개</h3>
+                                </div>
+                                <p className="text-[13px] text-gray-400 font-medium lg:border-l lg:border-gray-700 lg:pl-6 leading-relaxed hidden md:block">
+                                    PERFECT에서는 앱을 통한 경기 통지 및 결과 입력이 가능한 대회 진행 시스템 「P.TOS」를 채용하고 있습니다.
+                                </p>
                             </div>
-                            <h3 className="text-2xl font-bold text-gray-900 tracking-tight">대회 시스템 <span className="text-red-600">'P.TOS'</span> 소개</h3>
-                        </div>
-                        
-                        <div className="w-full aspect-[2/1] md:aspect-[2.5/1] bg-gray-900 rounded-[8px] mb-8 bg-cover bg-center overflow-hidden relative shadow-inner" style={{backgroundImage: "url('https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=1200')"}}>
-                            <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                                <h1 className="text-white text-5xl md:text-7xl font-black italic tracking-tighter opacity-80">P.TOS</h1>
-                            </div>
-                        </div>
-
-                        <div className="text-gray-700 font-medium flex flex-col gap-4 text-[15px] leading-relaxed">
-                            <p>PERFECT에서는, 대회 진행 시스템으로서 「P.TOS(피토스/PHOENIX TOURNAMENT SERVICE)」를 채용하고 있습니다.</p>
-                            <p>P.TOS의 도입으로 앱을 통한 경기 통지 및 결과 입력이 가능해 대회 운영의 효율화가 전망됩니다.</p>
-                            <p>원활한 시합 진행을 위해, 여러분의 이해와 협력을 부탁드립니다.</p>
+                            <button className="bg-white text-black px-6 py-2.5 rounded-[4px] font-bold text-sm group-hover:bg-gray-200 transition-colors shrink-0 md:w-auto w-full">자세히 보기</button>
                         </div>
                     </section>
                 </FadeUp>
