@@ -45,7 +45,7 @@ const newsData = Array.from({ length: 16 }, (_, i) => ({
     title: `PERFECT 2026 제${11 + i}전 이시카와 대회 결과 안내`,
     desc: '열띤 경쟁 속에서 펼쳐진 이번 이시카와 대회에서 새로운 챔피언이 탄생했습니다. 경기 내용 및 자세한 결과...',
     date: `2026.08.${30 - i}`,
-    image: i % 2 === 0 ? 'https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=400' : undefined
+    image: i % 2 === 0 ? 'https://images.unsplash.com/photo-1542652735873-fb2825bac6e2?q=80&w=400' : undefined
 }));
 
 const tourScheduleData = [
@@ -405,7 +405,7 @@ export default function Home() {
                 <FadeUp>
 <section>
                     <div className="w-full h-[140px] rounded-[4px] bg-blue-900 overflow-hidden relative cursor-pointer shadow-sm">
-                        <div className="absolute inset-0 bg-cover bg-center opacity-50" style={{backgroundImage: "url('https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=1200')"}}></div>
+                        <div className="absolute inset-0 bg-cover bg-center opacity-50" style={{backgroundImage: "url('https://images.unsplash.com/photo-1542652735873-fb2825bac6e2?q=80&w=1200')"}}></div>
                         <div className="absolute inset-0 flex items-center justify-between px-10">
                             <div className="text-white">
                                 <h3 className="text-2xl font-bold mb-2">신규 프로 회원가입 이벤트</h3>
