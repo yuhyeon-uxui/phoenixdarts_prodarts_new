@@ -401,18 +401,7 @@ export default function Home() {
                 {/* Inner Content Wrapper */}
                 <div className="flex flex-col gap-16 pb-12">
 
-                {/* 3. Event Banner */}
-                <FadeUp>
-                    <section>
-                        <div className="w-full rounded-[4px] bg-[#223B82] px-10 py-8 flex items-center justify-between cursor-pointer shadow-sm border border-[#1d3270]">
-                            <div className="text-white">
-                                <h3 className="text-[22px] font-bold mb-2">신규 프로 회원가입 이벤트</h3>
-                                <p className="text-[13px] text-white/90 font-medium">지금 가입하고 피닉스다트 공식 굿즈 받자!</p>
-                            </div>
-                            <button className="bg-white text-[#223B82] px-6 py-2.5 rounded-[4px] font-bold text-sm hover:bg-gray-50 transition-colors shadow-sm">자세히 보기</button>
-                        </div>
-                    </section>
-                </FadeUp>
+
 
                 {/* 3-2. P.TOS Intro */}
                 <FadeUp>
